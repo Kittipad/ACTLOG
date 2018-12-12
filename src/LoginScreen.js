@@ -15,7 +15,7 @@ class LoginScreen extends Component {
     title: 'Login',
   }
 
-  goHomeScreen() {
+  Login() {
     const resetAction = StackActions.reset({
       index: 0,
       actions: [NavigationActions.navigate({ routeName: 'Home' })]
@@ -23,10 +23,20 @@ class LoginScreen extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
+  Register() {
+    this.props.navigation.navigate('Register')
+  }
+
   render() {
     return (
       <View style={styles.common.container}>
         <Text>Login Screen</Text>
+        <Button
+          title='Login'
+          onPress={() => this.Login(this)} />
+        <Button
+          title='Register'
+          onPress={() => this.Register(this)} />
       </View>
     );
   }
