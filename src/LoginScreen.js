@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
-  Button,
-  TextInput,
   Alert,
+  Text,
+  TouchableOpacity,
 } from 'react-native';
 import {
   StackActions,
   NavigationActions,
 } from 'react-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { Input } from 'react-native-elements';
 import styles from './styles'
 
 class LoginScreen extends Component {
@@ -47,26 +48,47 @@ class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.common.container}>
-        <TextInput
-          style={styles.common.input}
+        <Input
+          containerStyle={styles.common.input}
+          inputContainerStyle={styles.common.input_}
+          placeholderTextColor='white'
+          leftIcon={
+            <Icon
+              name='user-alt'
+              size={30}
+              color='white'
+            />
+          }
           placeholder='Username'
-          clearTextOnFocus={true}
           autoCapitalize={false}
           autoCorrect={false}
+          keyboardType='email-address'
           onChangeText={(text) => this.setState({ user: text })} />
-        <TextInput
-          style={styles.common.input}
+        <Input
+          containerStyle={styles.common.input}
+          inputContainerStyle={styles.common.input_}
+          placeholderTextColor='white'
+          leftIcon={
+            <Icon
+              name='lock'
+              size={30}
+              color='white'
+            />
+          }
           placeholder='Password'
-          clearTextOnFocus={true}
           autoCapitalize={false}
           autoCorrect={false}
           secureTextEntry={true} />
-        <Button
-          title='Login'
-          onPress={() => this.Login(this)} />
-        <Button
-          title='Register'
-          onPress={() => this.Register(this)} />
+        <TouchableOpacity
+          style={styles.common.button}
+          onPress={() => this.Login(this)}>
+          <Text style={styles.common.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.common.button}
+          onPress={() => this.Register(this)}>
+          <Text style={styles.common.buttonText}>Register</Text>
+        </TouchableOpacity>
       </View>
     );
   }

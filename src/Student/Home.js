@@ -1,6 +1,5 @@
 import {
     createBottomTabNavigator,
-    createStackNavigator,
     createAppContainer,
 } from 'react-navigation'
 import HomeScreen from './HomeScreen'
@@ -21,9 +20,12 @@ const RootTap = createBottomTabNavigator({
 }, {
         initialRouteName: 'Home',
         tabBarOptions: {
-            activeTintColor: 'blue',
-            inactiveTintColor: 'gray'
-        },
+            activeTintColor: '#EF9A9A',
+            inactiveTintColor: 'gray',
+            labelStyle: {
+                fontSize: 20,
+            },
+        }
     })
 
 export default createAppContainer(RootTap)
