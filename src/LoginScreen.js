@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Button
+  Button,
+  TextInput,
+  Alert,
 } from 'react-native';
 import {
   StackActions,
@@ -15,12 +17,27 @@ class LoginScreen extends Component {
     title: 'Login',
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: ''
+    }
+  }
+
   Login() {
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'Home' })]
-    })
-    this.props.navigation.dispatch(resetAction)
+    var username = this.state.user
+    if (username == 'Student' || username == 'Teacher' || username == 'Staff') {
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({
+          routeName: this.state.user,
+          params: { user: this.state.user }
+        })]
+      })
+      this.props.navigation.dispatch(resetAction)
+    } else {
+      Alert.alert('invalid\n username or password')
+    }
   }
 
   Register() {
@@ -30,7 +47,20 @@ class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.common.container}>
-        <Text>Login Screen</Text>
+        <TextInput
+          style={styles.common.input}
+          placeholder='Username'
+          clearTextOnFocus={true}
+          autoCapitalize={false}
+          autoCorrect={false}
+          onChangeText={(text) => this.setState({ user: text })} />
+        <TextInput
+          style={styles.common.input}
+          placeholder='Password'
+          clearTextOnFocus={true}
+          autoCapitalize={false}
+          autoCorrect={false}
+          secureTextEntry={true} />
         <Button
           title='Login'
           onPress={() => this.Login(this)} />
