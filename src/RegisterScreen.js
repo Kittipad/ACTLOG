@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    Button,
     Text,
     ScrollView,
     TouchableOpacity
@@ -16,7 +15,7 @@ import styles from './styles'
 class RegisterScreen extends Component {
 
     static navigationOptions = {
-        title: 'Register',
+        title: 'สมัครสมาชิก',
     }
 
     Register() {
@@ -37,6 +36,7 @@ class RegisterScreen extends Component {
                     size='xlarge'
                     source={{ uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg" }} />
                 <Input
+                    inputStyle={styles.common.inputText}
                     containerStyle={styles.common.input}
                     inputContainerStyle={styles.common.input_}
                     placeholderTextColor='white'
@@ -47,8 +47,9 @@ class RegisterScreen extends Component {
                             color='white'
                         />
                     }
-                    placeholder='Username' />
+                    placeholder='ชื่อผู้ใช้' />
                 <Input
+                    inputStyle={styles.common.inputText}
                     containerStyle={styles.common.input}
                     inputContainerStyle={styles.common.input_}
                     placeholderTextColor='white'
@@ -59,11 +60,11 @@ class RegisterScreen extends Component {
                             color='white'
                         />
                     }
-                    placeholder='Password' />
+                    placeholder='รหัสผ่าน' />
                 <TouchableOpacity
                     style={styles.common.button}
                     onPress={() => this.Register(this)}>
-                    <Text style={styles.common.buttonText}>Register</Text>
+                    <Text style={styles.common.buttonText}>สมัครสมาชิก</Text>
                 </TouchableOpacity>
             </ScrollView>
         );

@@ -4,6 +4,7 @@ import {
   Alert,
   Text,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import {
   StackActions,
@@ -15,7 +16,7 @@ import styles from './styles'
 
 class LoginScreen extends Component {
   static navigationOptions = {
-    title: 'Login',
+    title: 'เข้าสู่ระบบ',
   }
 
   constructor(props) {
@@ -37,7 +38,7 @@ class LoginScreen extends Component {
       })
       this.props.navigation.dispatch(resetAction)
     } else {
-      Alert.alert('invalid\n username or password')
+      Alert.alert('ชื่อผู้ใช้หรือรหัสผ่านผิด')
     }
   }
 
@@ -47,8 +48,11 @@ class LoginScreen extends Component {
 
   render() {
     return (
-      <View style={styles.common.container}>
+      <ImageBackground
+        style={styles.common.container}
+        source={require('./img/bg.png')}>
         <Input
+          inputStyle={styles.common.inputText}
           containerStyle={styles.common.input}
           inputContainerStyle={styles.common.input_}
           placeholderTextColor='white'
@@ -59,12 +63,14 @@ class LoginScreen extends Component {
               color='white'
             />
           }
-          placeholder='Username'
+          placeholder='ชื่อผู้ใช้'
           autoCapitalize={false}
           autoCorrect={false}
+          clearTextOnFocus={true}
           keyboardType='email-address'
           onChangeText={(text) => this.setState({ user: text })} />
         <Input
+          inputStyle={styles.common.inputText}
           containerStyle={styles.common.input}
           inputContainerStyle={styles.common.input_}
           placeholderTextColor='white'
@@ -75,21 +81,22 @@ class LoginScreen extends Component {
               color='white'
             />
           }
-          placeholder='Password'
+          placeholder='รหัสผ่าน'
           autoCapitalize={false}
           autoCorrect={false}
+          clearTextOnFocus={true}
           secureTextEntry={true} />
         <TouchableOpacity
           style={styles.common.button}
           onPress={() => this.Login(this)}>
-          <Text style={styles.common.buttonText}>Login</Text>
+          <Text style={styles.common.buttonText}>เข้าสู่ระบบ</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.common.button}
           onPress={() => this.Register(this)}>
-          <Text style={styles.common.buttonText}>Register</Text>
+          <Text style={styles.common.buttonText}>สมัครสมาชิก</Text>
         </TouchableOpacity>
-      </View>
+      </ImageBackground>
     );
   }
 }

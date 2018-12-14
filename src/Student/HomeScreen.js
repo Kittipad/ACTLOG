@@ -5,12 +5,7 @@ import {
     TouchableOpacity,
     Alert,
 } from 'react-native';
-import {
-    createStackNavigator,
-    createAppContainer,
-} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Avatar } from 'react-native-elements';
 import styles from '../styles'
 
 class HomeScreen extends Component {
@@ -26,7 +21,7 @@ class HomeScreen extends Component {
                         size={icoSize}
                         color='white'
                     />
-                    <Text>TimeTable</Text>
+                    <Text style={styles.common.label}>ลงตารางเวลา</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.home.menu}
@@ -36,7 +31,7 @@ class HomeScreen extends Component {
                         size={icoSize}
                         color='white'
                     />
-                    <Text>Activity</Text>
+                    <Text style={styles.common.label}>บันทึกกิจกรรม</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.home.menu}
@@ -46,7 +41,7 @@ class HomeScreen extends Component {
                         size={icoSize}
                         color='white'
                     />
-                    <Text>Visit</Text>
+                    <Text style={styles.common.label}>ดูผลการนิเทศ</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.home.menu}
@@ -56,7 +51,7 @@ class HomeScreen extends Component {
                         size={icoSize}
                         color='white'
                     />
-                    <Text>Comments</Text>
+                    <Text style={styles.common.label}>ดูความคิดเห็น</Text>
                 </TouchableOpacity>
             </View>
         );

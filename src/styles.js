@@ -5,7 +5,7 @@ const common = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#EF9A9A'
+        // backgroundColor: '#1976D2'
     },
     input: {
         width: "75%", height: 50,
@@ -17,26 +17,22 @@ const common = StyleSheet.create({
     input_: {
         borderBottomColor: 'white'
     },
+    inputText: {
+        color: 'white'
+    },
     scrollView: {
-        backgroundColor: '#EF9A9A',
+        backgroundColor: '#1976D2',
         width: '100%',
     },
     label: {
-        borderWidth: 1,
-        borderRadius: 10,
-        borderColor: 'steelblue',
-        marginBottom: 10,
         fontSize: 20,
-        color: 'gray',
-        padding: 10,
-        marginLeft: 10,
-        marginRight: 10
+        color: 'white'
     },
     button: {
         width: 200, height: 50,
         borderWidth: 1,
         borderColor: 'white',
-        backgroundColor: '#EF9A9A',
+        backgroundColor: 'white',
         marginTop: 15,
         borderRadius: 25,
         justifyContent: 'center',
@@ -45,7 +41,7 @@ const common = StyleSheet.create({
     },
     buttonText: {
         fontSize: 20,
-        color: 'white',
+        color: '#1976D2',
         fontWeight: 'bold'
     },
     listView: {
@@ -65,7 +61,7 @@ const home = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        backgroundColor: '#EF9A9A'
+        backgroundColor: '#1976D2'
     },
     menu: {
         width: 150, height: 150,
@@ -91,10 +87,11 @@ const detail = StyleSheet.create({
     },
     text: {
         width: '90%', height: '100%',
-        backgroundColor: '#EF9A9A',
+        backgroundColor: '#1976D2',
         alignSelf: 'center',
         flexWrap: 'wrap',
-        fontSize: 20
+        fontSize: 20,
+        color: 'white'
     }
 })
 

@@ -4,17 +4,29 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from '../styles'
 
 class HomeScreen extends Component {
     render() {
+        let icoSize = 100
         return (
             <View style={styles.home.container}>
                 <TouchableOpacity style={styles.home.menu}>
-                    <Text style={styles.home.menuItem}>Visit Comment</Text>
+                    <Icon
+                        name='table'
+                        size={icoSize}
+                        color='white'
+                    />
+                    <Text style={styles.common.label}>Visit Comment</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.home.menu}>
-                    <Text style={styles.home.menuItem}>Activity Check</Text>
+                    <Icon
+                        name='table'
+                        size={icoSize}
+                        color='white'
+                    />
+                    <Text style={styles.common.label}>Activity Check</Text>
                 </TouchableOpacity>
             </View>
         );

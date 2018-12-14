@@ -8,19 +8,31 @@ import Logout from '../LogoutScreen'
 
 const RootTap = createBottomTabNavigator({
     Detail: {
-        screen: DetailScreen
+        screen: DetailScreen,
+        navigationOptions: {
+            title: 'ข้อมูลส่วนตัว'
+        }
     },
     Home: {
-        screen: HomeScreen
+        screen: HomeScreen,
+        navigationOptions: {
+            title: 'หน้าหลัก'
+        }
     },
     Logout: {
-        screen: Logout
+        screen: Logout,
+        navigationOptions: {
+            title: 'ออกจากระบบ'
+        }
     }
 }, {
         initialRouteName: 'Home',
         tabBarOptions: {
-            activeTintColor: 'blue',
-            inactiveTintColor: 'gray'
+            activeTintColor: '#1976D2',
+            inactiveTintColor: 'gray',
+            labelStyle: {
+                fontSize: 15
+            }
         },
     })
 
