@@ -21,9 +21,7 @@ class DetailScreen extends Component {
     }
     render() {
         return (
-            <ImageBackground
-                style={styles.common.container}
-                source={require('../img/bg.png')}>
+            <View style={styles.common.container}>
                 <ScrollView style={styles.common.scrollView}>
                     <Avatar
                         containerStyle={styles.detail.avatar}
@@ -35,7 +33,7 @@ class DetailScreen extends Component {
                         {this.state.email}
                     </Text>
                 </ScrollView>
-            </ImageBackground>
+            </View>
         );
     }
 }

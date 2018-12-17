@@ -14,6 +14,6 @@ const RootStack = createStackNavigator({
     Student: { screen: StudentHome },
     Teacher: { screen: TeacherHome },
     Staff: { screen: StaffHome },
-}, { initialRouteName: 'Login' })
+}, { initialRouteName: 'Login', headerMode: 'none' })
 
 export default createAppContainer(RootStack)

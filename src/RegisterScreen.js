@@ -27,6 +27,7 @@ class RegisterScreen extends Component {
     }
 
     render() {
+        let icoSize = 30
         return (
             <ScrollView
                 style={styles.common.scrollView}>
@@ -43,7 +44,7 @@ class RegisterScreen extends Component {
                     leftIcon={
                         <Icon
                             name='user-alt'
-                            size={24}
+                            size={icoSize}
                             color='white'
                         />
                     }
@@ -56,7 +57,7 @@ class RegisterScreen extends Component {
                     leftIcon={
                         <Icon
                             name='lock'
-                            size={24}
+                            size={icoSize}
                             color='white'
                         />
                     }

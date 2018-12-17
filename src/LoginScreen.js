@@ -47,10 +47,9 @@ class LoginScreen extends Component {
   }
 
   render() {
+    let icoSize = 30
     return (
-      <ImageBackground
-        style={styles.common.container}
-        source={require('./img/bg.png')}>
+      <View style={styles.common.container}>
         <Input
           inputStyle={styles.common.inputText}
           containerStyle={styles.common.input}
@@ -59,7 +58,7 @@ class LoginScreen extends Component {
           leftIcon={
             <Icon
               name='user-alt'
-              size={30}
+              size={icoSize}
               color='white'
             />
           }
@@ -77,7 +76,7 @@ class LoginScreen extends Component {
           leftIcon={
             <Icon
               name='lock'
-              size={30}
+              size={icoSize}
               color='white'
             />
           }
@@ -96,7 +95,7 @@ class LoginScreen extends Component {
           onPress={() => this.Register(this)}>
           <Text style={styles.common.buttonText}>สมัครสมาชิก</Text>
         </TouchableOpacity>
-      </ImageBackground>
+      </View>
     );
   }
 }

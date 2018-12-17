@@ -5,7 +5,7 @@ const common = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: '#1976D2'
+        backgroundColor: '#5499C7'
     },
     input: {
         width: "75%", height: 50,
@@ -21,7 +21,7 @@ const common = StyleSheet.create({
         color: 'white'
     },
     scrollView: {
-        backgroundColor: '#1976D2',
+        backgroundColor: '#5499C7',
         width: '100%',
     },
     label: {
@@ -41,11 +41,11 @@ const common = StyleSheet.create({
     },
     buttonText: {
         fontSize: 20,
-        color: '#1976D2',
+        color: '#5499C7',
         fontWeight: 'bold'
     },
     listView: {
-        backgroundColor: '#EF9A9A',
+        backgroundColor: '#5499C7',
         borderRadius: 10,
         height: 50,
     },
@@ -61,7 +61,7 @@ const home = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        backgroundColor: '#1976D2'
+        backgroundColor: '#5499C7'
     },
     menu: {
         width: 150, height: 150,
@@ -87,7 +87,7 @@ const detail = StyleSheet.create({
     },
     text: {
         width: '90%', height: '100%',
-        backgroundColor: '#1976D2',
+        backgroundColor: '#5499C7',
         alignSelf: 'center',
         flexWrap: 'wrap',
         fontSize: 20,
