@@ -4,15 +4,21 @@ import {
     Text,
     TouchableOpacity,
     Alert,
+    ImageBackground,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from '../styles'
 
 class HomeScreen extends Component {
+    static navigationOptions = {
+        header: null
+    }
     render() {
         let icoSize = 100
         return (
-            <View style={styles.home.container}>
+            <ImageBackground
+                style={styles.home.container}
+                source={require('../img/bg.png')}>
                 <TouchableOpacity
                     style={styles.home.menu}
                     onPress={() => Alert.alert('Time Table Pressed')}>
@@ -53,7 +59,7 @@ class HomeScreen extends Component {
                     />
                     <Text style={styles.common.label}>ดูความคิดเห็น</Text>
                 </TouchableOpacity>
-            </View>
+            </ImageBackground>
         );
     }
 }

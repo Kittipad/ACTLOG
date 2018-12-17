@@ -16,7 +16,7 @@ import styles from './styles'
 
 class LoginScreen extends Component {
   static navigationOptions = {
-    title: 'เข้าสู่ระบบ',
+    header: null
   }
 
   constructor(props) {

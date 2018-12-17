@@ -4,7 +4,8 @@ import {
     Text,
     ScrollView,
     Image,
-    FlatList
+    FlatList,
+    ImageBackground
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Avatar, ListItem } from 'react-native-elements';
@@ -20,7 +21,9 @@ class DetailScreen extends Component {
     }
     render() {
         return (
-            <View style={styles.common.container}>
+            <ImageBackground
+                style={styles.common.container}
+                source={require('../img/bg.png')}>
                 <ScrollView style={styles.common.scrollView}>
                     <Avatar
                         containerStyle={styles.detail.avatar}
@@ -32,7 +35,7 @@ class DetailScreen extends Component {
                         {this.state.email}
                     </Text>
                 </ScrollView>
-            </View>
+            </ImageBackground>
         );
     }
 }

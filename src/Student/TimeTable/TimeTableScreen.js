@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text
+    Text,
+    Button
 } from 'react-native';
 
 class TimeTableScreen extends Component {
@@ -9,6 +10,9 @@ class TimeTableScreen extends Component {
         return (
             <View>
                 <Text>TimeTable Screen</Text>
+                <Button
+                    title='Back'
+                    onPress={() => this.props.navigation.goBack()} />
             </View>
         );
     }
