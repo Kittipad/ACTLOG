@@ -1,26 +1,51 @@
 import {
-    createBottomTabNavigator,
+    createStackNavigator,
     createAppContainer,
 } from 'react-navigation'
 import HomeScreen from './HomeScreen'
 import DetailScreen from './DetailScreen'
-import Logout from '../LogoutScreen'
+import TimeTableScreen from './TimeTable/TimeTableScreen'
+import ActivityScreen from './Activity/ActivityScreen'
+import VisitScreen from './Visit/VisitScreen'
+import CommentScreen from './Comment/CommentScreen'
 
-const RootTab = createBottomTabNavigator({
-    Detail: { screen: DetailScreen },
-    Home: { screen: HomeScreen },
-    Logout: { screen: Logout }
-}, {
-        initialRouteName: 'Home',
-        barStyle: {
-            backgroundColor: '#5499C7',
-        },
-        order: ['Detail', 'Home', 'Logout'],
-        activeTintColor: 'white',
-        inactiveTintColor: 'white',
-        tabBarOptions: {
-            showIcon: true
-        },
-    })
+const RootStack = createStackNavigator({
+    Home: {
+        screen: HomeScreen,
+        navigationOptions: {
+            title: 'หน้าหลัก'
+        }
+    },
+    Detail: {
+        screen: DetailScreen,
+        navigationOptions: {
+            title: 'ข้อมูลส่วนตัว'
+        }
+    },
+    TimeTable: {
+        screen: TimeTableScreen,
+        navigationOptions: {
+            title: 'ลงตารางเวลาลา'
+        }
+    },
+    Activity: {
+        screen: ActivityScreen,
+        navigationOptions: {
+            title: 'บันทึกกิจกรรม'
+        }
+    },
+    Visit: {
+        screen: VisitScreen,
+        navigationOptions: {
+            title: 'ดูผลการนิเทศ'
+        }
+    },
+    Comment: {
+        screen: CommentScreen,
+        navigationOptions: {
+            title: 'ดูความคิดเห็น'
+        }
+    },
+}, { initialRouteName: 'Home' })
 
-export default createAppContainer(RootTab)
+export default createAppContainer(RootStack)

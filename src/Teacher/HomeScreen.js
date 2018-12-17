@@ -3,35 +3,70 @@ import {
     View,
     Text,
     TouchableOpacity,
-    ImageBackground
+    Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from '../styles'
 
 class HomeScreen extends Component {
+
+    Visit() {
+        this.props.navigation.navigate('Visit')
+    }
+
+    Actvity() {
+        this.props.navigation.navigate('Activity')
+    }
+
+    Detail() {
+        this.props.navigation.navigate('Detail')
+    }
+
     render() {
         let icoSize = 100
         return (
-            <ImageBackground
-                style={styles.home.container}
-                source={require('../img/bg.png')}>
-                <TouchableOpacity style={styles.home.menu}>
+            <View style={styles.home.container}>
+                <TouchableOpacity
+                    style={styles.home.menu}
+                    onPress={() => this.Visit(this)}>
                     <Icon
-                        name='table'
+                        name='place-of-worship'
                         size={icoSize}
                         color='white'
                     />
-                    <Text style={styles.common.label}>Visit Comment</Text>
+                    <Text style={styles.common.label}>เยี่ยมนิเทศ</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.home.menu}>
+                <TouchableOpacity
+                    style={styles.home.menu}
+                    onPress={() => this.Actvity(this)}>
                     <Icon
-                        name='table'
+                        name='list-ul'
                         size={icoSize}
                         color='white'
                     />
-                    <Text style={styles.common.label}>Activity Check</Text>
+                    <Text style={styles.common.label}>ตรวจกิจกรรม</Text>
                 </TouchableOpacity>
-            </ImageBackground>
+                <TouchableOpacity
+                    style={styles.home.menu}
+                    onPress={() => this.Detail(this)}>
+                    <Icon
+                        name='info-circle'
+                        size={icoSize}
+                        color='white'
+                    />
+                    <Text style={styles.common.label}>ข้อมูลส่วนตัว</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.home.menu}
+                    onPress={() => Alert.alert('Logout Pressed')}>
+                    <Icon
+                        name='power-off'
+                        size={icoSize}
+                        color='white'
+                    />
+                    <Text style={styles.common.label}>ออกจากระบบ</Text>
+                </TouchableOpacity>
+            </View>
         );
     }
 }

@@ -1,39 +1,37 @@
 import {
-    createBottomTabNavigator,
     createAppContainer,
+    createStackNavigator
 } from 'react-navigation'
 import HomeScreen from './HomeScreen'
 import DetailScreen from './DetailScreen'
-import Logout from '../LogoutScreen'
+import ActivityScreen from './Activity/ActivityScreen'
+import VisitScreen from './Visit/VisitScreen'
 
-const RootTap = createBottomTabNavigator({
-    Detail: {
-        screen: DetailScreen,
-        navigationOptions: {
-            title: 'ข้อมูลส่วนตัว'
-        }
-    },
+const RootStack = createStackNavigator({
     Home: {
         screen: HomeScreen,
         navigationOptions: {
             title: 'หน้าหลัก'
         }
     },
-    Logout: {
-        screen: Logout,
+    Detail: {
+        screen: DetailScreen,
         navigationOptions: {
-            title: 'ออกจากระบบ'
+            title: 'ข้อมูลส่วนตัว'
         }
-    }
-}, {
-        initialRouteName: 'Home',
-        tabBarOptions: {
-            activeTintColor: '#1976D2',
-            inactiveTintColor: 'gray',
-            labelStyle: {
-                fontSize: 15
-            }
-        },
-    })
+    },
+    Visit: {
+        screen: VisitScreen,
+        navigationOptions: {
+            title: 'เยี่ยมนิเทศ'
+        }
+    },
+    Activity: {
+        screen: ActivityScreen,
+        navigationOptions: {
+            title: 'ตรวจกิจกรรม'
+        }
+    },
+}, { initialRouteName: 'Home' })
 
-export default createAppContainer(RootTap);
+export default createAppContainer(RootStack);
