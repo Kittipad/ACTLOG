@@ -227,3 +227,4 @@ const comment = StyleSheet.create({
 })
 
 export default { common, home, detail, timeTable, activity, visit, comment }
+

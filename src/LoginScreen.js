@@ -4,7 +4,6 @@ import {
   Alert,
   Text,
   TouchableOpacity,
-  ImageBackground,
 } from 'react-native';
 import {
   StackActions,

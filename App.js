@@ -2,6 +2,7 @@ import {
     createAppContainer,
     createStackNavigator
 } from 'react-navigation'
+
 import LoginScreen from './src/LoginScreen'
 import RegisterScreen from './src/RegisterScreen'
 import StudentHome from './src/Student/Home'
@@ -17,3 +18,4 @@ const RootStack = createStackNavigator({
 }, { initialRouteName: 'Login', headerMode: 'none' })
 
 export default createAppContainer(RootStack)
+
