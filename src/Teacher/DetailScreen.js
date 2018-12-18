@@ -3,17 +3,12 @@ import {
   View,
   Text,
   ScrollView,
-  Image,
-  FlatList,
-  ImageBackground,
   TouchableOpacity,
   Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
-  Input,
   Avatar,
-  ListItem,
   Card
 } from 'react-native-elements';
 import styles from '../styles'

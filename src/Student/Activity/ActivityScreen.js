@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Alert,
   TouchableOpacity,
   ScrollView,
   Image
@@ -13,15 +12,6 @@ import {
 import styles from '../../styles'
 
 class ActivityScreen extends Component {
-  static navigationOptions = {
-    headerRight: (
-      <TouchableOpacity
-        style={styles.common.headerRight}
-        onPress={() => Alert.alert('Add')}>
-        <Text style={styles.common._label}>เพิ่ม</Text>
-      </TouchableOpacity>
-    )
-  }
   render() {
     const act = [
       {

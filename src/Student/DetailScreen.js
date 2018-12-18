@@ -3,32 +3,15 @@ import {
   View,
   Text,
   ScrollView,
-  Image,
-  FlatList,
-  ImageBackground,
-  TouchableOpacity,
-  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
-  Input,
   Avatar,
-  ListItem,
   Card,
 } from 'react-native-elements';
 import styles from '../styles'
 
 class DetailScreen extends Component {
-  static navigationOptions = {
-    headerRight: (
-      <TouchableOpacity
-        style={styles.common.headerRight}
-        onPress={() => Alert.alert('Edit')}>
-        <Text style={styles.common._label}>แก้ไข</Text>
-      </TouchableOpacity>
-    )
-  }
-
   render() {
     const detail = [
       {

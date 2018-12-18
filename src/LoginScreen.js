@@ -9,6 +9,7 @@ import {
   StackActions,
   NavigationActions,
 } from 'react-navigation';
+
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input } from 'react-native-elements';
 import styles from './styles'
@@ -31,8 +32,8 @@ class LoginScreen extends Component {
       const resetAction = StackActions.reset({
         index: 0,
         actions: [NavigationActions.navigate({
-          routeName: this.state.user,
-          params: { user: this.state.user }
+          routeName: username,
+          params: { user: username }
         })]
       })
       this.props.navigation.dispatch(resetAction)
@@ -92,7 +93,10 @@ class LoginScreen extends Component {
         <TouchableOpacity
           style={styles.common.button}
           onPress={() => this.Register(this)}>
-          <Text style={styles.common.buttonText}>สมัครสมาชิก</Text>
+          <Text
+            style={styles.common.buttonText}>
+            สมัครสมาชิก
+          </Text>
         </TouchableOpacity>
       </View>
     );

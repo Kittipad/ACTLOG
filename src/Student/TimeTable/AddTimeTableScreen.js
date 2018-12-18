@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  ScrollView,
   TouchableOpacity,
-  Button
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input } from 'react-native-elements';

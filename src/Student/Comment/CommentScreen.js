@@ -3,15 +3,9 @@ import {
   View,
   Text,
   ScrollView,
-  Image,
-  TouchableOpacity,
-  Alert
 } from 'react-native';
 import {
   Card,
-  ListItem,
-  Button,
-  Icon
 } from 'react-native-elements'
 import styles from '../../styles';
 
