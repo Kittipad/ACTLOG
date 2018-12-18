@@ -4,8 +4,8 @@ import {
 } from 'react-navigation'
 import HomeScreen from './HomeScreen'
 import DetailScreen from './DetailScreen'
-import ActivityScreen from './Activity/ActivityScreen'
-import VisitScreen from './Visit/VisitScreen'
+import ActivityScreen from './Activity/Home'
+import VisitScreen from './Visit/Home'
 
 const RootStack = createStackNavigator({
     Home: {
@@ -23,7 +23,7 @@ const RootStack = createStackNavigator({
     Visit: {
         screen: VisitScreen,
         navigationOptions: {
-            title: 'เยี่ยมนิเทศ'
+            title: 'บันทึกนิเทศ'
         }
     },
     Activity: {

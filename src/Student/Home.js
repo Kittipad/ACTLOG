@@ -4,8 +4,8 @@ import {
 } from 'react-navigation'
 import HomeScreen from './HomeScreen'
 import DetailScreen from './DetailScreen'
-import TimeTableScreen from './TimeTable/TimeTableScreen'
-import ActivityScreen from './Activity/ActivityScreen'
+import TimeTableScreen from './TimeTable/Home'
+import ActivityScreen from './Activity/Home'
 import VisitScreen from './Visit/VisitScreen'
 import CommentScreen from './Comment/CommentScreen'
 
@@ -25,8 +25,8 @@ const RootStack = createStackNavigator({
     TimeTable: {
         screen: TimeTableScreen,
         navigationOptions: {
-            title: 'ลงตารางเวลาลา'
-        }
+            title: 'ตารางลงเวลา',
+        },
     },
     Activity: {
         screen: ActivityScreen,
@@ -45,7 +45,7 @@ const RootStack = createStackNavigator({
         navigationOptions: {
             title: 'ดูความคิดเห็น'
         }
-    },
+    }
 }, { initialRouteName: 'Home' })
 
 export default createAppContainer(RootStack)

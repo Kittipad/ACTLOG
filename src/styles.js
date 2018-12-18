@@ -5,7 +5,7 @@ const common = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#5499C7'
+        backgroundColor: '#5499C7',
     },
     input: {
         width: "75%", height: 50,
@@ -28,6 +28,9 @@ const common = StyleSheet.create({
         fontSize: 20,
         color: 'white'
     },
+    _label: {
+        fontSize: 20,
+    },
     button: {
         width: 200, height: 50,
         borderWidth: 1,
@@ -39,9 +42,25 @@ const common = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center'
     },
+    _button: {
+        width: 200, height: 50,
+        borderWidth: 1,
+        borderColor: '#5499C7',
+        backgroundColor: '#5499C7',
+        marginTop: 15,
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center'
+    },
     buttonText: {
         fontSize: 20,
         color: '#5499C7',
+        fontWeight: 'bold'
+    },
+    _buttonText: {
+        fontSize: 20,
+        color: 'white',
         fontWeight: 'bold'
     },
     listView: {
@@ -52,7 +71,15 @@ const common = StyleSheet.create({
     listViewText: {
         marginLeft: 10,
         fontSize: 20
-    }
+    },
+    headerRight: {
+        marginRight: 10
+    },
+    card: {
+        alignItems: 'center',
+        borderRadius: 20,
+        width: '95%',
+    },
 })
 
 const home = StyleSheet.create({
@@ -78,6 +105,10 @@ const home = StyleSheet.create({
 })
 
 const detail = StyleSheet.create({
+    detailContainer: {
+        flexDirection: 'row',
+        marginBottom: 5,
+    },
     avatar: {
         width: 100, height: 100,
         alignSelf: 'center',
@@ -85,14 +116,114 @@ const detail = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
     },
-    text: {
-        width: '90%', height: '100%',
-        backgroundColor: '#5499C7',
-        alignSelf: 'center',
-        flexWrap: 'wrap',
+    label: {
         fontSize: 20,
-        color: 'white'
+        marginTop: 5,
+        marginBottom: 5,
+        marginLeft: 15,
+        width: 300,
+        alignSelf: 'center'
+    },
+    _avatar: {
+        width: 100, height: 100,
+        alignSelf: 'center',
+        margin: 10,
+        borderColor: '#5499C7',
+        borderWidth: 1,
+    },
+    labelCenter: {
+        fontSize: 30,
+        marginBottom: 20,
+        backgroundColor: 'white',
+        alignSelf: 'center'
+    },
+    icon: {
+        marginLeft: 20,
+        alignSelf: 'center'
     }
 })
 
-export default { common, home, detail }
+const timeTable = StyleSheet.create({
+    container: {
+        alignItems: 'flex-start'
+    },
+    label: {
+        fontSize: 20,
+        marginTop: 5,
+        marginBottom: 5,
+        marginLeft: 15,
+        alignSelf: 'center'
+    },
+})
+
+const activity = StyleSheet.create({
+    container: {
+        alignItems: 'center'
+    },
+    date: {
+        marginBottom: 10,
+        fontSize: 20
+    },
+    detail: {
+        marginBottom: 20,
+        fontSize: 15
+    },
+    label: {
+        fontSize: 20,
+        marginTop: 5,
+        marginBottom: 5,
+        marginLeft: 15,
+        alignSelf: 'center'
+    },
+    input: {
+        width: '90%', height: 250,
+        marginBottom: 10,
+        marginTop: 15,
+        borderRadius: 5,
+        alignSelf: 'center',
+        backgroundColor: 'white',
+        fontSize: 20,
+        padding: 10,
+    }
+})
+
+const visit = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+    },
+    label: {
+        fontSize: 27,
+        marginBottom: 5
+    },
+    labelSub: {
+        fontSize: 18,
+        color: 'gray'
+    }
+})
+
+const comment = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        marginBottom: 20
+    },
+    label: {
+        fontSize: 20,
+        marginBottom: 5
+    },
+    labelSub: {
+        fontSize: 18,
+        marginBottom: 20
+    },
+    input: {
+        width: '90%', height: 250,
+        marginBottom: 10,
+        marginTop: 15,
+        borderRadius: 5,
+        alignSelf: 'center',
+        backgroundColor: 'lightgray',
+        fontSize: 20,
+        padding: 10,
+    }
+})
+
+export default { common, home, detail, timeTable, activity, visit, comment }

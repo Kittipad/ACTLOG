@@ -12,7 +12,7 @@ import {
 import styles from '../../styles';
 
 
-class TimeTableScreen extends Component {
+class ViewTimeTableScreen extends Component {
   render() {
     const day = [
       {
@@ -67,11 +67,6 @@ class TimeTableScreen extends Component {
     return (
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('AddTimeTable')}
-            style={styles.common.button}>
-            <Text style={styles.common.buttonText}>เพิ่ม</Text>
-          </TouchableOpacity>
           {
             day.map((d, i) => {
               return (
@@ -91,4 +86,4 @@ class TimeTableScreen extends Component {
   }
 }
 
-export default TimeTableScreen;
+export default ViewTimeTableScreen;

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Alert,
-  TouchableOpacity,
   ScrollView,
   Image
 } from 'react-native';
@@ -13,15 +11,6 @@ import {
 import styles from '../../styles'
 
 class ActivityScreen extends Component {
-  static navigationOptions = {
-    headerRight: (
-      <TouchableOpacity
-        style={styles.common.headerRight}
-        onPress={() => Alert.alert('Add')}>
-        <Text style={styles.common._label}>เพิ่ม</Text>
-      </TouchableOpacity>
-    )
-  }
   render() {
     const act = [
       {
@@ -42,11 +31,6 @@ class ActivityScreen extends Component {
     return (
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('AddActivity')}
-            style={styles.common.button}>
-            <Text style={styles.common.buttonText}>เพิ่ม</Text>
-          </TouchableOpacity>
           {
             act.map((a, i) => {
               return (

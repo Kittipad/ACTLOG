@@ -4,9 +4,9 @@ import {
 } from 'react-navigation'
 import HomeScreen from './HomeScreen'
 import DetailScreen from './DetailScreen'
-import TimeTableScreen from './TimeTable/TimeTableScreen'
-import ActivityScreen from './Activity/ActivityScreen'
-import CommentScreen from './Comment/CommentScreen'
+import TimeTableScreen from './TimeTable/Home'
+import ActivityScreen from './Activity/Home'
+import CommentScreen from './Comment/Home'
 
 const RootStack = createStackNavigator({
     Home: {

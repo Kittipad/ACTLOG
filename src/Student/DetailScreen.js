@@ -1,41 +1,113 @@
 import React, { Component } from 'react';
 import {
-    View,
-    Text,
-    ScrollView,
-    Image,
-    FlatList,
-    ImageBackground
+  View,
+  Text,
+  ScrollView,
+  Image,
+  FlatList,
+  ImageBackground,
+  TouchableOpacity,
+  Alert
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input, Avatar, ListItem } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import {
+  Input,
+  Avatar,
+  ListItem,
+  Card,
+} from 'react-native-elements';
 import styles from '../styles'
 
 class DetailScreen extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            username: 'Krittanupong\n',
-            email: 'krittanupong@gmail.com\n'
-        }
-    }
-    render() {
-        return (
-            <View style={styles.common.container}>
-                <ScrollView style={styles.common.scrollView}>
+  static navigationOptions = {
+    headerRight: (
+      <TouchableOpacity
+        style={styles.common.headerRight}
+        onPress={() => Alert.alert('Edit')}>
+        <Text style={styles.common._label}>แก้ไข</Text>
+      </TouchableOpacity>
+    )
+  }
+
+  render() {
+    const detail = [
+      {
+        f_name: 'กฤตนุพงค์',
+        l_name: 'สุกใส',
+        group: 'IT441',
+        subject: 'วิทยาศาสตร์คอมพิวเตอร์',
+        tel_number: '088-3844946',
+        mail: 'Mr.Fermz@hotmail.com',
+        my_ability: 'ภาษา C, Python, Java, React-Native',
+        type_position: 'ผู้ช่วยโปรแกรมเมอร์',
+        date: '2018/12/18 - 2018/02/18',
+      },
+    ]
+    return (
+      <ScrollView style={styles.common.scrollView}>
+        <View style={styles.common.container}>
+          {
+            detail.map((d, i) => {
+              return (
+                <Card key={i} containerStyle={styles.common.card}>
+                  <View style={styles.timeTable.container}>
                     <Avatar
-                        containerStyle={styles.detail.avatar}
-                        rounded
-                        size='xlarge'
-                        source={{ uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg" }} />
-                    <Text style={styles.detail.text}>
-                        {this.state.username}
-                        {this.state.email}
-                    </Text>
-                </ScrollView>
-            </View>
-        );
-    }
+                      containerStyle={styles.detail._avatar}
+                      rounded
+                      size='xlarge'
+                      source={{ uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg" }}
+                    />
+                    <Text style={styles.detail.labelCenter}>{d.f_name + '  ' + d.l_name}</Text>
+                    <View style={styles.detail.detailContainer}>
+                      <Icon
+                        style={styles.detail.icon}
+                        name='user-graduate'
+                        size={22} />
+                      <Text style={styles.detail.label}>{d.group}</Text>
+                    </View>
+                    <View style={styles.detail.detailContainer}>
+                      <Icon
+                        style={styles.detail.icon}
+                        name='briefcase'
+                        size={22} />
+                      <Text style={styles.detail.label}>{d.subject}</Text>
+                    </View>
+                    <View style={styles.detail.detailContainer}>
+                      <Icon
+                        style={styles.detail.icon}
+                        name='phone'
+                        size={22} />
+                      <Text style={styles.detail.label}>{d.tel_number}</Text>
+                    </View>
+                    <View style={styles.detail.detailContainer}>
+                      <Icon
+                        style={styles.detail.icon}
+                        name='envelope'
+                        size={22} />
+                      <Text style={styles.detail.label}>{d.mail}</Text>
+                    </View>
+                    <View style={styles.detail.detailContainer}>
+                      <Text style={styles.detail.label}>ถนัด : {d.my_ability}</Text>
+                    </View>
+                    <View style={styles.detail.detailContainer}>
+                      <Text style={styles.detail.label}>ตำแหน่ง : {d.type_position}</Text>
+                    </View>
+                    <View style={styles.detail.detailContainer}>
+                      <Icon
+                        style={styles.detail.icon}
+                        name='clock'
+                        size={22} />
+                      <Text style={styles.detail.label}>{d.date}</Text>
+                    </View>
+                  </View>
+                </Card >
+              );
+            })
+          }
+        </View>
+      </ScrollView>
+    )
+  }
 }
 
 export default DetailScreen;

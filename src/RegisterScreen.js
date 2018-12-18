@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     Text,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    View
 } from 'react-native';
 import {
     StackActions,

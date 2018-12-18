@@ -30,11 +30,11 @@ class HomeScreen extends Component {
                     style={styles.home.menu}
                     onPress={() => this.Visit(this)}>
                     <Icon
-                        name='place-of-worship'
+                        name='book'
                         size={icoSize}
                         color='white'
                     />
-                    <Text style={styles.common.label}>เยี่ยมนิเทศ</Text>
+                    <Text style={styles.common.label}>บันทึกนิเทศ</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.home.menu}

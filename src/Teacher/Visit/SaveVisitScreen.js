@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import {
-  View,
   Text,
   ScrollView,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+  View
 } from 'react-native';
-import {
-  Card,
-  Rating
-} from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { Card, Rating, Input } from 'react-native-elements'
 import styles from '../../styles';
 
-class VisitScreen extends Component {
+class SaveVisitScreen extends Component {
   render() {
+    let icoSize = 30
     const visit = [
       {
         detail1: 'ความรับผิดชอบต่องานที่ได้รับมอบหมาย',
@@ -19,7 +21,6 @@ class VisitScreen extends Component {
         detail3: 'มีมนุษย์สัมพันธ์',
         detail4: 'ตรงต่อเวลา',
         detail5: 'ปฏิบัติตนถูกต้องตามระเบียบข้อบังคับของสถานที่ฝึกงาน',
-        comment: "These approaches provide no safety checks. It's up to you to guarantee that those images are available in the application. Also you have to specify image dimensions manually.",
         score1: '5',
         score2: '4',
         score3: '3',
@@ -41,7 +42,6 @@ class VisitScreen extends Component {
                       fractions={0}
                       startingValue={2.5}
                       imageSize={40}
-                      readonly
                       onFinishRating={this.ratingCompleted}
                       onStartRating={this.ratingStarted}
                     />
@@ -55,7 +55,6 @@ class VisitScreen extends Component {
                       fractions={0}
                       startingValue={2.5}
                       imageSize={40}
-                      readonly
                       onFinishRating={this.ratingCompleted}
                       onStartRating={this.ratingStarted}
                     />
@@ -69,7 +68,6 @@ class VisitScreen extends Component {
                       fractions={0}
                       startingValue={2.5}
                       imageSize={40}
-                      readonly
                       onFinishRating={this.ratingCompleted}
                       onStartRating={this.ratingStarted}
                     />
@@ -83,7 +81,6 @@ class VisitScreen extends Component {
                       fractions={0}
                       startingValue={2.5}
                       imageSize={40}
-                      readonly
                       onFinishRating={this.ratingCompleted}
                       onStartRating={this.ratingStarted}
                     />
@@ -97,15 +94,25 @@ class VisitScreen extends Component {
                       fractions={0}
                       startingValue={2.5}
                       imageSize={40}
-                      readonly
                       onFinishRating={this.ratingCompleted}
                       onStartRating={this.ratingStarted}
                     />
                   </View>
                 </Card>
-                <Card containerStyle={styles.common.card}>
-                  <Text style={styles.visit.label}>{v.comment}</Text>
-                </Card>
+                <TextInput
+                  style={styles.activity.input}
+                  placeholderTextColor='black'
+                  placeholder='ข้อเสนอแนะ'
+                  multiline={true}
+                  autoCapitalize={false}
+                  autoCorrect={false}
+                  clearTextOnFocus={true} />
+                <TouchableOpacity
+                  style={styles.common.button}
+                  onPress={() => Alert.alert('Saved')}>
+                  <Text style={styles.common.buttonText}>บันทึก</Text>
+                </TouchableOpacity>
+                <View style={{ marginBottom: 50 }}></View>
               </View>
             );
           })
@@ -115,4 +122,4 @@ class VisitScreen extends Component {
   }
 }
 
-export default VisitScreen;
+export default SaveVisitScreen;
