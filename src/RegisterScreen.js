@@ -3,6 +3,7 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {
   StackActions,
@@ -10,20 +11,46 @@ import {
 } from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input, Avatar } from 'react-native-elements';
+import axios from 'axios'
 import styles from './styles'
 
 class RegisterScreen extends Component {
-
-  static navigationOptions = {
-    title: 'สมัครสมาชิก',
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: '',
+      password: '',
+      userType: ''
+    }
   }
 
-  Register() {
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'Login' })]
-    })
-    this.props.navigation.dispatch(resetAction)
+  async onRegisterPressed() {
+    try {
+      const { username, password, userType } = this.state
+      const data = {
+        username: username,
+        password: password,
+        userType: userType
+      }
+
+      axios.post('http://192.168.1.101:8082/api/v1/register', data)
+        .then((response) => {
+          const result = response.data.result
+          if (result == 'success') {
+            Alert.alert('Register Successful', '',
+              [
+                { text: 'OK', onPress: () => this.props.navigation.goBack() }
+              ])
+          } else {
+            Alert.alert('Register Failed')
+          }
+        })
+        .catch(function (error) {
+          console.log(error)
+          Alert.alert(JSON.stringify(error))
+        })
+    } catch (error) {
+    }
   }
 
   render() {
@@ -41,6 +68,10 @@ class RegisterScreen extends Component {
           containerStyle={styles.common.input}
           inputContainerStyle={styles.common.input_}
           placeholderTextColor='white'
+          onChangeText={(text) => this.setState({ username: text })}
+          autoCorrect={false}
+          autoCapitalize={false}
+          keyboardType={'email-address'}
           leftIcon={
             <Icon
               name='user-alt'
@@ -54,6 +85,10 @@ class RegisterScreen extends Component {
           containerStyle={styles.common.input}
           inputContainerStyle={styles.common.input_}
           placeholderTextColor='white'
+          onChangeText={(text) => this.setState({ password: text })}
+          autoCorrect={false}
+          autoCapitalize={false}
+          secureTextEntry={true}
           leftIcon={
             <Icon
               name='lock'
@@ -64,7 +99,7 @@ class RegisterScreen extends Component {
           placeholder='รหัสผ่าน' />
         <TouchableOpacity
           style={styles.common.button}
-          onPress={() => this.Register(this)}>
+          onPress={this.onRegisterPressed.bind(this)}>
           <Text style={styles.common.buttonText}>สมัครสมาชิก</Text>
         </TouchableOpacity>
       </ScrollView>

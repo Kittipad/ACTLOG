@@ -4,6 +4,7 @@ import {
   Alert,
   Text,
   TouchableOpacity,
+  AsyncStorage
 } from 'react-native';
 import {
   StackActions,
@@ -12,37 +13,75 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input } from 'react-native-elements';
+import axios from 'axios'
 import styles from './styles'
 
 class LoginScreen extends Component {
-  static navigationOptions = {
-    header: null
-  }
-
   constructor(props) {
     super(props)
     this.state = {
-      user: ''
+      username: '',
+      password: '',
+      userType: ''
+    }
+    this.validAuthen()
+  }
+
+  async validAuthen() {
+    const storedToken = await AsyncStorage.getItem('token')
+    if (storedToken != null) {
+      this.goHomeScreen()
     }
   }
 
-  Login() {
-    var username = this.state.user
-    if (username == 'Student' || username == 'Teacher' || username == 'Staff') {
+  goHomeScreen() {
+    const { userType } = this.state
+    if (userType == 'Student' ||
+      userType == 'Teacher' ||
+      userType == 'Staff') {
       const resetAction = StackActions.reset({
         index: 0,
         actions: [NavigationActions.navigate({
-          routeName: username,
-          params: { user: username }
+          routeName: this.state.userType
         })]
       })
       this.props.navigation.dispatch(resetAction)
     } else {
-      Alert.alert('ชื่อผู้ใช้หรือรหัสผ่านผิด')
+      Alert.alert('เลือกประเภทผู้ใช้')
     }
   }
 
-  Register() {
+  async onLoginPressed() {
+    const { username, password, userType } = this.state
+    const data = {
+      username: username,
+      password: password,
+      userType: userType
+    }
+
+    axios.post('http://192.168.1.101:8082/api/v1/login', data)
+      .then(async response => {
+        const result = response.data
+        if (result.result == 'success') {
+
+          //save token
+          await AsyncStorage.setItem('token', result.data)
+
+          //show successful alert
+          Alert.alert('Login Successful', '',
+            [
+              { text: 'OK', onPress: () => this.goHomeScreen() }
+            ])
+        } else {
+          Alert.alert('Login Failed')
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  onRegisterPressed() {
     this.props.navigation.navigate('Register')
   }
 
@@ -67,7 +106,7 @@ class LoginScreen extends Component {
           autoCorrect={false}
           clearTextOnFocus={true}
           keyboardType='email-address'
-          onChangeText={(text) => this.setState({ user: text })} />
+          onChangeText={(text) => this.setState({ username: text })} />
         <Input
           inputStyle={styles.common.inputText}
           containerStyle={styles.common.input}
@@ -84,20 +123,24 @@ class LoginScreen extends Component {
           autoCapitalize={false}
           autoCorrect={false}
           clearTextOnFocus={true}
-          secureTextEntry={true} />
+          secureTextEntry={true}
+          onChangeText={(text) => this.setState({ password: text })} />
         <TouchableOpacity
           style={styles.common.button}
-          onPress={() => this.Login(this)}>
+          onPress={this.onLoginPressed.bind(this)}>
           <Text style={styles.common.buttonText}>เข้าสู่ระบบ</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.common.button}
-          onPress={() => this.Register(this)}>
+          onPress={this.onRegisterPressed.bind(this)}>
           <Text
             style={styles.common.buttonText}>
             สมัครสมาชิก
           </Text>
         </TouchableOpacity>
+        <Text>
+          {this.state.userType}
+        </Text>
       </View>
     );
   }
