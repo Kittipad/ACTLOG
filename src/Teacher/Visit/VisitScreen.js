@@ -12,7 +12,7 @@ import styles from '../../styles'
 
 class VisitScreen extends Component {
   SaveVisit() {
-    this.props.navigation.navigate('SaveVisit')
+    this.props.navigation.navigate('TeachSaveVisit')
   }
 
   render() {

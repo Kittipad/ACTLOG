@@ -13,7 +13,7 @@ import styles from '../../styles'
 class ActivityScreen extends Component {
 
   CheckActivity() {
-    this.props.navigation.navigate('CheckActivity')
+    this.props.navigation.navigate('TeachViewActivity')
   }
 
   render() {

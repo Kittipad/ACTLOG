@@ -79,7 +79,7 @@ const common = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 20,
         width: '95%',
-    },
+    }
 })
 
 const home = StyleSheet.create({

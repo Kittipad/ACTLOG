@@ -10,7 +10,6 @@ import {
 } from 'react-native-elements'
 import styles from '../../styles';
 
-
 class TimeTableScreen extends Component {
   render() {
     const day = [
@@ -67,7 +66,7 @@ class TimeTableScreen extends Component {
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('AddTimeTable')}
+            onPress={() => this.props.navigation.navigate('StudentAddTimeTable')}
             style={styles.common.button}>
             <Text style={styles.common.buttonText}>เพิ่ม</Text>
           </TouchableOpacity>

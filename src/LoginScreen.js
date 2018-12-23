@@ -24,7 +24,7 @@ class LoginScreen extends Component {
       password: '',
       userType: ''
     }
-    this.validAuthen()
+    //this.validAuthen()
   }
 
   async validAuthen() {
@@ -35,20 +35,14 @@ class LoginScreen extends Component {
   }
 
   goHomeScreen() {
-    const { userType } = this.state
-    if (userType == 'Student' ||
-      userType == 'Teacher' ||
-      userType == 'Staff') {
-      const resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({
-          routeName: this.state.userType
-        })]
-      })
-      this.props.navigation.dispatch(resetAction)
-    } else {
-      Alert.alert('เลือกประเภทผู้ใช้')
-    }
+    const { username } = this.state
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({
+        routeName: username
+      })]
+    })
+    this.props.navigation.dispatch(resetAction)
   }
 
   async onLoginPressed() {
@@ -59,7 +53,8 @@ class LoginScreen extends Component {
       userType: userType
     }
 
-    axios.post('http://192.168.1.101:8082/api/v1/login', data)
+    axios.post('http://localhost:8082/api/v1/login', data)
+      // axios.post('http://192.168.1.101:8082/api/v1/login', data)
       .then(async response => {
         const result = response.data
         if (result.result == 'success') {
@@ -68,12 +63,12 @@ class LoginScreen extends Component {
           await AsyncStorage.setItem('token', result.data)
 
           //show successful alert
-          Alert.alert('Login Successful', '',
+          Alert.alert('เข้าสู่ระบบสำเร็จ', '',
             [
               { text: 'OK', onPress: () => this.goHomeScreen() }
             ])
         } else {
-          Alert.alert('Login Failed')
+          Alert.alert('เข้าสู่ระบบผิดพลาดกรุณาลองใหม่')
         }
       })
       .catch(error => {
@@ -138,9 +133,6 @@ class LoginScreen extends Component {
             สมัครสมาชิก
           </Text>
         </TouchableOpacity>
-        <Text>
-          {this.state.userType}
-        </Text>
       </View>
     );
   }

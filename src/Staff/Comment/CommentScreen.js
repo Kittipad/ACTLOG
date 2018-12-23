@@ -13,7 +13,7 @@ import styles from '../../styles'
 class CommentScreen extends Component {
 
   SaveComment() {
-    this.props.navigation.navigate('SaveComment')
+    this.props.navigation.navigate('StaffSaveComment')
   }
 
   render() {

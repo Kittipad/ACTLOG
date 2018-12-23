@@ -13,7 +13,7 @@ import styles from '../../styles'
 class ActivityScreen extends Component {
 
   ViewActvity() {
-    this.props.navigation.navigate('ViewActivity')
+    this.props.navigation.navigate('StaffViewActivity')
   }
 
   render() {

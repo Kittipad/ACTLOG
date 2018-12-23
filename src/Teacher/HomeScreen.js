@@ -3,23 +3,36 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Alert
+  AsyncStorage
 } from 'react-native';
+import {
+  StackActions,
+  NavigationActions
+} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from '../styles'
 
 class HomeScreen extends Component {
 
   Visit() {
-    this.props.navigation.navigate('Visit')
+    this.props.navigation.navigate('TeachVisit')
   }
 
   Actvity() {
-    this.props.navigation.navigate('Activity')
+    this.props.navigation.navigate('TeachActivity')
   }
 
   Detail() {
-    this.props.navigation.navigate('Detail')
+    this.props.navigation.navigate('TeachDetail')
+  }
+
+  async Logout() {
+    await AsyncStorage.removeItem('token')
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: 'Login' })],
+    });
+    this.props.navigation.dispatch(resetAction);
   }
 
   render() {
@@ -58,7 +71,7 @@ class HomeScreen extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}
-          onPress={() => Alert.alert('Logout Pressed')}>
+          onPress={() => this.Logout()}>
           <Icon
             name='power-off'
             size={icoSize}

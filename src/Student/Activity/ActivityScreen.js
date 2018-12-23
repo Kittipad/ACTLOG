@@ -33,7 +33,7 @@ class ActivityScreen extends Component {
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('AddActivity')}
+            onPress={() => this.props.navigation.navigate('StudentAddActivity')}
             style={styles.common.button}>
             <Text style={styles.common.buttonText}>เพิ่ม</Text>
           </TouchableOpacity>

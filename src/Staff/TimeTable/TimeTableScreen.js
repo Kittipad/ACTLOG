@@ -16,7 +16,7 @@ import styles from '../../styles'
 class TimeTableScreen extends Component {
 
   ViewTimeTable() {
-    this.props.navigation.navigate('ViewTimeTable')
+    this.props.navigation.navigate('StaffViewTimeTable')
   }
 
   render() {
