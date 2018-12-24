@@ -33,7 +33,7 @@ class RegisterScreen extends Component {
         userType: userType
       }
 
-      axios.post('http://192.168.1.4:8082/api/v1/register', data)
+      axios.post('http://localhost:8082/api/v1/register', data)
         // axios.post('http://192.168.1.101:8082/api/v1/register', data)
         .then((response) => {
           const result = response.data.result

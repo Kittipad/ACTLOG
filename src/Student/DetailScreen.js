@@ -3,6 +3,7 @@ import {
   View,
   Text,
   ScrollView,
+  AsyncStorage,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -34,7 +35,7 @@ class DetailScreen extends Component {
               return (
                 <Card key={i} containerStyle={styles.common.card}>
                   <View style={styles.timeTable.container}>
-                    <Avatar
+                    {/* <Avatar
                       containerStyle={styles.detail._avatar}
                       rounded
                       size='xlarge'
@@ -81,7 +82,7 @@ class DetailScreen extends Component {
                         name='clock'
                         size={22} />
                       <Text style={styles.detail.label}>{d.date}</Text>
-                    </View>
+                    </View> */}
                   </View>
                 </Card >
               );

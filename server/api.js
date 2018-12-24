@@ -63,7 +63,7 @@ app.post('/login', (req, res) => {
 
         const finalResult = {
           result: "success",
-          data: token
+          data: token,
         };
 
         console.log(JSON.stringify(finalResult));
@@ -84,5 +84,29 @@ app.post('/login', (req, res) => {
 app.get('/feed', verifyToken, (req, res) => {
   res.json({ result: "success" })
 });
+
+app.get('/detail', verifyToken, (req, res) => {
+  console.log(req.body)
+  const obj = req.body
+
+  var sql = `SELECT 
+            id,
+            fname,
+            lname 
+            FROM detail 
+            where username = '${req.body.username}'`
+
+  database.conn.query(sql, function (err, result) {
+    if (err) {
+      res.json(result_failed)
+    } else {
+      const finalResult = {
+        result: 'detail success'
+      }
+      console.log(JSON.stringify(finalResult))
+      res.json(finalResult)
+    }
+  })
+})
 
 module.exports = app;
