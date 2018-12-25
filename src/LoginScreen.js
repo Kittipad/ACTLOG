@@ -4,7 +4,8 @@ import {
   Alert,
   Text,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  Button
 } from 'react-native';
 import {
   StackActions,
@@ -13,24 +14,28 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input } from 'react-native-elements';
-import axios from 'axios'
+import firebase from 'react-native-firebase'
 import styles from './styles'
+
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyBHwakqkRXJ94foc8_unxo-IiI0_eo_zsQ",
+  authDomain: "actlog-912c1.firebaseapp.com",
+  databaseURL: "https://actlog-912c1.firebaseio.com",
+  projectId: "actlog-912c1",
+  storageBucket: "actlog-912c1.appspot.com",
+  messagingSenderId: "550723713394"
+};
+firebase.initializeApp(config);
 
 class LoginScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
+      email: '',
       password: '',
-      userType: ''
-    }
-    //this.validAuthen()
-  }
-
-  async validAuthen() {
-    const storedToken = await AsyncStorage.getItem('token')
-    if (storedToken != null) {
-      this.goHomeScreen()
+      error: '',
+      loading: false
     }
   }
 
@@ -39,41 +44,20 @@ class LoginScreen extends Component {
     const resetAction = StackActions.reset({
       index: 0,
       actions: [NavigationActions.navigate({
-        routeName: username
+        routeName: 'Student'
       })]
     })
     this.props.navigation.dispatch(resetAction)
   }
 
-  async onLoginPressed() {
-    const { username, password, userType } = this.state
-    const data = {
-      username: username,
-      password: password,
-      userType: userType
-    }
-
-    axios.post('http://localhost:8082/api/v1/login', data)
-      // axios.post('http://192.168.1.101:8082/api/v1/login', data)
-      .then(async response => {
-        const result = response.data
-        if (result.result == 'success') {
-
-          //save token
-          await AsyncStorage.setItem('token', result.data)
-
-          //show successful alert
-          Alert.alert('เข้าสู่ระบบสำเร็จ', '',
-            [
-              { text: 'OK', onPress: () => this.goHomeScreen() }
-            ])
-        } else {
-          Alert.alert('เข้าสู่ระบบผิดพลาดกรุณาลองใหม่')
-        }
+  onLoginPress = () => {
+    const { email, password } = this.state;
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        alert("Successful , " + email + " " + password),
+          this.goHomeScreen()
       })
-      .catch(error => {
-        console.log(error)
-      })
+      .catch((msgError) => { alert(msgError.message); });
   }
 
   onRegisterPressed() {
@@ -101,7 +85,7 @@ class LoginScreen extends Component {
           autoCorrect={false}
           clearTextOnFocus={true}
           keyboardType='email-address'
-          onChangeText={(text) => this.setState({ username: text })} />
+          onChangeText={(text) => this.setState({ email: text })} />
         <Input
           inputStyle={styles.common.inputText}
           containerStyle={styles.common.input}
@@ -122,7 +106,7 @@ class LoginScreen extends Component {
           onChangeText={(text) => this.setState({ password: text })} />
         <TouchableOpacity
           style={styles.common.button}
-          onPress={this.onLoginPressed.bind(this)}>
+          onPress={this.onLoginPress.bind(this)}>
           <Text style={styles.common.buttonText}>เข้าสู่ระบบ</Text>
         </TouchableOpacity>
         <TouchableOpacity

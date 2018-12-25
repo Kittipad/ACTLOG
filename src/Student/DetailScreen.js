@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   AsyncStorage,
+  Button
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
