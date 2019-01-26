@@ -12,7 +12,6 @@ import firebase from 'react-native-firebase'
 import styles from './styles'
 
 class RegisterScreen extends Component {
-
   constructor(props) {
     super(props)
     this.state = ({
@@ -24,7 +23,18 @@ class RegisterScreen extends Component {
   register = () => {
     const { email, password } = this.state;
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => { alert("Successful , " + email + " " + password); })
+      .then(() => {
+        var uid = firebase.auth().currentUser.uid
+        firebase.database().ref('users/' + uid).set({
+          uuid: uid,
+          email: email,
+          pass: password,
+          type: '',
+        })
+        this.props.navigation.goBack()
+        firebase.auth().signOut()
+        Alert.alert('สมัครสมาชิกสำเร็จ')
+      })
       .catch((msgError) => { alert(msgError.message) })
   }
 
@@ -39,8 +49,7 @@ class RegisterScreen extends Component {
           placeholderTextColor='white'
           onChangeText={(text) => this.setState({ email: text })}
           autoCorrect={false}
-          autoCapitalize={false}
-          clearTextOnFocus={true}
+          autoCapitalize='none'
           keyboardType={'email-address'}
           leftIcon={
             <Icon
@@ -57,7 +66,7 @@ class RegisterScreen extends Component {
           placeholderTextColor='white'
           onChangeText={(text) => this.setState({ password: text })}
           autoCorrect={false}
-          autoCapitalize={false}
+          autoCapitalize='none'
           secureTextEntry={true}
           clearTextOnFocus={true}
           leftIcon={
@@ -73,7 +82,6 @@ class RegisterScreen extends Component {
           onPress={this.register.bind(this)}>
           <Text style={styles.common.buttonText}>สมัครสมาชิก</Text>
         </TouchableOpacity>
-        <Text>{this.state.email + this.state.password}</Text>
       </ScrollView>
     )
   }

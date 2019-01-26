@@ -1,7 +1,6 @@
 import { AppRegistry, Platform } from 'react-native';
 import { name as appName } from './app.json';
 import App from './src/App';
-
 import firebase from 'react-native-firebase'
 
 const androidConfig = {
@@ -14,7 +13,6 @@ const androidConfig = {
     projectId: 'actlog-912c1',
     persistence: true,
 }
-
 const iosConfig = {
     clientId: '550723713394-71e24irj8p8vcp3p4vc084mt1t6tllhe.apps.googleusercontent.com',
     appId: '1:550723713394:ios:9c0d881c6cd71f82',
@@ -26,6 +24,7 @@ const iosConfig = {
     persistence: true,
 }
 firebase.initializeApp(Platform.OS === 'ios' ? iosConfig : androidConfig)
+console.log(firebase)
 
 console.disableYellowBox = true
 AppRegistry.registerComponent(appName, () => App);

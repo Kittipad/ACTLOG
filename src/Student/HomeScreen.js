@@ -3,12 +3,14 @@ import {
   View,
   Text,
   TouchableOpacity,
-  AsyncStorage
+  Alert
 } from 'react-native';
 import {
   StackActions,
   NavigationActions
 } from 'react-navigation'
+
+import firebase from 'react-native-firebase'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from '../styles'
 
@@ -34,13 +36,15 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('StudentDetail')
   }
 
-  async Logout() {
-    await AsyncStorage.removeItem('token')
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'Login' })],
-    });
-    this.props.navigation.dispatch(resetAction);
+  Logout() {
+    firebase.auth().signOut()
+      .then(() => {
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: 'Login' })],
+        });
+        this.props.navigation.dispatch(resetAction);
+      }).catch((msgError) => { alert(msgError.message) })
   }
 
   render() {

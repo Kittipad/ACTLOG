@@ -21,26 +21,39 @@ class LoginScreen extends Component {
     this.state = {
       email: '',
       password: '',
+      type: '',
     }
-  }
-
-  goHomeScreen() {
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [NavigationActions.navigate({
-        routeName: 'Student'
-      })]
-    })
-    this.props.navigation.dispatch(resetAction)
   }
 
   onLoginPress = () => {
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
-        this.goHomeScreen()
+        this.getUserType()
       })
       .catch((msgError) => { alert(msgError.message); });
+  }
+
+  getUserType() {
+    var uid = firebase.auth().currentUser.uid
+    var users = firebase.database().ref('users/' + uid + '/type')
+    var data
+    users.once('value').then(snapshot => {
+      data = snapshot.val()
+      this.setState({ type: data })
+      this.goHomeScreen()
+    })
+  }
+
+  goHomeScreen() {
+    const { type } = this.state
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({
+        routeName: type
+      })]
+    })
+    this.props.navigation.dispatch(resetAction)
   }
 
   onRegisterPressed() {
@@ -63,10 +76,9 @@ class LoginScreen extends Component {
               color='white'
             />
           }
-          placeholder='ชื่อผู้ใช้'
-          autoCapitalize={false}
+          placeholder='อีเมลล์'
+          autoCapitalize='none'
           autoCorrect={false}
-          clearTextOnFocus={true}
           keyboardType='email-address'
           onChangeText={(text) => this.setState({ email: text })} />
         <Input
@@ -82,7 +94,7 @@ class LoginScreen extends Component {
             />
           }
           placeholder='รหัสผ่าน'
-          autoCapitalize={false}
+          autoCapitalize='none'
           autoCorrect={false}
           clearTextOnFocus={true}
           secureTextEntry={true}
