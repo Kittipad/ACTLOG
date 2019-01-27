@@ -24,7 +24,6 @@ const iosConfig = {
     persistence: true,
 }
 firebase.initializeApp(Platform.OS === 'ios' ? iosConfig : androidConfig)
-console.log(firebase)
 
 console.disableYellowBox = true
 AppRegistry.registerComponent(appName, () => App);

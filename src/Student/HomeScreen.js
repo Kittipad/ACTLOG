@@ -44,7 +44,7 @@ class HomeScreen extends Component {
           actions: [NavigationActions.navigate({ routeName: 'Login' })],
         });
         this.props.navigation.dispatch(resetAction);
-      }).catch((msgError) => { alert(msgError.message) })
+      })
   }
 
   render() {

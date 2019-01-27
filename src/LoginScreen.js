@@ -25,6 +25,16 @@ class LoginScreen extends Component {
     }
   }
 
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loading: false, auth: true })
+      } else {
+        this.setState({ loading: false, auth: false })
+      }
+    })
+  }
+
   onLoginPress = () => {
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -40,17 +50,21 @@ class LoginScreen extends Component {
     var data
     users.once('value').then(snapshot => {
       data = snapshot.val()
+      console.log(data)
       this.setState({ type: data })
-      this.goHomeScreen()
+      if (this.state.type == data) {
+        this.goHomeScreen()
+      } else {
+        this.onLoginPress()
+      }
     })
   }
 
   goHomeScreen() {
-    const { type } = this.state
     const resetAction = StackActions.reset({
       index: 0,
       actions: [NavigationActions.navigate({
-        routeName: type
+        routeName: this.state.type
       })]
     })
     this.props.navigation.dispatch(resetAction)

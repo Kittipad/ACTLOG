@@ -4,64 +4,51 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
+  Alert
 } from 'react-native';
 import {
   Card,
 } from 'react-native-elements'
+import firebase from 'react-native-firebase'
 import styles from '../../styles';
 
 class TimeTableScreen extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      list: []
+    }
+  }
+
+  componentDidMount() {
+    this.getList()
+  }
+
+  getList() {
+    var uid, usersRef, table, child, items = []
+    uid = firebase.auth().currentUser.uid
+    usersRef = firebase.database().ref('users/' + uid)
+    table = usersRef.child('timeTable')
+    table.once('value').then(snapshot => {
+      snapshot.forEach((childSnapshot) => {
+        child = childSnapshot.val(),
+          items.push({
+            date: child.date,
+            timeCome: child.timeCome,
+            timeBack: child.timeBack,
+            stat: child.stat,
+          })
+      })
+      this.setState({
+        list: items
+      })
+      console.log(snapshot.val())
+    })
+  }
+
   render() {
-    const day = [
-      {
-        date: '2018/12/18',
-        timeCome: '08.30 AM',
-        timeBack: '16.30 PM',
-        status: 'รอตรวจ'
-      },
-      {
-        date: '2018/12/17',
-        timeCome: '08.30 AM',
-        timeBack: '16.30 PM',
-        status: 'รอตรวจ'
-      },
-      {
-        date: '2018/12/16',
-        timeCome: '08.30 AM',
-        timeBack: '16.30 PM',
-        status: 'ตรวจแล้ว'
-      },
-      {
-        date: '2018/12/15',
-        timeCome: '08.30 AM',
-        timeBack: '16.30 PM',
-        status: 'ตรวจแล้ว'
-      },
-      {
-        date: '2018/12/14',
-        timeCome: '08.30 AM',
-        timeBack: '16.30 PM',
-        status: 'ตรวจแล้ว'
-      },
-      {
-        date: '2018/12/13',
-        timeCome: '08.30 AM',
-        timeBack: '16.30 PM',
-        status: 'ตรวจแล้ว'
-      },
-      {
-        date: '2018/12/12',
-        timeCome: '08.30 AM',
-        timeBack: '16.30 PM',
-        status: 'ตรวจแล้ว'
-      },
-      {
-        date: '2018/12/11',
-        timeCome: '08.30 AM',
-        timeBack: '16.30 PM',
-        status: 'ตรวจแล้ว'
-      },
-    ]
+    const { list } = this.state
     return (
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
@@ -71,13 +58,13 @@ class TimeTableScreen extends Component {
             <Text style={styles.common.buttonText}>เพิ่ม</Text>
           </TouchableOpacity>
           {
-            day.map((d, i) => {
+            list.map((d, i) => {
               return (
                 <Card key={i} containerStyle={styles.common.card}>
                   <View style={styles.timeTable.container}>
                     <Text style={styles.timeTable.label}>{d.date}</Text>
                     <Text style={styles.timeTable.label}>{d.timeCome} | {d.timeBack}</Text>
-                    <Text style={styles.timeTable.label}>{d.status}</Text>
+                    <Text style={styles.timeTable.label}>{d.stat}</Text>
                   </View>
                 </Card >
               );
