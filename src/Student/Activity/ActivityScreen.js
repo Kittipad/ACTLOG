@@ -4,59 +4,70 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  Image
+  Image,
+  Alert
 } from 'react-native';
 import {
   Card,
 } from 'react-native-elements'
+import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
 class ActivityScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      date: '',
+      morning: '',
+      afternoon: '',
+    }
+  }
+
+  componentDidMount() {
+    this.getList()
+  }
+
+  getList() {
+    var uid, usersRef, table, data
+    var date = this.props.navigation.getParam('date')
+    uid = firebase.auth().currentUser.uid
+    usersRef = firebase.database().ref('users/' + uid)
+    table = usersRef.child('timeTable').child(date)
+    table.once('value').then(snapshot => {
+      data = snapshot.val()
+      this.setState({
+        date: date,
+        morning: data.morning,
+        afternoon: data.afternoon
+      })
+    })
+  }
+
   render() {
-    const act = [
-      {
-        date: '2018/12/18',
-        morning: "Now that we know how to customize the look of our headers, let's make them sentient! Actually perhaps that's ambitious, let's just make them able to respond to our touches in very well defined ways.",
-        afternoon: "let's make them sentient! Actually perhaps that's ambitious, let's just make them able to respond to our touches in very well defined ways.",
-        img: 'https://facebook.github.io/react/logo-og.png',
-        status: 'รอตรวจ',
-      },
-      {
-        date: '2018/12/17',
-        morning: "Now that we know how to customize the look of our headers, let's make them sentient! Actually perhaps that's ambitious, let's just make them able to respond to our touches in very well defined ways.",
-        afternoon: "let's make them sentient! Actually perhaps that's ambitious, let's just make them able to respond to our touches in very well defined ways.",
-        img: 'https://facebook.github.io/react/logo-og.png',
-        status: 'ตรวจแล้ว',
-      },
-    ]
+    const { date, morning, afternoon } = this.state
     return (
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('StudentAddActivity')}
-            style={styles.common.button}>
-            <Text style={styles.common.buttonText}>เพิ่ม</Text>
-          </TouchableOpacity>
-          {
-            act.map((a, i) => {
-              return (
-                <Card key={i} containerStyle={styles.common.card}>
-                  <View style={styles.activity.container}>
-                    <Text style={styles.activity.date}>{a.date}</Text>
-                    <Text style={styles.activity.detail}>{a.morning}</Text>
-                    <Text style={styles.activity.detail}>{a.afternoon}</Text>
-                    <Text style={styles.activity.date}>{a.status}</Text>
-                    <Image
-                      style={{ width: 300, height: 300, margin: 10 }}
-                      source={{ uri: a.img }} />
-                  </View>
-                </Card>
-              );
-            })
-          }
+          <Card containerStyle={styles.common.card}>
+            <View style={styles.activity.container}>
+              <Text style={styles.activity.date}>{date}</Text>
+              <Text style={styles.activity.detail}>ช่วงเช้า : {morning}</Text>
+              <Text style={styles.activity.detail}>ช่วงบ่าย : {afternoon}</Text>
+            </View>
+          </Card>
         </View>
+        <TouchableOpacity
+          style={styles.common.button}
+          onPress={() =>
+            this.props.navigation.navigate('StudentAddActivity', {
+              date: date,
+              morning: morning,
+              afternoon: afternoon
+            })}>
+          <Text style={styles.common.buttonText}>แก้ไข</Text>
+        </TouchableOpacity>
       </ScrollView>
-    );
+    )
   }
 }
 

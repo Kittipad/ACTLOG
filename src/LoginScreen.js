@@ -45,9 +45,9 @@ class LoginScreen extends Component {
   }
 
   getUserType() {
+    var data
     var uid = firebase.auth().currentUser.uid
     var users = firebase.database().ref('users/' + uid + '/type')
-    var data
     users.once('value').then(snapshot => {
       data = snapshot.val()
       console.log(data)

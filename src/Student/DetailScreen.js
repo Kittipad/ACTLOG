@@ -3,8 +3,9 @@ import {
   View,
   Text,
   ScrollView,
-  AsyncStorage,
-  Button
+  TouchableOpacity,
+  Button,
+  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -14,6 +15,11 @@ import {
 import styles from '../styles'
 
 class DetailScreen extends Component {
+
+  editDetail() {
+    this.props.navigation.navigate('StudentEditDetail')
+  }
+
   render() {
     const detail = [
       {
@@ -36,7 +42,7 @@ class DetailScreen extends Component {
               return (
                 <Card key={i} containerStyle={styles.common.card}>
                   <View style={styles.timeTable.container}>
-                    {/* <Avatar
+                    <Avatar
                       containerStyle={styles.detail._avatar}
                       rounded
                       size='xlarge'
@@ -83,12 +89,17 @@ class DetailScreen extends Component {
                         name='clock'
                         size={22} />
                       <Text style={styles.detail.label}>{d.date}</Text>
-                    </View> */}
+                    </View>
                   </View>
                 </Card >
               );
             })
           }
+          <TouchableOpacity
+            style={styles.common.button}
+            onPress={this.editDetail.bind(this)}>
+            <Text style={styles.common.buttonText}>แก้ไขข้อมูล</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     )

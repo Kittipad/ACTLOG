@@ -63,16 +63,6 @@ class HomeScreen extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}
-          onPress={() => this.Actvity(this)}>
-          <Icon
-            name='list-ol'
-            size={icoSize}
-            color='white'
-          />
-          <Text style={styles.common.label}>บันทึกกิจกรรม</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.home.menu}
           onPress={() => this.Visit(this)}>
           <Icon
             name='user-friends'

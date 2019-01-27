@@ -15,6 +15,7 @@ import StdAddActivity from './Student/Activity/AddActivityScreen'
 import StdVisit from './Student/Visit/VisitScreen'
 import StdComment from './Student/Comment/CommentScreen'
 import StdDetail from './Student/DetailScreen'
+import StdEditDetail from './Student/EditDetailScreen'
 
 //staff side
 import StaffHome from './Staff/HomeScreen'
@@ -93,6 +94,12 @@ const RootStack = createStackNavigator({
     screen: StdDetail,
     navigationOptions: {
       title: 'ข้อมูลส่วนตัว'
+    }
+  },
+  StudentEditDetail: {
+    screen: StdEditDetail,
+    navigationOptions: {
+      title: 'แก้ไขข้อมูลส่วนตัว'
     }
   },
   Staff: {
