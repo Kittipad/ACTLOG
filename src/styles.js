@@ -140,6 +140,16 @@ const detail = StyleSheet.create({
     icon: {
         marginLeft: 20,
         alignSelf: 'center'
+    },
+    input: {
+        width: '90%', height: 50,
+        marginBottom: 10,
+        marginTop: 15,
+        borderRadius: 5,
+        alignSelf: 'center',
+        backgroundColor: 'white',
+        fontSize: 20,
+        padding: 10,
     }
 })
 

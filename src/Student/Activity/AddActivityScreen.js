@@ -55,21 +55,19 @@ class AddActivity extends Component {
         <TextInput
           style={styles.activity.input}
           placeholderTextColor='black'
-          placeholder={morning}
+          defaultValue={morning}
           onChangeText={(text) => this.setState({ morning: text })}
           multiline={true}
           autoCapitalize='none'
-          autoCorrect={false}
-          clearTextOnFocus={true} />
+          autoCorrect={false} />
         <TextInput
           style={styles.activity.input}
           placeholderTextColor='black'
-          placeholder={afternoon}
+          defaultValue={afternoon}
           onChangeText={(text) => this.setState({ afternoon: text })}
           multiline={true}
           autoCapitalize='none'
-          autoCorrect={false}
-          clearTextOnFocus={true} />
+          autoCorrect={false} />
         <TouchableOpacity
           style={styles.common.button}
           onPress={this.saveActivity.bind(this)}>

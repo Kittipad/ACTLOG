@@ -28,8 +28,10 @@ class RegisterScreen extends Component {
         firebase.database().ref('users/' + uid).set({
           uuid: uid,
           email: email,
-          pass: password,
           type: '',
+          fname: 'ชื่อจริง',
+          lname: 'นามสกุล',
+          telNum: 'เบอร์โทร',
         })
         this.props.navigation.goBack()
         firebase.auth().signOut()
