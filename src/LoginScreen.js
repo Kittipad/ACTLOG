@@ -4,6 +4,7 @@ import {
   Alert,
   Text,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import {
   StackActions,
@@ -25,23 +26,19 @@ class LoginScreen extends Component {
     }
   }
 
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loading: false, auth: true })
-      } else {
-        this.setState({ loading: false, auth: false })
-      }
-    })
-  }
-
   onLoginPress = () => {
     const { email, password } = this.state;
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.getUserType()
-      })
-      .catch((msgError) => { alert(msgError.message); });
+    if (!email && !password) {
+      Alert.alert('กรุณาป้อนข้อมูล')
+    } else {
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          this.getUserType()
+        })
+        .catch((msgError) => {
+          alert(msgError.message)
+        })
+    }
   }
 
   getUserType() {
