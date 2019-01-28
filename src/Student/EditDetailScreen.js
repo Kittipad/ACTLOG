@@ -56,7 +56,6 @@ class EditDetailScreen extends Component {
           onChangeText={(text) => this.setState({ lname: text })}
           autoCapitalize='none'
           autoCorrect={false} />
-        <Text style={styles.detail.input}>{email}</Text>
         <TextInput
           style={styles.detail.input}
           placeholderTextColor='black'
@@ -64,6 +63,7 @@ class EditDetailScreen extends Component {
           onChangeText={(text) => this.setState({ telNum: text })}
           keyboardType='phone-pad'
           autoCorrect={false} />
+        <Text style={styles.detail.input}>{email}</Text>
         <TouchableOpacity
           style={styles.common.button}
           onPress={this.saveDetail.bind(this)}>

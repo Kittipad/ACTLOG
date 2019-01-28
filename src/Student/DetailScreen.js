@@ -22,7 +22,8 @@ class DetailScreen extends Component {
       fname: '',
       lname: '',
       email: '',
-      telNum: ''
+      telNum: '',
+      uuid: '',
     }
   }
 
@@ -40,7 +41,8 @@ class DetailScreen extends Component {
         fname: data.fname,
         lname: data.lname,
         email: data.email,
-        telNum: data.telNum
+        telNum: data.telNum,
+        uuid: uid,
       })
       console.log(data)
     })
@@ -52,12 +54,12 @@ class DetailScreen extends Component {
       fname: fname,
       lname: lname,
       email: email,
-      telNum: telNum
+      telNum: telNum,
     })
   }
 
   render() {
-    const { fname, lname, email, telNum } = this.state
+    const { fname, lname, email, telNum, uuid } = this.state
     return (
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
@@ -77,6 +79,13 @@ class DetailScreen extends Component {
                   name='envelope'
                   size={22} />
                 <Text style={styles.detail.label}>{email}</Text>
+              </View>
+              <View style={styles.detail.detailContainer}>
+                <Icon
+                  style={styles.detail.icon}
+                  name=''
+                  size={22} />
+                <Text style={styles.detail.label}>{uuid}</Text>
               </View>
             </View>
           </Card >
