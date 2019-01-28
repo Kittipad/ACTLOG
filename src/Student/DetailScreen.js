@@ -80,15 +80,11 @@ class DetailScreen extends Component {
                   size={22} />
                 <Text style={styles.detail.label}>{email}</Text>
               </View>
-              <View style={styles.detail.detailContainer}>
-                <Icon
-                  style={styles.detail.icon}
-                  name=''
-                  size={22} />
-                <Text style={styles.detail.label}>{uuid}</Text>
-              </View>
             </View>
           </Card >
+          <View style={styles.detail.detailContainer}>
+            <Text style={{ fontSize: 15, marginTop: 15, color: 'white' }}>{uuid}</Text>
+          </View>
           <TouchableOpacity
             style={styles.common.button}
             onPress={this.editDetail.bind(this)}>
