@@ -7,6 +7,7 @@ import {
   Alert
 } from 'react-native';
 import firebase from 'react-native-firebase'
+import ActivityScreen from './ActivityScreen'
 import styles from '../../styles'
 
 class AddActivity extends Component {
@@ -26,15 +27,16 @@ class AddActivity extends Component {
     const { morning, afternoon } = this.state
     var { navigation } = this.props;
     var uid, timeTable
-    var date = navigation.getParam('date');
+    var key = navigation.getParam('key');
     uid = firebase.auth().currentUser.uid
-    timeTable = firebase.database().ref('users/' + uid + '/timeTable')
-    timeTable.child(date).update({
+    timeTable = firebase.database().ref('users/' + uid + '/timeTable/' + key)
+    timeTable.update({
       morning: morning,
       afternoon: afternoon,
     }).then(() => {
       Alert.alert('แก้ไขแล้ว')
       this.props.navigation.goBack()
+      ActivityScreen.call(this.componentDidMount())
     })
   }
 
@@ -42,6 +44,7 @@ class AddActivity extends Component {
     var { navigation } = this.props;
     var morning = navigation.getParam('morning');
     var afternoon = navigation.getParam('afternoon');
+
     this.setState({
       morning: morning,
       afternoon: afternoon

@@ -14,6 +14,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input } from 'react-native-elements';
 import firebase from 'react-native-firebase'
+import DBRelateTest from './DBRelateTest'
 import styles from './styles'
 
 class LoginScreen extends Component {
@@ -71,6 +72,10 @@ class LoginScreen extends Component {
     this.props.navigation.navigate('Register')
   }
 
+  DBrelation() {
+    this.props.navigation.navigate('DBRelateTest')
+  }
+
   render() {
     let icoSize = 30
     return (
@@ -121,6 +126,14 @@ class LoginScreen extends Component {
           <Text
             style={styles.common.buttonText}>
             สมัครสมาชิก
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.common.button}
+          onPress={this.DBrelation.bind(this)}>
+          <Text
+            style={styles.common.buttonText}>
+            DB relation
           </Text>
         </TouchableOpacity>
       </View>

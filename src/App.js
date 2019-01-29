@@ -5,6 +5,7 @@ import {
 
 import LoginScreen from './LoginScreen'
 import RegisterScreen from './RegisterScreen'
+import DBRelateTest from './DBRelateTest'
 
 //student side
 import StdHome from './Student/HomeScreen'
@@ -46,6 +47,12 @@ const RootStack = createStackNavigator({
     screen: RegisterScreen,
     navigationOptions: {
       title: 'สมัครสมาชิก'
+    }
+  },
+  DBRelateTest: {
+    screen: DBRelateTest,
+    navigationOptions: {
+      title: 'ทดสอบฐานข้อมูล'
     }
   },
   Student: {

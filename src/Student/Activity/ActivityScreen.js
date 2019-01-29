@@ -17,6 +17,7 @@ class ActivityScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      key: '',
       date: '',
       morning: '',
       afternoon: '',
@@ -28,17 +29,21 @@ class ActivityScreen extends Component {
   }
 
   getList() {
-    var uid, usersRef, table, data
+    var uid, usersRef, table
     var date = this.props.navigation.getParam('date')
+    var key = this.props.navigation.getParam('key')
     uid = firebase.auth().currentUser.uid
     usersRef = firebase.database().ref('users/' + uid)
-    table = usersRef.child('timeTable').child(date)
+    table = usersRef.child('timeTable').orderByChild(date)
     table.once('value').then(snapshot => {
-      data = snapshot.val()
-      this.setState({
-        date: date,
-        morning: data.morning,
-        afternoon: data.afternoon
+      snapshot.forEach((childSnapshot) => {
+        child = childSnapshot.val()
+        this.setState({
+          key: key,
+          date: date,
+          morning: child.morning,
+          afternoon: child.afternoon
+        })
       })
     })
   }
@@ -60,6 +65,7 @@ class ActivityScreen extends Component {
           style={styles.common.button}
           onPress={() =>
             this.props.navigation.navigate('StudentAddActivity', {
+              key: key,
               date: date,
               morning: morning,
               afternoon: afternoon
