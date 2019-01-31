@@ -49,7 +49,7 @@ class ActivityScreen extends Component {
   }
 
   render() {
-    const { date, morning, afternoon } = this.state
+    const { date, morning, afternoon, key } = this.state
     return (
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>

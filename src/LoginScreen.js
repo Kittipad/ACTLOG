@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
+  Modal,
 } from 'react-native';
 import {
   StackActions,
@@ -14,7 +15,6 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input } from 'react-native-elements';
 import firebase from 'react-native-firebase'
-import DBRelateTest from './DBRelateTest'
 import styles from './styles'
 
 class LoginScreen extends Component {
@@ -24,12 +24,23 @@ class LoginScreen extends Component {
       email: '',
       password: '',
       type: '',
+      loading: false
     }
   }
 
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.getUserType()
+      }
+    })
+  }
+
   onLoginPress = () => {
+    this.setState({ loading: true })
     const { email, password } = this.state;
     if (!email && !password) {
+      this.setState({ loading: false })
       Alert.alert('กรุณาป้อนข้อมูล')
     } else {
       firebase.auth().signInWithEmailAndPassword(email, password)
@@ -76,6 +87,24 @@ class LoginScreen extends Component {
     this.props.navigation.navigate('DBRelateTest')
   }
 
+  Loader() {
+    if (this.state.loading) {
+      return (
+        <TouchableOpacity
+          style={styles.common.button}>
+          <ActivityIndicator size='large' color='#5499C7' />
+        </TouchableOpacity>
+      )
+    }
+    return (
+      <TouchableOpacity
+        style={styles.common.button}
+        onPress={this.onLoginPress.bind(this)}>
+        <Text style={styles.common.buttonText}>เข้าสู่ระบบ</Text>
+      </TouchableOpacity>
+    )
+  }
+
   render() {
     let icoSize = 30
     return (
@@ -115,11 +144,7 @@ class LoginScreen extends Component {
           clearTextOnFocus={true}
           secureTextEntry={true}
           onChangeText={(text) => this.setState({ password: text })} />
-        <TouchableOpacity
-          style={styles.common.button}
-          onPress={this.onLoginPress.bind(this)}>
-          <Text style={styles.common.buttonText}>เข้าสู่ระบบ</Text>
-        </TouchableOpacity>
+        {this.Loader()}
         <TouchableOpacity
           style={styles.common.button}
           onPress={this.onRegisterPressed.bind(this)}>
@@ -128,14 +153,14 @@ class LoginScreen extends Component {
             สมัครสมาชิก
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.common.button}
           onPress={this.DBrelation.bind(this)}>
           <Text
             style={styles.common.buttonText}>
             DB relation
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     );
   }

@@ -11,6 +11,12 @@ import ActivityScreen from './ActivityScreen'
 import styles from '../../styles'
 
 class AddActivity extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('date')
+    }
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -30,22 +36,24 @@ class AddActivity extends Component {
     var key = navigation.getParam('key');
     uid = firebase.auth().currentUser.uid
     timeTable = firebase.database().ref('users/' + uid + '/timeTable/' + key)
+    console.log(key)
     timeTable.update({
       morning: morning,
       afternoon: afternoon,
     }).then(() => {
       Alert.alert('แก้ไขแล้ว')
       this.props.navigation.goBack()
-      ActivityScreen.call(this.componentDidMount())
     })
   }
 
   getActivity() {
     var { navigation } = this.props;
+    var date = navigation.getParam('date');
     var morning = navigation.getParam('morning');
     var afternoon = navigation.getParam('afternoon');
 
     this.setState({
+      date: date,
       morning: morning,
       afternoon: afternoon
     })

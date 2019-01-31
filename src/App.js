@@ -80,10 +80,7 @@ const RootStack = createStackNavigator({
     }
   },
   StudentAddActivity: {
-    screen: StdAddActivity,
-    navigationOptions: {
-      title: 'เพิ่มกิจกรรม'
-    }
+    screen: StdAddActivity
   },
   StudentVisit: {
     screen: StdVisit,

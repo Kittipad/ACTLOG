@@ -55,6 +55,7 @@ class TimeTableScreen extends Component {
       })
       console.log(snapshot.val())
       console.log(this.state.list)
+      console.log(this.state.key)
     })
   }
 
@@ -72,8 +73,8 @@ class TimeTableScreen extends Component {
     if (this.state.currentDate != date) {
       timeTable.push({
         date: date,
-        timeCome: 'ลงเวลาเช้า',
-        timeBack: 'ลงเวลาบ่าย',
+        timeCome: 'ลงเวลามา',
+        timeBack: 'ลงเวลากลับ',
         morning: 'ช่วงเช้า',
         afternoon: 'ช่วงบ่าย',
       }).then(() => {
@@ -95,14 +96,14 @@ class TimeTableScreen extends Component {
     minute = new Date().getMinutes()
     timeStamp = hour + ':' + minute
 
-    if (timeCome == 'ลงเวลาเช้า') {
+    if (timeCome == 'ลงเวลามา') {
       time.update({
         timeCome: timeStamp
       }).then(() => {
         this.componentDidMount()
       })
     } else {
-      Alert.alert('ลงเวลาช่วงเช้าแล้ว')
+      Alert.alert('ลงเวลามาแล้ว')
     }
   }
 
@@ -116,19 +117,19 @@ class TimeTableScreen extends Component {
     minute = new Date().getMinutes()
     timeStamp = hour + ':' + minute
 
-    if (timeBack == 'ลงเวลาบ่าย') {
+    if (timeBack == 'ลงเวลากลับ') {
       time.update({
         timeBack: timeStamp
       }).then(() => {
         this.componentDidMount()
       })
     } else {
-      Alert.alert('ลงเวลาช่วงบ่ายแล้ว')
+      Alert.alert('ลงเวลากลับแล้ว')
     }
   }
 
   render() {
-    const { list } = this.state
+    const { list, key } = this.state
     return (
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
@@ -156,7 +157,7 @@ class TimeTableScreen extends Component {
                       onPress={() =>
                         this.props.navigation.navigate('StudentActivity', {
                           date: d.date,
-                          key: d.key
+                          key: key
                         })
                       }
                       style={styles.common.button}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry , Platform} from 'react-native';
+import { AppRegistry, Platform } from 'react-native';
 import { name as appName } from './app.json';
 import App from './src/App';
 import firebase from 'react-native-firebase'
@@ -26,7 +26,9 @@ export default class Initial extends Component {
       projectId: 'actlog-912c1',
       persistence: true,
     }
-    firebase.initializeApp(Platform.OS === 'ios' ? iosConfig : androidConfig)
+    if (!firebase.apps.length) {
+      firebase.initializeApp(Platform.OS === 'ios' ? iosConfig : androidConfig)
+    }
   }
 
   render() {
