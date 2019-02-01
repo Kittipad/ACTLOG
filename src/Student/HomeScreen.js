@@ -95,7 +95,7 @@ class HomeScreen extends Component {
           style={styles.home.menu}
           onPress={() => this.Logout()}>
           <Icon
-            name='power-off'
+            name='sign-out-alt'
             size={icoSize}
             color='white'
           />

@@ -39,6 +39,7 @@ class LoginScreen extends Component {
   onLoginPress = () => {
     this.setState({ loading: true })
     const { email, password } = this.state;
+    console.log(email + ' ' + password)
     if (!email && !password) {
       this.setState({ loading: false })
       Alert.alert('กรุณาป้อนข้อมูล')
@@ -59,12 +60,10 @@ class LoginScreen extends Component {
     var users = firebase.database().ref('users/' + uid + '/type')
     users.once('value').then(snapshot => {
       data = snapshot.val()
-      console.log(data)
       this.setState({ type: data })
+      console.log(data)
       if (this.state.type == data) {
         this.goHomeScreen()
-      } else {
-        this.onLoginPress()
       }
     })
   }

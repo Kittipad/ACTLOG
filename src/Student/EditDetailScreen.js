@@ -21,6 +21,23 @@ class EditDetailScreen extends Component {
     }
   }
 
+  componentDidMount() {
+    this.getDetail()
+  }
+
+  getDetail() {
+    var fname = this.props.navigation.getParam('fname')
+    var lname = this.props.navigation.getParam('lname')
+    var email = this.props.navigation.getParam('email')
+    var telNum = this.props.navigation.getParam('telNum')
+    this.setState({
+      fname: fname,
+      lname: lname,
+      email: email,
+      telNum: telNum
+    })
+  }
+
   saveDetail() {
     const { fname, lname, telNum } = this.state
     var uid = firebase.auth().currentUser.uid
@@ -36,30 +53,30 @@ class EditDetailScreen extends Component {
   }
 
   render() {
-    var fname = this.props.navigation.getParam('fname')
-    var lname = this.props.navigation.getParam('lname')
-    var email = this.props.navigation.getParam('email')
-    var telNum = this.props.navigation.getParam('telNum')
+    const { fname, lname, telNum, email } = this.state
     return (
       <ScrollView style={styles.common.scrollView}>
         <TextInput
           style={styles.detail.input}
-          placeholderTextColor='black'
+          placeholderTextColor='gray'
           defaultValue={fname}
+          placeholder='ชื่อจริง'
           onChangeText={(text) => this.setState({ fname: text })}
           autoCapitalize='none'
           autoCorrect={false} />
         <TextInput
           style={styles.detail.input}
-          placeholderTextColor='black'
+          placeholderTextColor='gray'
           defaultValue={lname}
+          placeholder='นามสกุล'
           onChangeText={(text) => this.setState({ lname: text })}
           autoCapitalize='none'
           autoCorrect={false} />
         <TextInput
           style={styles.detail.input}
-          placeholderTextColor='black'
+          placeholderTextColor='gray'
           defaultValue={telNum}
+          placeholder='เบอร์โทร'
           onChangeText={(text) => this.setState({ telNum: text })}
           keyboardType='phone-pad'
           autoCorrect={false} />

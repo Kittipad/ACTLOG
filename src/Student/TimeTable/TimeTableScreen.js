@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import {
   Card,
@@ -21,6 +22,7 @@ class TimeTableScreen extends Component {
       currentDate: '',
       timeCome: '',
       timeBack: '',
+      loading: false,
     }
   }
 
@@ -71,6 +73,7 @@ class TimeTableScreen extends Component {
     date = year + '-' + month + '-' + day
 
     if (this.state.currentDate != date) {
+      this.setState({ loading: true })
       timeTable.push({
         date: date,
         timeCome: 'ลงเวลามา',
@@ -78,7 +81,7 @@ class TimeTableScreen extends Component {
         morning: 'ช่วงเช้า',
         afternoon: 'ช่วงบ่าย',
       }).then(() => {
-        Alert.alert('เพิ่มตารางเวลาแล้ว')
+        this.setState({ loading: false })
         this.componentDidMount()
       })
     } else {
@@ -128,16 +131,30 @@ class TimeTableScreen extends Component {
     }
   }
 
+  Loader() {
+    if (this.state.loading) {
+      return (
+        <TouchableOpacity
+          style={styles.common.button}>
+          <ActivityIndicator size='large' color='#5499C7' />
+        </TouchableOpacity>
+      )
+    }
+    return (
+      <TouchableOpacity
+        onPress={this.addNewList.bind(this)}
+        style={styles.common.button}>
+        <Text style={styles.common.buttonText}>เพิ่ม</Text>
+      </TouchableOpacity>
+    )
+  }
+
   render() {
     const { list, key } = this.state
     return (
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
-          <TouchableOpacity
-            onPress={this.addNewList.bind(this)}
-            style={styles.common.button}>
-            <Text style={styles.common.buttonText}>เพิ่ม</Text>
-          </TouchableOpacity>
+          {this.Loader()}
           {
             list.slice(0).reverse().map((d, i) => {
               return (
