@@ -32,12 +32,22 @@ class RegisterScreen extends Component {
           fname: 'ชื่อจริง',
           lname: 'นามสกุล',
           telNum: 'เบอร์โทร',
+        }).then(() => {
+          this.timeTableCreate()
+          this.props.navigation.goBack()
+          Alert.alert('สมัครสมาชิกสำเร็จ')
         })
-        this.props.navigation.goBack()
-        firebase.auth().signOut()
-        Alert.alert('สมัครสมาชิกสำเร็จ')
       })
-      .catch((msgError) => { alert(msgError.message) })
+      .catch((msgError) => { Alert.alert(msgError.message) })
+  }
+
+  timeTableCreate() {
+    uid = firebase.auth().currentUser.uid
+    var timeTable = firebase.database().ref('timeTable/' + uid)
+    timeTable.push({
+      timeCome: '',
+      timeBack: ''
+    })
   }
 
   render() {

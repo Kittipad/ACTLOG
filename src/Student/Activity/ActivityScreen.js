@@ -33,17 +33,14 @@ class ActivityScreen extends Component {
     var date = this.props.navigation.getParam('date')
     var key = this.props.navigation.getParam('key')
     uid = firebase.auth().currentUser.uid
-    usersRef = firebase.database().ref('users/' + uid)
-    table = usersRef.child('timeTable').orderByChild(date)
+    table = firebase.database().ref('timeTable/' + uid + '/' + key)
     table.once('value').then(snapshot => {
-      snapshot.forEach((childSnapshot) => {
-        child = childSnapshot.val()
-        this.setState({
-          key: key,
-          date: date,
-          morning: child.morning,
-          afternoon: child.afternoon
-        })
+      child = snapshot.val()
+      this.setState({
+        key: key,
+        date: date,
+        morning: child.morning,
+        afternoon: child.afternoon
       })
     })
   }

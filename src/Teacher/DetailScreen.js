@@ -40,12 +40,6 @@ class DetailScreen extends Component {
               return (
                 <Card key={i} containerStyle={styles.common.card}>
                   <View style={styles.timeTable.container}>
-                    <Avatar
-                      containerStyle={styles.detail._avatar}
-                      rounded
-                      size='xlarge'
-                      source={{ uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg" }}
-                    />
                     <Text style={styles.detail.labelCenter}>{d.f_name + '  ' + d.l_name}</Text>
                     <View style={styles.detail.detailContainer}>
                       <Icon

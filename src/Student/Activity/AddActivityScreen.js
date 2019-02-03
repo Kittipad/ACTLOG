@@ -7,7 +7,6 @@ import {
   Alert
 } from 'react-native';
 import firebase from 'react-native-firebase'
-import ActivityScreen from './ActivityScreen'
 import styles from '../../styles'
 
 class AddActivity extends Component {
@@ -35,7 +34,7 @@ class AddActivity extends Component {
     var uid, timeTable
     var key = navigation.getParam('key');
     uid = firebase.auth().currentUser.uid
-    timeTable = firebase.database().ref('users/' + uid + '/timeTable/' + key)
+    timeTable = firebase.database().ref('timeTable/' + uid + '/' + key)
     console.log(key)
     timeTable.update({
       morning: morning,

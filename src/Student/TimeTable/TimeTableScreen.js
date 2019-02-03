@@ -31,10 +31,9 @@ class TimeTableScreen extends Component {
   }
 
   getList() {
-    var uid, usersRef, table, child, key, currentDate, items = []
+    var uid, table, child, key, currentDate, items = []
     uid = firebase.auth().currentUser.uid
-    usersRef = firebase.database().ref('users/' + uid)
-    table = usersRef.child('timeTable')
+    table = firebase.database().ref('timeTable/' + uid)
     table.once('value').then(snapshot => {
       snapshot.forEach((childSnapshot) => {
         key = childSnapshot.key
@@ -57,14 +56,13 @@ class TimeTableScreen extends Component {
       })
       console.log(snapshot.val())
       console.log(this.state.list)
-      console.log(this.state.key)
     })
   }
 
   addNewList() {
     var uid, timeTable, date, year, month, day
     uid = firebase.auth().currentUser.uid
-    timeTable = firebase.database().ref('users/' + uid + '/timeTable')
+    timeTable = firebase.database().ref('timeTable/' + uid)
 
     date = new Date()
     year = date.getFullYear()
@@ -93,7 +91,7 @@ class TimeTableScreen extends Component {
     const { key, timeCome } = this.state
     var uid, time, hour, minute, timeStamp
     uid = firebase.auth().currentUser.uid
-    time = firebase.database().ref('users/' + uid + '/timeTable/' + key)
+    time = firebase.database().ref('timeTable/' + uid + '/' + key)
 
     hour = new Date().getHours()
     minute = new Date().getMinutes()
@@ -114,7 +112,7 @@ class TimeTableScreen extends Component {
     const { key, timeBack } = this.state
     var uid, time, hour, minute, timeStamp
     uid = firebase.auth().currentUser.uid
-    time = firebase.database().ref('users/' + uid + '/timeTable/' + key)
+    time = firebase.database().ref('timeTable/' + uid + '/' + key)
 
     hour = new Date().getHours()
     minute = new Date().getMinutes()

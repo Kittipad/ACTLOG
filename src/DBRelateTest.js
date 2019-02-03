@@ -8,38 +8,80 @@ import {
 import firebase from 'react-native-firebase'
 
 class DBRelateTest extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      list: []
+    }
+  }
+
   createDB() {
-    var userTest = firebase.database().ref('userTest')
-    userTest.set({
-      _users: {
-        '1': {
-          fname: 'krittanupong'
-        },
-        '2': {
-          fname: 'nattanicha'
-        }
+    var users = firebase.database().ref('test/users')
+    var events = firebase.database().ref('test/events')
+    var eventAttendees = firebase.database().ref('test/eventAttendees')
+    users.set({
+      1: {
+        fname: 'krittanupong'
       },
-      _events: {
-        'fm': {
-          name: 'Firebase Meetup',
-          time: '09:00'
-        }
-      },
-      _eventAttendees: {
-        'fm': {
-          "1": "Jirawat",
-          "2": "Firebaser"
-        }
+      2: {
+        fname: 'sasiwimon'
       }
-    }).then(Alert.alert('created.'))
+    })
+    events.set({
+      fm: {
+        name: 'Firebase Meetup',
+        time: 187394737
+      }
+    })
+    eventAttendees.set({
+      fm: {
+        1: 'krittanupong',
+        2: 'sasiwimon'
+      }
+    })
   }
 
   selectDB() {
-    var userTest = firebase.database().ref('userTest')
-    var eventRef = userTest.child('_events')
-    console.log(
-      eventRef.orderByChild('name').equalTo('FB Meetup').limitToFirst(1)
-    )
+    var users = firebase.database().ref('test/users')
+    var events = firebase.database().ref('test/events')
+    var eventAttendees = firebase.database().ref('test/eventAttendees')
+    var list = []
+
+    users.once('value').then((snapshot) => {
+      snapshot.forEach((child) => {
+        list.push({
+          text: child.val().fname
+        })
+      })
+      this.setState({
+        list: list
+      })
+      console.log(this.state.list)
+    })
+
+    // events.once('value').then((snapshot) => {
+    //   snapshot.forEach((child) => {
+    //     list.push({
+    //       text: child.val().name
+    //     })
+    //   })
+    //   this.setState({
+    //     list: list
+    //   })
+    //   console.log(this.state.list)
+    // })
+
+    // eventAttendees.once('value').then((snapshot) => {
+    //   snapshot.forEach((child) => {
+    //     list.push({
+    //       text: child.key
+    //     })
+    //   })
+    //   this.setState({
+    //     list: list
+    //   })
+    //   console.log(this.state.list)
+    // })
   }
 
   insertDB() {
@@ -51,6 +93,7 @@ class DBRelateTest extends Component {
   }
 
   render() {
+    const { list } = this.state
     return (
       <View>
         <Button
@@ -65,7 +108,14 @@ class DBRelateTest extends Component {
           title='insertDB'
           onPress={this.insertDB.bind(this)}
         />
-      </View>
+        {
+          list.map((l, i) => {
+            return (
+              <Text key={i}>{l.text}</Text>
+            )
+          })
+        }
+      </View >
     );
   }
 }

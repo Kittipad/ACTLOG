@@ -36,7 +36,7 @@ class LoginScreen extends Component {
     })
   }
 
-  onLoginPress = () => {
+  onLoginPress() {
     this.setState({ loading: true })
     const { email, password } = this.state;
     console.log(email + ' ' + password)
@@ -49,6 +49,7 @@ class LoginScreen extends Component {
           this.getUserType()
         })
         .catch((msgError) => {
+          this.setState({ loading: false })
           alert(msgError.message)
         })
     }
@@ -69,13 +70,16 @@ class LoginScreen extends Component {
   }
 
   goHomeScreen() {
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [NavigationActions.navigate({
-        routeName: this.state.type
-      })]
-    })
-    this.props.navigation.dispatch(resetAction)
+    const { type } = this.state
+    if (type) {
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({
+          routeName: type
+        })]
+      })
+      this.props.navigation.dispatch(resetAction)
+    }
   }
 
   onRegisterPressed() {
