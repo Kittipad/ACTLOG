@@ -8,37 +8,67 @@ import {
 import {
   Card,
 } from 'react-native-elements'
+import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
 class VisitScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      list: []
+    }
+  }
+
+  componentDidMount() {
+    this.getList()
+  }
+
+  getList() {
+    var items = [], users, items, tuid
+    tuid = firebase.auth().currentUser.uid
+    users = firebase.database().ref('users/' + tuid + '/std')
+    users.once('value').then((snapshot) => {
+      // console.log(snapshot.val())
+      snapshot.forEach((child) => {
+        val = child.val()
+        // console.log(child.key)
+        // console.log(child.val())
+        items.push({
+          suid: child.key,
+          tuid: tuid,
+          fname: val.fname,
+          lname: val.lname,
+        })
+      })
+      this.setState({
+        list: items
+      })
+    })
+  }
+
   SaveVisit() {
     this.props.navigation.navigate('TeachSaveVisit')
   }
 
   render() {
-    const users = [
-      {
-        name: 'ศศิวิมล ครุฑคาบแก้ว',
-        company_name: 'ศูนย์คอมพิวเตอร์มหาวิทยาลัยสงขลานครินทร์',
-      },
-      {
-        name: 'กฤตนุพงค์ สุกใส',
-        company_name: 'บริษัท codemobiles',
-      },
-    ]
+    const { list } = this.state
+    console.log(list)
     return (
       <ScrollView style={styles.common.scrollView}>
         <View style={styles.common.container}>
           {
-            users.map((u, i) => {
+            list.map((user, i) => {
               return (
                 <TouchableOpacity
-                  onPress={() => this.SaveVisit(this)}
+                  onPress={() =>
+                    this.props.navigation.navigate('TeachSaveVisit', {
+                      suid: user.suid,
+                      tuid: user.tuid
+                    })}
                   style={styles.common.card}>
                   <Card key={i} containerStyle={styles.common.card}>
                     <View style={styles.visit.container}>
-                      <Text style={styles.visit.label}>{u.name}</Text>
-                      <Text style={styles.visit.labelSub}>{u.company_name}</Text>
+                      <Text style={styles.visit.label}>{user.fname}  {user.lname}</Text>
                     </View>
                   </Card>
                 </TouchableOpacity>

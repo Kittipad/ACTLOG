@@ -41,7 +41,7 @@ class EditScreen extends Component {
       type: type
     }).then(() => {
       Alert.alert('แก้ไขประเภทเรียบร้อย')
-      this.props.navigation.goBack()
+      this.props.navigation.navigate('Admin')
     })
   }
 
@@ -62,9 +62,10 @@ class EditScreen extends Component {
             onValueChange={(value, index) =>
               this.setState({ type: value })
             }>
-            <Picker.Item label="เลือกประเภท" value="none" />
+            <Picker.Item label="เลือกประเภท" />
             <Picker.Item label="Student" value="Student" />
             <Picker.Item label="Teacher" value="Teacher" />
+            <Picker.Item label="None" value="none" />
           </Picker>
         </View>
       </ScrollView>

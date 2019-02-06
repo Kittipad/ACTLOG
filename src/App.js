@@ -20,8 +20,10 @@ import StdEditDetail from './Student/EditDetailScreen'
 
 //admin side
 import AdminHome from './Admin/HomeScreen'
-import AdminUserList from './Admin/UserLists/UserListScreen'
-import AdminEditScreen from './Admin/UserEdit/EditScreen'
+import AdminUserType from './Admin/UserType/UserTypeScreen'
+import AdminTypeEdit from './Admin/UserType/UserTypeEdit'
+import AdminListStd from './Admin/Student/GetListStd'
+import AdminListTeacher from './Admin/Teacher/GetListTeacher'
 
 //teacher side
 import TeachHome from './Teacher/HomeScreen'
@@ -30,6 +32,7 @@ import TeachSaveVisit from './Teacher/Visit/SaveVisitScreen'
 import TeachActivity from './Teacher/Activity/ActivityScreen'
 import TeachViewActivity from './Teacher/Activity/ViewActivityScreen'
 import TeachDetail from './Teacher/DetailScreen'
+import TeachAddStudent from './Teacher/AddStudent/AddStudent'
 
 const RootStack = createStackNavigator({
   Login: {
@@ -107,16 +110,28 @@ const RootStack = createStackNavigator({
       title: 'หน้าแรก'
     }
   },
-  AdminUserList: {
-    screen: AdminUserList,
+  AdminUserType: {
+    screen: AdminUserType,
     navigationOptions: {
-      title: 'รายชื่อผู้ใช้ทั้งหมด'
+      title: 'ประเภทผู้ใช้'
     }
   },
-  AdminEdit: {
-    screen: AdminEditScreen,
+  AdminTypeEdit: {
+    screen: AdminTypeEdit,
     navigationOptions: {
-      title: 'แก้ไขข้อมูล'
+      title: 'แก้ไขประเภท'
+    }
+  },
+  AdminListStd: {
+    screen: AdminListStd,
+    navigationOptions: {
+      title: 'รายชื่อนักศึกษา'
+    }
+  },
+  AdminListTeacher: {
+    screen: AdminListTeacher,
+    navigationOptions: {
+      title: 'รายชื่ออาจารย์'
     }
   },
   Teacher: {
@@ -132,10 +147,7 @@ const RootStack = createStackNavigator({
     }
   },
   TeachSaveVisit: {
-    screen: TeachSaveVisit,
-    navigationOptions: {
-      title: '%ชื่อนักศึกษา%'
-    }
+    screen: TeachSaveVisit
   },
   TeachActivity: {
     screen: TeachActivity,
@@ -153,6 +165,12 @@ const RootStack = createStackNavigator({
     screen: TeachDetail,
     navigationOptions: {
       title: 'ข้อมูลส่วนตัว'
+    }
+  },
+  TeachAddStudent: {
+    screen: TeachAddStudent,
+    navigationOptions: {
+      title: 'เลือกนักศึกษา'
     }
   },
 }, { initialRouteName: 'Login' })

@@ -26,6 +26,10 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('TeachDetail')
   }
 
+  AddStudent() {
+    this.props.navigation.navigate('TeachAddStudent')
+  }
+
   Logout() {
     firebase.auth().signOut()
       .then(() => {
@@ -60,6 +64,16 @@ class HomeScreen extends Component {
             color='white'
           />
           <Text style={styles.common.label}>ตรวจกิจกรรม</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.home.menu}
+          onPress={() => this.AddStudent(this)}>
+          <Icon
+            name='list-ul'
+            size={icoSize}
+            color='white'
+          />
+          <Text style={styles.common.label}>เพิ่มนักศึกษา</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}

@@ -15,8 +15,16 @@ import styles from '../styles'
 
 class HomeScreen extends Component {
 
-  TimeTable() {
-    this.props.navigation.navigate('AdminUserList')
+  UserType() {
+    this.props.navigation.navigate('AdminUserType')
+  }
+
+  StudentList() {
+    this.props.navigation.navigate('AdminListStd')
+  }
+
+  TeacherType() {
+    this.props.navigation.navigate('AdminListTeacher')
   }
 
   Logout() {
@@ -35,13 +43,33 @@ class HomeScreen extends Component {
       <View style={styles.home.container}>
         <TouchableOpacity
           style={styles.home.menu}
-          onPress={() => this.TimeTable(this)}>
+          onPress={() => this.UserType(this)}>
           <Icon
             name='list-ul'
             size={icoSize}
             color='white'
           />
-          <Text style={styles.common.label}>รายชื่อผู้ใช้</Text>
+          <Text style={styles.common.label}>เพิ่มประเภทผู้ใช้</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.home.menu}
+          onPress={() => this.StudentList(this)}>
+          <Icon
+            name='list-ul'
+            size={icoSize}
+            color='white'
+          />
+          <Text style={styles.common.label}>รายชื่อนักศึกษา</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.home.menu}
+          onPress={() => this.TeacherType(this)}>
+          <Icon
+            name='list-ul'
+            size={icoSize}
+            color='white'
+          />
+          <Text style={styles.common.label}>รายชื่ออาจารย์</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}
