@@ -32,7 +32,8 @@ class AddActivity extends Component {
     const { morning, afternoon } = this.state
     var { navigation } = this.props;
     var uid, timeTable
-    var key = navigation.getParam('key');
+    var key = navigation.getParam('key')
+    console.log(key)
     uid = firebase.auth().currentUser.uid
     timeTable = firebase.database().ref('timeTable/' + uid + '/' + key)
     console.log(key)

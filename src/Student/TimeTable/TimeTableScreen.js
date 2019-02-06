@@ -40,6 +40,7 @@ class TimeTableScreen extends Component {
         child = childSnapshot.val()
         currentDate = child.date
         items.push({
+          key: key,
           date: child.date,
           timeCome: child.timeCome,
           timeBack: child.timeBack,
@@ -54,7 +55,6 @@ class TimeTableScreen extends Component {
       this.setState({
         list: items,
       })
-      console.log(snapshot.val())
       console.log(this.state.list)
     })
   }
@@ -172,7 +172,7 @@ class TimeTableScreen extends Component {
                       onPress={() =>
                         this.props.navigation.navigate('StudentActivity', {
                           date: d.date,
-                          key: key
+                          key: d.key
                         })
                       }
                       style={styles.common.button}>

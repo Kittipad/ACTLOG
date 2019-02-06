@@ -5,13 +5,12 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  Modal,
+  Picker
 } from 'react-native';
 import {
   StackActions,
   NavigationActions,
 } from 'react-navigation';
-
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Input } from 'react-native-elements';
 import firebase from 'react-native-firebase'
@@ -36,10 +35,9 @@ class LoginScreen extends Component {
     })
   }
 
-  onLoginPress() {
-    this.setState({ loading: true })
+  onLoginPressed() {
     const { email, password } = this.state;
-    console.log(email + ' ' + password)
+    this.setState({ loading: true })
     if (!email && !password) {
       this.setState({ loading: false })
       Alert.alert('กรุณาป้อนข้อมูล')
@@ -50,22 +48,23 @@ class LoginScreen extends Component {
         })
         .catch((msgError) => {
           this.setState({ loading: false })
-          alert(msgError.message)
+          Alert.alert(msgError.message)
         })
     }
   }
 
   getUserType() {
-    var data
-    var uid = firebase.auth().currentUser.uid
-    var users = firebase.database().ref('users/' + uid + '/type')
-    users.once('value').then(snapshot => {
+    var data, user, uid
+    uid = firebase.auth().currentUser.uid
+    user = firebase.database().ref('users/' + uid + '/type')
+    user.once('value').then(snapshot => {
       data = snapshot.val()
       this.setState({ type: data })
       console.log(data)
-      if (this.state.type == data) {
+      if (this.state.type == data && this.state.type != 'none') {
         this.goHomeScreen()
       }
+      this.setState({ loading: false })
     })
   }
 
@@ -90,7 +89,7 @@ class LoginScreen extends Component {
     this.props.navigation.navigate('DBRelateTest')
   }
 
-  Loader() {
+  buttonLoader() {
     if (this.state.loading) {
       return (
         <TouchableOpacity
@@ -102,7 +101,7 @@ class LoginScreen extends Component {
     return (
       <TouchableOpacity
         style={styles.common.button}
-        onPress={this.onLoginPress.bind(this)}>
+        onPress={this.onLoginPressed.bind(this)}>
         <Text style={styles.common.buttonText}>เข้าสู่ระบบ</Text>
       </TouchableOpacity>
     )
@@ -147,7 +146,7 @@ class LoginScreen extends Component {
           clearTextOnFocus={true}
           secureTextEntry={true}
           onChangeText={(text) => this.setState({ password: text })} />
-        {this.Loader()}
+        {this.buttonLoader()}
         <TouchableOpacity
           style={styles.common.button}
           onPress={this.onRegisterPressed.bind(this)}>

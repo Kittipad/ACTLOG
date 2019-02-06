@@ -29,9 +29,11 @@ class ActivityScreen extends Component {
   }
 
   getList() {
-    var uid, usersRef, table
+    var uid, table
     var date = this.props.navigation.getParam('date')
     var key = this.props.navigation.getParam('key')
+    console.log(date)
+    console.log(key)
     uid = firebase.auth().currentUser.uid
     table = firebase.database().ref('timeTable/' + uid + '/' + key)
     table.once('value').then(snapshot => {

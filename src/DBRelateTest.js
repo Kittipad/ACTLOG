@@ -3,7 +3,8 @@ import {
   View,
   Text,
   Button,
-  Alert
+  Alert,
+  Picker
 } from 'react-native';
 import firebase from 'react-native-firebase'
 
@@ -115,6 +116,15 @@ class DBRelateTest extends Component {
             )
           })
         }
+        <Picker
+          selectedValue={this.state.type}
+          style={{ height: 50, width: 100 }}
+          onValueChange={(value, index) =>
+            this.setState({ type: value })
+          }>
+          <Picker.Item label="Java" value="java" />
+          <Picker.Item label="JavaScript" value="js" />
+        </Picker>
       </View >
     );
   }

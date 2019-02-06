@@ -18,15 +18,10 @@ import StdComment from './Student/Comment/CommentScreen'
 import StdDetail from './Student/DetailScreen'
 import StdEditDetail from './Student/EditDetailScreen'
 
-//staff side
-import StaffHome from './Staff/HomeScreen'
-import StaffTimeTable from './Staff/TimeTable/TimeTableScreen'
-import StaffViewTimeTable from './Staff/TimeTable/ViewTimeTableScreen'
-import StaffActivity from './Staff/Activity/ActivityScreen'
-import StaffViewActivity from './Staff/Activity/ViewActivityScreen'
-import StaffComment from './Staff/Comment/CommentScreen'
-import StaffSaveComment from './Staff/Comment/SaveCommentScreen'
-import StaffDetail from './Staff/DetailScreen'
+//admin side
+import AdminHome from './Admin/HomeScreen'
+import AdminUserList from './Admin/UserLists/UserListScreen'
+import AdminEditScreen from './Admin/UserEdit/EditScreen'
 
 //teacher side
 import TeachHome from './Teacher/HomeScreen'
@@ -106,52 +101,22 @@ const RootStack = createStackNavigator({
       title: 'แก้ไขข้อมูลส่วนตัว'
     }
   },
-  Staff: {
-    screen: StaffHome,
+  Admin: {
+    screen: AdminHome,
     navigationOptions: {
       title: 'หน้าแรก'
     }
   },
-  StaffTimeTable: {
-    screen: StaffTimeTable,
+  AdminUserList: {
+    screen: AdminUserList,
     navigationOptions: {
-      title: 'ตรวจตารางเวลา'
+      title: 'รายชื่อผู้ใช้ทั้งหมด'
     }
   },
-  StaffViewTimeTable: {
-    screen: StaffViewTimeTable,
+  AdminEdit: {
+    screen: AdminEditScreen,
     navigationOptions: {
-      title: '%ชื่อนักศึกษา%'
-    }
-  },
-  StaffActivity: {
-    screen: StaffActivity,
-    navigationOptions: {
-      title: 'ตรวจกิจกรรม'
-    }
-  },
-  StaffViewActivity: {
-    screen: StaffViewActivity,
-    navigationOptions: {
-      title: '%ชื่อนักศึกษา%'
-    }
-  },
-  StaffComment: {
-    screen: StaffComment,
-    navigationOptions: {
-      title: 'บันทึกความคิดเห็น'
-    }
-  },
-  StaffSaveComment: {
-    screen: StaffSaveComment,
-    navigationOptions: {
-      title: '%ชื่อนักศึกษา%'
-    }
-  },
-  StaffDetail: {
-    screen: StaffDetail,
-    navigationOptions: {
-      title: 'ข้อมูลส่วนตัว'
+      title: 'แก้ไขข้อมูล'
     }
   },
   Teacher: {

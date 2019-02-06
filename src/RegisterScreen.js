@@ -4,10 +4,10 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
-  View,
+  ActivityIndicator
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Input, Avatar } from 'react-native-elements';
+import { Input } from 'react-native-elements';
 import firebase from 'react-native-firebase'
 import styles from './styles'
 
@@ -17,37 +17,54 @@ class RegisterScreen extends Component {
     this.state = ({
       email: '',
       password: '',
+      loading: false
     })
   }
 
-  register = () => {
+  onRegisterPressed() {
+    var uid
     const { email, password } = this.state;
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    this.setState({ loading: true })
+    firebaseAuth = firebase.auth()
+    firebaseAuth.createUserWithEmailAndPassword(email, password)
       .then(() => {
-        var uid = firebase.auth().currentUser.uid
+        uid = firebaseAuth.currentUser.uid
         firebase.database().ref('users/' + uid).set({
-          uuid: uid,
+          uid: uid,
           email: email,
-          type: '',
           fname: 'ชื่อจริง',
           lname: 'นามสกุล',
           telNum: 'เบอร์โทร',
+          type: 'none'
         }).then(() => {
-          this.timeTableCreate()
+          this.setState({ loading: false })
           this.props.navigation.goBack()
           Alert.alert('สมัครสมาชิกสำเร็จ')
         })
       })
-      .catch((msgError) => { Alert.alert(msgError.message) })
+      .catch((msgError) => {
+        this.setState({ loading: false })
+        Alert.alert(msgError.message)
+      })
   }
 
-  timeTableCreate() {
-    uid = firebase.auth().currentUser.uid
-    var timeTable = firebase.database().ref('timeTable/' + uid)
-    timeTable.push({
-      timeCome: '',
-      timeBack: ''
-    })
+  buttonLoader() {
+    const { loading } = this.state
+    if (loading) {
+      return (
+        <TouchableOpacity
+          style={styles.common.button}>
+          <ActivityIndicator size='large' color='#5499C7' />
+        </TouchableOpacity>
+      )
+    }
+    return (
+      <TouchableOpacity
+        style={styles.common.button}
+        onPress={this.onRegisterPressed.bind(this)}>
+        <Text style={styles.common.buttonText}>สมัครสมาชิก</Text>
+      </TouchableOpacity>
+    )
   }
 
   render() {
@@ -89,11 +106,7 @@ class RegisterScreen extends Component {
             />
           }
           placeholder={'รหัสผ่าน'} />
-        <TouchableOpacity
-          style={styles.common.button}
-          onPress={this.register.bind(this)}>
-          <Text style={styles.common.buttonText}>สมัครสมาชิก</Text>
-        </TouchableOpacity>
+        {this.buttonLoader()}
       </ScrollView>
     )
   }
