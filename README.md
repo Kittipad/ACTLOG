@@ -2,7 +2,7 @@
 
 ระบบบันทึกกิจกรรมนักศึกษาฝึกงานของสาขาวิทยาศาสตร์คอมพิวเตอร์
 
-ขั้นตอนติดตั้ง (Android)
+# ขั้นตอนติดตั้ง (Android)
 1.ติดตั้ง NodeJS
 2.เปิด CMD สั่งรัน npm install -g react-native-cli
 3.ติดตั้ง Android Studio
