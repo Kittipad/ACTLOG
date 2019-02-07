@@ -5,7 +5,6 @@ import {
 
 import LoginScreen from './LoginScreen'
 import RegisterScreen from './RegisterScreen'
-import DBRelateTest from './DBRelateTest'
 
 //student side
 import StdHome from './Student/HomeScreen'
@@ -47,12 +46,8 @@ const RootStack = createStackNavigator({
       title: 'สมัครสมาชิก'
     }
   },
-  DBRelateTest: {
-    screen: DBRelateTest,
-    navigationOptions: {
-      title: 'ทดสอบฐานข้อมูล'
-    }
-  },
+
+  // นักศึกษา
   Student: {
     screen: StdHome,
     navigationOptions: {
@@ -104,6 +99,8 @@ const RootStack = createStackNavigator({
       title: 'แก้ไขข้อมูลส่วนตัว'
     }
   },
+
+  // แอดมิน
   Admin: {
     screen: AdminHome,
     navigationOptions: {
@@ -134,6 +131,8 @@ const RootStack = createStackNavigator({
       title: 'รายชื่ออาจารย์'
     }
   },
+
+  // อาาจารย์
   Teacher: {
     screen: TeachHome,
     navigationOptions: {
