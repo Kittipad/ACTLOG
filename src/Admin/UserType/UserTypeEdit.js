@@ -38,7 +38,8 @@ class EditScreen extends Component {
     firebaseDB = firebase.database()
     newType = firebaseDB.ref('users/' + uid)
     newType.update({
-      type: type
+      type: type,
+      visitStat: false
     }).then(() => {
       Alert.alert('แก้ไขประเภทเรียบร้อย')
       this.props.navigation.navigate('Admin')

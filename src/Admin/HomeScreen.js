@@ -45,7 +45,7 @@ class HomeScreen extends Component {
           style={styles.home.menu}
           onPress={() => this.UserType(this)}>
           <Icon
-            name='list-ul'
+            name='user-plus'
             size={icoSize}
             color='white'
           />
@@ -55,7 +55,7 @@ class HomeScreen extends Component {
           style={styles.home.menu}
           onPress={() => this.StudentList(this)}>
           <Icon
-            name='list-ul'
+            name='user-graduate'
             size={icoSize}
             color='white'
           />
@@ -65,7 +65,7 @@ class HomeScreen extends Component {
           style={styles.home.menu}
           onPress={() => this.TeacherType(this)}>
           <Icon
-            name='list-ul'
+            name='chalkboard-teacher'
             size={icoSize}
             color='white'
           />
@@ -75,7 +75,7 @@ class HomeScreen extends Component {
           style={styles.home.menu}
           onPress={() => this.Logout()}>
           <Icon
-            name='power-off'
+            name='sign-out-alt'
             size={icoSize}
             color='white'
           />

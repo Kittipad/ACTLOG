@@ -18,10 +18,6 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('TeachVisit')
   }
 
-  Actvity() {
-    this.props.navigation.navigate('TeachActivity')
-  }
-
   Detail() {
     this.props.navigation.navigate('TeachDetail')
   }
@@ -57,19 +53,9 @@ class HomeScreen extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}
-          onPress={() => this.Actvity(this)}>
-          <Icon
-            name='list-ul'
-            size={icoSize}
-            color='white'
-          />
-          <Text style={styles.common.label}>ตรวจกิจกรรม</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.home.menu}
           onPress={() => this.AddStudent(this)}>
           <Icon
-            name='list-ul'
+            name='user-plus'
             size={icoSize}
             color='white'
           />
@@ -89,7 +75,7 @@ class HomeScreen extends Component {
           style={styles.home.menu}
           onPress={() => this.Logout()}>
           <Icon
-            name='power-off'
+            name='sign-out-alt'
             size={icoSize}
             color='white'
           />

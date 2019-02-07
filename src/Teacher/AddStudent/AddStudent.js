@@ -24,38 +24,40 @@ class AddStudent extends Component {
 
   getList() {
     var items = [], users
+    tuid = firebase.auth().currentUser.uid
     users = firebase.database().ref('users')
+    users = users.orderByChild('type').equalTo('Student')
     users.once('value').then((snapshot) => {
       // console.log(snapshot.val())
       snapshot.forEach((child) => {
         val = child.val()
-        type = child.val().type
-        // console.log(child.val().type)
-        if (type == 'Student') {
+        stat = val.visitStat
+        // console.log(stat)
+        if (stat == false) {
           items.push({
             fname: val.fname,
             lname: val.lname,
             uid: val.uid,
             email: val.email,
           })
+          this.setState({ list: items })
         }
-        this.setState({ list: items })
       })
-      console.log(this.state.list)
+      // console.log(this.state.list)
     })
   }
 
-  addStudent(suid, fname, lname) {
+  addStudent(suid, email) {
     var users, tuid, firebaseAuth, firebaseDB
     firebaseAuth = firebase.auth()
     firebaseDB = firebase.database()
     tuid = firebaseAuth.currentUser.uid
     users = firebaseDB.ref('users/' + tuid + '/std/' + suid)
     users.update({
-      fname: fname,
-      lname: lname
+      email: email
     }).then(() => {
       this.addVisit(tuid, suid)
+      this.updateStat(suid)
     })
     // Alert.alert(tuid)
     // Alert.alert(suid)
@@ -74,6 +76,15 @@ class AddStudent extends Component {
     // console.log(suid)
   }
 
+  updateStat(suid) {
+    var users
+    users = firebase.database().ref('users/' + suid)
+    users.update({
+      visitStat: true
+    })
+    this.getList()
+  }
+
   render() {
     const { list } = this.state
     return (
@@ -88,7 +99,7 @@ class AddStudent extends Component {
                     <Text style={{ color: 'gray', marginBottom: 20, alignSelf: 'center' }}>{user.email}</Text>
                     {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
                     <TouchableOpacity
-                      onPress={() => this.addStudent(user.uid, user.fname, user.lname)}
+                      onPress={() => this.addStudent(user.uid, user.email)}
                       style={styles.common._button}>
                       <Text style={styles.common.label}>เพิ่ม</Text>
                     </TouchableOpacity>

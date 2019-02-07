@@ -31,17 +31,15 @@ class VisitScreen extends Component {
       // console.log(snapshot.val())
       snapshot.forEach((child) => {
         val = child.val()
-        // console.log(child.key)
-        // console.log(child.val())
+        suid = child.key
         items.push({
           suid: child.key,
           tuid: tuid,
-          fname: val.fname,
-          lname: val.lname,
+          email: val.email
         })
-      })
-      this.setState({
-        list: items
+        this.setState({
+          list: items
+        })
       })
     })
   }
@@ -68,7 +66,7 @@ class VisitScreen extends Component {
                   style={styles.common.card}>
                   <Card key={i} containerStyle={styles.common.card}>
                     <View style={styles.visit.container}>
-                      <Text style={styles.visit.label}>{user.fname}  {user.lname}</Text>
+                      <Text style={styles.visit.label}>{user.email}</Text>
                     </View>
                   </Card>
                 </TouchableOpacity>

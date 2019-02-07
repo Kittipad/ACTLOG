@@ -20,16 +20,8 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('StudentTimeTable')
   }
 
-  Actvity() {
-    this.props.navigation.navigate('StudentActivity')
-  }
-
   Visit() {
     this.props.navigation.navigate('StudentVisit')
-  }
-
-  Comment() {
-    this.props.navigation.navigate('StudentComment')
   }
 
   Detail() {
@@ -65,21 +57,11 @@ class HomeScreen extends Component {
           style={styles.home.menu}
           onPress={() => this.Visit(this)}>
           <Icon
-            name='user-friends'
+            name='suitcase-rolling'
             size={icoSize}
             color='white'
           />
           <Text style={styles.common.label}>ดูผลการนิเทศ</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.home.menu}
-          onPress={() => this.Comment(this)}>
-          <Icon
-            name='comments'
-            size={icoSize}
-            color='white'
-          />
-          <Text style={styles.common.label}>ดูความคิดเห็น</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}
