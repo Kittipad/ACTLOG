@@ -41,8 +41,9 @@ class EditScreen extends Component {
       type: type,
       visitStat: false
     }).then(() => {
-      Alert.alert('แก้ไขประเภทเรียบร้อย')
-      this.props.navigation.navigate('Admin')
+      Alert.alert('แก้ไขประเภทเรียบร้อย', '', [
+        { text: 'OK', onPress: () => this.props.navigation.navigate('Admin') }
+      ])
     })
   }
 

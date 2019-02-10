@@ -38,8 +38,9 @@ class RegisterScreen extends Component {
           type: 'none'
         }).then(() => {
           this.setState({ loading: false })
-          this.props.navigation.goBack()
-          Alert.alert('สมัครสมาชิกสำเร็จ')
+          Alert.alert('สมัครสมาชิกสำเร็จ', '', [
+            { text: 'OK', onPress: () => this.props.navigation.goBack() }
+          ])
         })
       })
       .catch((msgError) => {
