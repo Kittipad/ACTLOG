@@ -9,7 +9,6 @@ import {
   StackActions,
   NavigationActions
 } from 'react-navigation'
-
 import firebase from 'react-native-firebase'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from '../styles'
@@ -29,14 +28,14 @@ class HomeScreen extends Component {
   }
 
   Logout() {
-    firebase.auth().signOut()
-      .then(() => {
-        const resetAction = StackActions.reset({
-          index: 0,
-          actions: [NavigationActions.navigate({ routeName: 'Login' })],
-        });
-        this.props.navigation.dispatch(resetAction);
+    firebase.auth().signOut().then(() => {
+      console.log('Logout...')
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Login' })],
       })
+      this.props.navigation.dispatch(resetAction);
+    })
   }
 
   render() {
@@ -75,7 +74,7 @@ class HomeScreen extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}
-          onPress={() => this.Logout()}>
+          onPress={() => this.Logout(this)}>
           <Icon
             name='sign-out-alt'
             size={icoSize}
