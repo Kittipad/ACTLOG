@@ -3,39 +3,71 @@ import {
   View,
   Text,
   ScrollView,
+  Alert
 } from 'react-native';
 import {
   Card,
   Rating
 } from 'react-native-elements'
+import firebase from 'react-native-firebase'
 import styles from '../../styles';
 
 class VisitScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      list: [],
+    }
+  }
+
+  componentDidMount() {
+    this.getList()
+  }
+
+  getList() {
+    var items = [], teacher, uid, tname, tuid
+    uid = firebase.auth().currentUser.uid
+    teacher = firebase.database().ref('visit')
+    teacher = teacher.orderByChild('suid').equalTo(uid)
+    teacher.once('value').then((snapshot) => {
+      // console.log(snapshot.val())
+      snapshot.forEach((child) => {
+        var val
+        val = child.val()
+        tuid = val.tuid
+        // console.log(val.comment)
+        tname = firebase.database().ref('users/' + tuid)
+        tname.once('value').then((snapshot) => {
+          // console.log(snapshot.val())
+          tval = snapshot.val()
+          items.push({
+            fname: tval.fname,
+            lname: tval.lname,
+            email: tval.email,
+            comment: val.comment
+          })
+          this.setState({
+            list: items,
+          })
+        })
+      })
+    })
+  }
+
   render() {
-    const visit = [
-      {
-        detail1: 'ความรับผิดชอบต่องานที่ได้รับมอบหมาย',
-        detail2: 'มีความรอบคอบในการทำงาน',
-        detail3: 'มีมนุษย์สัมพันธ์',
-        detail4: 'ตรงต่อเวลา',
-        detail5: 'ปฏิบัติตนถูกต้องตามระเบียบข้อบังคับของสถานที่ฝึกงาน',
-        comment: "These approaches provide no safety checks. It's up to you to guarantee that those images are available in the application. Also you have to specify image dimensions manually.",
-        score1: '5',
-        score2: '4',
-        score3: '3',
-        score4: '4',
-        score5: '4',
-      }
-    ]
+    const { list } = this.state
+    // console.log(list)
     return (
       <ScrollView style={styles.common.scrollView}>
         {
-          visit.map((v, i) => {
+          list.map((user, i) => {
             return (
               <View style={styles.visit.container}>
                 <Card containerStyle={styles.common.card}>
                   <View style={styles.activity.container}>
-                    <Text style={styles.visit.label}>{v.detail1}</Text>
+                    <Text style={styles.visit.label}>{user.fname}  {user.lname}</Text>
+                    <Text style={styles.visit.label}>{user.email}</Text>
+                    <Text style={styles.visit.label}>{user.comment}</Text>
                     <Rating
                       type="star"
                       fractions={0}
@@ -46,65 +78,6 @@ class VisitScreen extends Component {
                       onStartRating={this.ratingStarted}
                     />
                   </View>
-                </Card>
-                <Card containerStyle={styles.common.card}>
-                  <View style={styles.activity.container}>
-                    <Text style={styles.visit.label}>{v.detail2}</Text>
-                    <Rating
-                      type="star"
-                      fractions={0}
-                      startingValue={2.5}
-                      imageSize={40}
-                      readonly
-                      onFinishRating={this.ratingCompleted}
-                      onStartRating={this.ratingStarted}
-                    />
-                  </View>
-                </Card>
-                <Card containerStyle={styles.common.card}>
-                  <View style={styles.activity.container}>
-                    <Text style={styles.visit.label}>{v.detail3}</Text>
-                    <Rating
-                      type="star"
-                      fractions={0}
-                      startingValue={2.5}
-                      imageSize={40}
-                      readonly
-                      onFinishRating={this.ratingCompleted}
-                      onStartRating={this.ratingStarted}
-                    />
-                  </View>
-                </Card>
-                <Card containerStyle={styles.common.card}>
-                  <View style={styles.activity.container}>
-                    <Text style={styles.visit.label}>{v.detail4}</Text>
-                    <Rating
-                      type="star"
-                      fractions={0}
-                      startingValue={2.5}
-                      imageSize={40}
-                      readonly
-                      onFinishRating={this.ratingCompleted}
-                      onStartRating={this.ratingStarted}
-                    />
-                  </View>
-                </Card>
-                <Card containerStyle={styles.common.card}>
-                  <View style={styles.activity.container}>
-                    <Text style={styles.visit.label}>{v.detail5}</Text>
-                    <Rating
-                      type="star"
-                      fractions={0}
-                      startingValue={2.5}
-                      imageSize={40}
-                      readonly
-                      onFinishRating={this.ratingCompleted}
-                      onStartRating={this.ratingStarted}
-                    />
-                  </View>
-                </Card>
-                <Card containerStyle={styles.common.card}>
-                  <Text style={styles.visit.label}>{v.comment}</Text>
                 </Card>
               </View>
             );

@@ -13,15 +13,18 @@ import styles from '../../styles';
 
 class SaveVisitScreen extends Component {
   static navigationOptions = ({ navigation }) => {
+    var fname = navigation.getParam('fname')
+    var lname = navigation.getParam('lname')
     return {
-      title: navigation.getParam('suid')
+      title: fname + '  ' + lname
     }
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      list: []
+      comment: '',
+      vid: ''
     }
   }
 
@@ -32,44 +35,54 @@ class SaveVisitScreen extends Component {
   getList() {
     var suid = this.props.navigation.getParam('suid')
     var tuid = this.props.navigation.getParam('tuid')
-    var items = [], users
-    users = firebase.database().ref('visit').orderByChild('suid').equalTo(suid)
+    // console.log(suid)
+    var users
+    users = firebase.database().ref('visit')
+    users = users.orderByChild('tuid').equalTo(tuid)
     users.once('value').then((snapshot) => {
-      // console.log(snapshot.val())
       snapshot.forEach((child) => {
         val = child.val()
-        // console.log(child.val())
-        items.push({
-          suid: suid,
-          tuid: tuid,
-          comment: val.comment,
-        })
-        this.setState({ list: items })
+        var key = child.key
+        console.log(key)
+        if (suid == val.suid) {
+          this.setState({
+            comment: val.comment,
+            vid: key
+          })
+        }
       })
     })
     // console.log(tuid)
   }
 
+  saveVisit() {
+    const { comment, vid } = this.state
+    var visit = firebase.database().ref('visit/' + vid)
+    visit.update({
+      comment: comment
+    })
+  }
+
   render() {
-    const { list } = this.state
-    console.log(list)
+    const { comment, vid } = this.state
+    // console.log(list)
     return (
       <ScrollView style={styles.common.scrollView}>
-        <View style={styles.common.container}>
-          {
-            list.map((user, i) => {
-              return (
-                <Card key={i} containerStyle={styles.common.card}>
-                  <View style={styles.timeTable.container}>
-                    <Text>{user.suid}</Text>
-                    <Text>{user.tuid}</Text>
-                    <Text>{user.comment}</Text>
-                  </View>
-                </Card>
-              )
-            })
-          }
-        </View>
+        <Text>{vid}</Text>
+        <TextInput
+          style={styles.activity.input}
+          placeholderTextColor='gray'
+          defaultValue={comment}
+          placeholder='แสดงความคิดดเห็น'
+          onChangeText={(text) => this.setState({ comment: text })}
+          autoCapitalize='none'
+          autoCorrect={false}>
+        </TextInput>
+        <TouchableOpacity
+          style={styles.common.button}
+          onPress={this.saveVisit.bind(this)}>
+          <Text style={styles.common.buttonText}>บันทึก</Text>
+        </TouchableOpacity>
       </ScrollView>
     )
   }

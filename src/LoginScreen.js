@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   Alert,
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  Picker
-} from 'react-native';
+  Picker,
+  Modal
+} from 'react-native'
 import {
   StackActions,
   NavigationActions,
-} from 'react-navigation';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Input } from 'react-native-elements';
+} from 'react-navigation'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import { Input } from 'react-native-elements'
 import firebase from 'react-native-firebase'
 import styles from './styles'
 
@@ -164,7 +165,7 @@ class LoginScreen extends Component {
           </Text>
         </TouchableOpacity> */}
       </View>
-    );
+    )
   }
 }
 

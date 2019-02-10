@@ -9,7 +9,6 @@ import RegisterScreen from './RegisterScreen'
 //student side
 import StdHome from './Student/HomeScreen'
 import StdTimeTable from './Student/TimeTable/TimeTableScreen'
-import StdAddTimeTable from './Student/TimeTable/AddTimeTableScreen'
 import StdActivity from './Student/Activity/ActivityScreen'
 import StdAddActivity from './Student/Activity/AddActivityScreen'
 import StdVisit from './Student/Visit/VisitScreen'
@@ -31,6 +30,7 @@ import TeachSaveVisit from './Teacher/Visit/SaveVisitScreen'
 import TeachActivity from './Teacher/Activity/ActivityScreen'
 import TeachViewActivity from './Teacher/Activity/ViewActivityScreen'
 import TeachDetail from './Teacher/DetailScreen'
+import TeachEditDetail from './Teacher/EditDetailScreen'
 import TeachAddStudent from './Teacher/AddStudent/AddStudent'
 
 const RootStack = createStackNavigator({
@@ -58,12 +58,6 @@ const RootStack = createStackNavigator({
     screen: StdTimeTable,
     navigationOptions: {
       title: 'ตารางลงเวลา'
-    }
-  },
-  StudentAddTimeTable: {
-    screen: StdAddTimeTable,
-    navigationOptions: {
-      title: 'เพิ่มตารางลงเวลา'
     }
   },
   StudentActivity: {
@@ -155,15 +149,18 @@ const RootStack = createStackNavigator({
     }
   },
   TeachViewActivity: {
-    screen: TeachViewActivity,
-    navigationOptions: {
-      title: '%ชื่อนักศึกษา%'
-    }
+    screen: TeachViewActivity
   },
   TeachDetail: {
     screen: TeachDetail,
     navigationOptions: {
       title: 'ข้อมูลส่วนตัว'
+    }
+  },
+  TeachEditDetail: {
+    screen: TeachEditDetail,
+    navigationOptions: {
+      title: 'แก้ไขข้อมูลส่วนตัว'
     }
   },
   TeachAddStudent: {

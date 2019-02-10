@@ -33,15 +33,15 @@ class AddStudent extends Component {
         val = child.val()
         stat = val.visitStat
         // console.log(stat)
-        if (stat == false) {
-          items.push({
-            fname: val.fname,
-            lname: val.lname,
-            uid: val.uid,
-            email: val.email,
-          })
-          this.setState({ list: items })
-        }
+        // if (stat == false) {
+        items.push({
+          fname: val.fname,
+          lname: val.lname,
+          uid: val.uid,
+          email: val.email,
+        })
+        this.setState({ list: items })
+        // }
       })
       // console.log(this.state.list)
     })

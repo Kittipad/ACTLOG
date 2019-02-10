@@ -57,6 +57,7 @@ class EditScreen extends Component {
         <View style={styles.common.container}>
           <Picker
             selectedValue={this.state.type}
+            mode='dropdown'
             style={{
               height: 50, width: '90%', alignSelf: 'center',
             }}
