@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   Text,
   ScrollView,
-} from 'react-native';
+} from 'react-native'
 import {
   Card,
 } from 'react-native-elements'
-import styles from '../../styles';
+import styles from '../../styles'
 
 class CommentScreen extends Component {
   render() {

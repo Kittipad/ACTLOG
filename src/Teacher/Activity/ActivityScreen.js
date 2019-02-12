@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
   Alert,
-} from 'react-native';
+} from 'react-native'
 import {
   Card,
 } from 'react-native-elements'

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   Text,
@@ -6,12 +6,12 @@ import {
   TouchableOpacity,
   Alert,
   ActivityIndicator,
-} from 'react-native';
+} from 'react-native'
 import {
   Card,
 } from 'react-native-elements'
 import firebase from 'react-native-firebase'
-import styles from '../../styles';
+import styles from '../../styles'
 
 class TimeTableScreen extends Component {
   constructor(props) {

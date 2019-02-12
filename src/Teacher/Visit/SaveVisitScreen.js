@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Text,
   ScrollView,
@@ -6,7 +6,7 @@ import {
   TextInput,
   Alert,
   View
-} from 'react-native';
+} from 'react-native'
 import { Card, Rating, Input } from 'react-native-elements'
 import firebase from 'react-native-firebase'
 import styles from '../../styles';

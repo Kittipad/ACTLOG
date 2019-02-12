@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
   Alert
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+} from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import {
   Avatar,
   Card
-} from 'react-native-elements';
+} from 'react-native-elements'
 import firebase from 'react-native-firebase'
 import styles from '../styles'
 

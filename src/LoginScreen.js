@@ -86,10 +86,6 @@ class LoginScreen extends Component {
     this.props.navigation.navigate('Register')
   }
 
-  DBrelation() {
-    this.props.navigation.navigate('DBRelateTest')
-  }
-
   buttonLoader() {
     if (this.state.loading) {
       return (
@@ -156,14 +152,6 @@ class LoginScreen extends Component {
             สมัครสมาชิก
           </Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity
-          style={styles.common.button}
-          onPress={this.DBrelation.bind(this)}>
-          <Text
-            style={styles.common.buttonText}>
-            DB relation
-          </Text>
-        </TouchableOpacity> */}
       </View>
     )
   }

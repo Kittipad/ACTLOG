@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Text,
   ScrollView,
   TouchableOpacity,
   Alert,
   ActivityIndicator
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Input } from 'react-native-elements';
+} from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import { Input } from 'react-native-elements'
 import firebase from 'react-native-firebase'
 import styles from './styles'
 

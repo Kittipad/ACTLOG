@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { AppRegistry, Platform } from 'react-native';
-import { name as appName } from './app.json';
-import App from './src/App';
+import React, { Component } from 'react'
+import { AppRegistry, Platform } from 'react-native'
+import { name as appName } from './app.json'
+import App from './src/App'
 import FirebaseConfig from './src/FirebaseConfig'
 import firebase from 'react-native-firebase'
 
@@ -20,4 +20,4 @@ export default class Initial extends Component {
 }
 
 console.disableYellowBox = true
-AppRegistry.registerComponent(appName, () => Initial);
+AppRegistry.registerComponent(appName, () => Initial)

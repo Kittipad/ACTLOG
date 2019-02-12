@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   Text,
   TouchableOpacity,
   Alert
-} from 'react-native';
+} from 'react-native'
 import {
   StackActions,
   NavigationActions
 } from 'react-navigation'
 import firebase from 'react-native-firebase'
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import styles from '../styles'
 
 class HomeScreen extends Component {

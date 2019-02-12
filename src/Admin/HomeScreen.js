@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   Text,
   TouchableOpacity,
   AsyncStorage
-} from 'react-native';
+} from 'react-native'
 import {
   StackActions,
   NavigationActions
 } from 'react-navigation'
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import firebase from 'react-native-firebase'
 import styles from '../styles'
 

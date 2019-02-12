@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Text,
   ScrollView,
   TouchableOpacity,
   TextInput,
   Alert
-} from 'react-native';
+} from 'react-native'
 import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
