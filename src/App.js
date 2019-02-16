@@ -2,8 +2,8 @@ import {
   createAppContainer,
   createStackNavigator,
   createBottomTabNavigator,
+  createDrawerNavigator
 } from 'react-navigation'
-import firebase from 'react-native-firebase'
 
 import LoginScreen from './LoginScreen'
 import RegisterScreen from './RegisterScreen'
@@ -19,7 +19,7 @@ import StdDetail from './Student/DetailScreen'
 import StdEditDetail from './Student/EditDetailScreen'
 
 //admin side
-import AdminHome from './Admin/HomeScreen'
+import AdminHome from './Admin/index'
 import AdminUserType from './Admin/UserType/UserTypeScreen'
 import AdminTypeEdit from './Admin/UserType/UserTypeEdit'
 import AdminListStd from './Admin/Student/GetListStd'
@@ -34,7 +34,6 @@ import TeachViewActivity from './Teacher/Activity/ViewActivityScreen'
 import TeachDetail from './Teacher/DetailScreen'
 import TeachEditDetail from './Teacher/EditDetailScreen'
 import TeachAddStudent from './Teacher/AddStudent/AddStudent'
-
 
 const RootStack = createStackNavigator({
   Login: {
@@ -52,16 +51,10 @@ const RootStack = createStackNavigator({
 
   // นักศึกษา
   Student: {
-    screen: StdHome,
-    navigationOptions: {
-      header: null
-    }
+    screen: StdHome
   },
   StudentTimeTable: {
-    screen: StdTimeTable,
-    navigationOptions: {
-      title: 'ตารางลงเวลา'
-    }
+    screen: StdTimeTable
   },
   StudentActivity: {
     screen: StdActivity,

@@ -58,12 +58,12 @@ class VisitScreen extends Component {
     const { list } = this.state
     // console.log(list)
     return (
-      <ScrollView style={styles.common.scrollView}>
+      <ScrollView style={styles.view.scrollView}>
         {
           list.map((user, i) => {
             return (
-              <View style={styles.visit.container}>
-                <Card containerStyle={styles.common.card}>
+              <View style={styles.view.container}>
+                <Card containerStyle={styles.view.cards}>
                   <View style={styles.activity.container}>
                     <Text style={styles.visit.label}>{user.fname}  {user.lname}</Text>
                     <Text style={styles.visit.label}>{user.email}</Text>

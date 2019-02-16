@@ -17,7 +17,8 @@ class EditDetailScreen extends Component {
       fname: '',
       lname: '',
       email: '',
-      telNum: ''
+      telNum: '',
+      uid: ''
     }
   }
 
@@ -26,38 +27,80 @@ class EditDetailScreen extends Component {
   }
 
   getDetail() {
+    var sid = this.props.navigation.getParam('sid')
     var fname = this.props.navigation.getParam('fname')
     var lname = this.props.navigation.getParam('lname')
+    var group = this.props.navigation.getParam('group')
+    var subject = this.props.navigation.getParam('subject')
     var email = this.props.navigation.getParam('email')
     var telNum = this.props.navigation.getParam('telNum')
+    var date = this.props.navigation.getParam('date')
+    var sidStat = this.props.navigation.getParam('sidStat')
+    var uuid = this.props.navigation.getParam('uuid')
     this.setState({
+      sid: sid,
       fname: fname,
       lname: lname,
+      group: group,
+      subject: subject,
       email: email,
-      telNum: telNum
+      telNum: telNum,
+      date: date,
+      sidStat: sidStat,
+      uid: uuid
     })
   }
 
   saveDetail() {
-    const { fname, lname, telNum } = this.state
-    var uid = firebase.auth().currentUser.uid
+    const { sid, fname, lname, group, subject, telNum, email, date, uid } = this.state
     detail = firebase.database().ref('users/' + uid)
     detail.update({
+      sid: sid,
       fname: fname,
       lname: lname,
-      telNum: telNum
+      group: group,
+      subject: subject,
+      email: email,
+      telNum: telNum,
+      date: date,
+      sidStat: false,
     }).then(() => {
       Alert.alert('แก้ไขแล้ว')
       this.props.navigation.goBack()
     })
   }
 
-  render() {
-    const { fname, lname, telNum, email } = this.state
-    return (
-      <ScrollView style={styles.common.scrollView}>
+  sidLoader(sidStat, sid) {
+    if (sidStat) {
+      return (
         <TextInput
-          style={styles.detail.input}
+          editable={true}
+          style={styles.input.borderWithFont}
+          placeholderTextColor='gray'
+          defaultValue={sid}
+          placeholder='รหัสนักศึกษา'
+          onChangeText={(text) => this.setState({ sid: text })}
+          autoCapitalize='none'
+          autoCorrect={false} />
+      )
+    } else {
+      return (
+        <TextInput
+          editable={false}
+          style={styles.input.borderWithFont}
+          defaultValue={sid}
+          placeholder='รหัสนักศึกษา' />
+      )
+    }
+  }
+
+  render() {
+    const { sid, fname, lname, group, subject, telNum, email, date, sidStat } = this.state
+    return (
+      <ScrollView style={styles.view.scrollView}>
+        {this.sidLoader(sidStat, sid)}
+        <TextInput
+          style={styles.input.borderWithFont}
           placeholderTextColor='gray'
           defaultValue={fname}
           placeholder='ชื่อจริง'
@@ -65,7 +108,7 @@ class EditDetailScreen extends Component {
           autoCapitalize='none'
           autoCorrect={false} />
         <TextInput
-          style={styles.detail.input}
+          style={styles.input.borderWithFont}
           placeholderTextColor='gray'
           defaultValue={lname}
           placeholder='นามสกุล'
@@ -73,18 +116,39 @@ class EditDetailScreen extends Component {
           autoCapitalize='none'
           autoCorrect={false} />
         <TextInput
-          style={styles.detail.input}
+          style={styles.input.borderWithFont}
+          placeholderTextColor='gray'
+          defaultValue={group}
+          placeholder='กลุ่ม'
+          onChangeText={(text) => this.setState({ group: text })}
+          autoCorrect={false} />
+        <TextInput
+          editable={false}
+          style={styles.input.borderWithFont}
+          defaultValue={subject} />
+        <TextInput
+          style={styles.input.borderWithFont}
           placeholderTextColor='gray'
           defaultValue={telNum}
           placeholder='เบอร์โทร'
           onChangeText={(text) => this.setState({ telNum: text })}
           keyboardType='phone-pad'
           autoCorrect={false} />
-        <Text style={styles.detail.input}>{email}</Text>
+        <TextInput
+          style={styles.input.borderWithFont}
+          placeholderTextColor='gray'
+          defaultValue={date}
+          placeholder='ระยะเวลาฝึกงาน'
+          onChangeText={(text) => this.setState({ date: text })}
+          autoCorrect={false} />
+        <TextInput
+          editable={false}
+          style={styles.input.borderWithFont}
+          defaultValue={email} />
         <TouchableOpacity
-          style={styles.common.button}
+          style={styles.button.main}
           onPress={this.saveDetail.bind(this)}>
-          <Text style={styles.common.buttonText}>บันทึก</Text>
+          <Text style={styles.button.label}>บันทึก</Text>
         </TouchableOpacity>
       </ScrollView>
     )

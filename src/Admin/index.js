@@ -9,8 +9,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import firebase from 'react-native-firebase'
 
-import StdHome from './HomeScreen'
-import StdDetail from './DetailScreen'
+import AdminHome from './HomeScreen'
 
 class Logout extends Component {
   Logout() {
@@ -30,24 +29,11 @@ class Logout extends Component {
   }
 }
 
-var iconSize = 25
+var iconSize = 40
 const TabStack = createBottomTabNavigator({
-  StudentDetail: {
-    screen: StdDetail,
+  AdminHome: {
+    screen: AdminHome,
     navigationOptions: {
-      title: 'ข้อมูลส่วนตัว',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon
-          name="info-circle"
-          size={iconSize}
-          color={tintColor} />
-      )
-    }
-  },
-  StudentHome: {
-    screen: StdHome,
-    navigationOptions: {
-      title: 'หน้าแรก',
       tabBarIcon: ({ tintColor }) => (
         <Icon
           name="home"
@@ -56,10 +42,9 @@ const TabStack = createBottomTabNavigator({
       )
     }
   },
-  StudentLogout: {
+  AdminLogout: {
     screen: Logout,
     navigationOptions: {
-      title: 'ออกจากระบบ',
       tabBarIcon: ({ tintColor }) => (
         <Icon
           name="sign-out-alt"
@@ -69,7 +54,11 @@ const TabStack = createBottomTabNavigator({
     }
   }
 }, {
-    initialRouteName: 'StudentHome'
+    initialRouteName: 'AdminHome',
+    tabBarOptions: {
+      showLabel: false,
+      activeTintColor: '#34495E'
+    }
   })
 
 export default createAppContainer(TabStack)

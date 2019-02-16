@@ -10,6 +10,7 @@ import {
 import {
   Card,
 } from 'react-native-elements'
+import { NavigationEvents } from 'react-navigation'
 import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
@@ -71,6 +72,7 @@ class ActivityScreen extends Component {
             })}>
           <Text style={styles.common.buttonText}>แก้ไข</Text>
         </TouchableOpacity>
+        <NavigationEvents onDidFocus={() => this.componentDidMount()} />
       </ScrollView>
     )
   }

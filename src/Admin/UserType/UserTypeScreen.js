@@ -5,7 +5,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
-  Modal
 } from 'react-native'
 import { Card } from 'react-native-elements'
 import firebase from 'react-native-firebase'
@@ -47,6 +46,29 @@ class UserTypeScreen extends Component {
     })
   }
 
+  saveDetail(uid, type) {
+    var firebaseDB, newType
+    firebaseDB = firebase.database()
+    newType = firebaseDB.ref('users/' + uid)
+    newType.update({
+      type: type,
+      visitStat: false
+    }).then(() => {
+      var student
+      if (type == 'Student') {
+        student = firebase.database().ref('users/' + uid)
+        student.update({
+          sid: 'รหัสนักศึกษา',
+          group: 'กลุ่ม',
+          subject: 'เทคโนโลยีสารสนเทศ',
+          date: 'ระยะเวลาฝึกงาน',
+          sidStat: true
+        })
+      }
+      Alert.alert('แก้ไขประเภทเรียบร้อย')
+    })
+  }
+
   render() {
     const { list } = this.state
     return (
@@ -62,12 +84,14 @@ class UserTypeScreen extends Component {
                     <Text style={{ color: 'gray', marginBottom: 20, alignSelf: 'center' }}>{user.email}</Text>
                     {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
                     <TouchableOpacity
-                      onPress={() =>
-                        this.props.navigation.navigate('AdminTypeEdit', {
-                          uid: user.uid
-                        })}
+                      onPress={() => this.saveDetail(user.uid, 'Student')}
                       style={styles.common._button}>
-                      <Text style={styles.common.label}>แก้ไขประเภทผู้ใช้</Text>
+                      <Text style={styles.common.label}>นศ.</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => this.saveDetail(user.uid, 'Teacher')}
+                      style={styles.common._button}>
+                      <Text style={styles.common.label}>อาจารย์</Text>
                     </TouchableOpacity>
                   </View>
                 </Card>

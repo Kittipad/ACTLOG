@@ -43,7 +43,7 @@ class HomeScreen extends Component {
           <Text style={styles.input.label}>ดูผลการนิเทศ</Text>
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 

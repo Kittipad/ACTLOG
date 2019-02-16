@@ -7,13 +7,30 @@ const view = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white'
   },
+  containerWithScrollView: {
+    height: '90%'
+  },
+  containerWithBorder: {
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderColor: 'lightgray'
+  },
+
   scrollView: {
     backgroundColor: 'white',
-    width: '100%'
+    width: '100%',
   },
   home: {
     flex: 1, flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+  },
+  card: {
+    alignItems: 'center',
+    height: '100%'
+  },
+  cards: {
+    alignSelf: 'center',
+    width: '100%',
   }
 })
 
@@ -48,6 +65,14 @@ const input = StyleSheet.create({
   label: {
     fontSize: 20,
     color: '#34495E'
+  },
+  borderWithFont: {
+    borderTopWidth: 1,
+    borderColor: 'lightgray',
+    height: 70,
+    fontSize: 20,
+    paddingLeft: 10,
+    paddingRight: 10
   }
 })
 
@@ -70,14 +95,19 @@ const detail = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 5,
   },
+  detailLabelContainer: {
+    alignItems: 'flex-start'
+  },
   label: {
     fontSize: 20,
-    marginTop: 5,
-    marginBottom: 5,
+    marginTop: 20,
+    marginBottom: 20,
     marginLeft: 15,
     width: 300,
     alignSelf: 'center',
-    color: '#34495E'
+    color: '#34495E',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black'
   },
   name: {
     fontSize: 30,

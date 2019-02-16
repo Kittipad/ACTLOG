@@ -10,10 +10,25 @@ import {
 import {
   Card,
 } from 'react-native-elements'
+import Icon from 'react-native-vector-icons'
 import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
 class TimeTableScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    return {
+      headerTitle: 'ตารางลงเวลา',
+      headerRight: (
+        <TouchableOpacity
+          onPress={() => params.add()}
+          style={{ marginRight: 15 }}>
+          <Text style={{ fontSize: 20 }}>เพิ่ม</Text>
+        </TouchableOpacity>
+      )
+    }
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -28,6 +43,7 @@ class TimeTableScreen extends Component {
 
   componentDidMount() {
     this.getList()
+    this.props.navigation.setParams({ add: this.addNewList.bind(this) });
   }
 
   getList() {
@@ -129,63 +145,42 @@ class TimeTableScreen extends Component {
     }
   }
 
-  Loader() {
-    if (this.state.loading) {
-      return (
-        <TouchableOpacity
-          style={styles.common.button}>
-          <ActivityIndicator size='large' color='#5499C7' />
-        </TouchableOpacity>
-      )
-    }
-    return (
-      <TouchableOpacity
-        onPress={this.addNewList.bind(this)}
-        style={styles.common.button}>
-        <Text style={styles.common.buttonText}>เพิ่ม</Text>
-      </TouchableOpacity>
-    )
-  }
-
   render() {
-    const { list, key } = this.state
+    const { list } = this.state
     return (
-      <View style={styles.common.container}>
-        <View style={{ width: '90%', height: '90%' }}>
-          <ScrollView style={styles.common.scrollView}>
-            {
-              list.slice(0).reverse().map((d, i) => {
-                return (
-                  <Card key={i} containerStyle={styles.common.card} >
-                    <View style={styles.timeTable.container}>
-                      <Text style={styles.timeTable.label}>{d.date}</Text>
-                      <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-                        <TouchableOpacity onPress={this.timeStampCome.bind(this)}>
-                          <Text style={styles.timeTable.label}>{d.timeCome}</Text>
-                        </TouchableOpacity>
-                        <Text style={styles.timeTable.label}> | </Text>
-                        <TouchableOpacity onPress={this.timeStampBack.bind(this)}>
-                          <Text style={styles.timeTable.label}>{d.timeBack}</Text>
-                        </TouchableOpacity>
-                      </View>
-                      <TouchableOpacity
-                        onPress={() =>
-                          this.props.navigation.navigate('StudentActivity', {
-                            date: d.date,
-                            key: d.key
-                          })
-                        }
-                        style={styles.common.button}>
-                        <Text style={styles.timeTable.label}>ดูเพิ่ม</Text>
+      <View style={{ flex: 1, marginBottom: 20 }}>
+        <ScrollView style={styles.home.scrollView}>
+          {
+            list.slice(0).reverse().map((d, i) => {
+              return (
+                <Card key={i} containerStyle={styles.view.cards} >
+                  <View style={styles.timeTable.container}>
+                    <Text style={styles.timeTable.label}>{d.date}</Text>
+                    <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+                      <TouchableOpacity onPress={this.timeStampCome.bind(this)}>
+                        <Text style={styles.timeTable.label}>{d.timeCome}</Text>
+                      </TouchableOpacity>
+                      <Text style={styles.timeTable.label}> | </Text>
+                      <TouchableOpacity onPress={this.timeStampBack.bind(this)}>
+                        <Text style={styles.timeTable.label}>{d.timeBack}</Text>
                       </TouchableOpacity>
                     </View>
-                  </Card >
-                )
-              })
-            }
-          </ScrollView>
-          {this.Loader()}
-        </View>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate('StudentActivity', {
+                          date: d.date,
+                          key: d.key
+                        })
+                      }
+                      style={styles.button.main}>
+                      <Text style={styles.button.label}>ดูเพิ่ม</Text>
+                    </TouchableOpacity>
+                  </View>
+                </Card >
+              )
+            })
+          }
+        </ScrollView>
       </View>
     )
   }

@@ -2,19 +2,12 @@ import React, { Component } from 'react'
 import {
   View,
   Text,
-  TouchableOpacity,
-  AsyncStorage
+  TouchableOpacity
 } from 'react-native'
-import {
-  StackActions,
-  NavigationActions
-} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import firebase from 'react-native-firebase'
 import styles from '../styles'
 
 class HomeScreen extends Component {
-
   UserType() {
     this.props.navigation.navigate('AdminUserType')
   }
@@ -23,34 +16,23 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('AdminListStd')
   }
 
-  TeacherType() {
+  TeacherList() {
     this.props.navigation.navigate('AdminListTeacher')
-  }
-
-  Logout() {
-    firebase.auth().signOut().then(() => {
-      console.log('Logout...')
-      const resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Login' })],
-      })
-      this.props.navigation.dispatch(resetAction);
-    })
   }
 
   render() {
     let icoSize = 100
     return (
-      <View style={styles.home.container}>
+      <View style={styles.view.home}>
         <TouchableOpacity
-          style={styles.home.menu}
+          style={styles.icon.menu}
           onPress={() => this.UserType(this)}>
           <Icon
             name='user-plus'
             size={icoSize}
-            color='white'
+            style={styles.icon.input}
           />
-          <Text style={styles.common.label}>เพิ่มประเภทผู้ใช้</Text>
+          <Text style={styles.input.label}>เพิ่มประเภทผู้ใช้</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}
@@ -58,29 +40,19 @@ class HomeScreen extends Component {
           <Icon
             name='user-graduate'
             size={icoSize}
-            color='white'
+            style={styles.icon.input}
           />
-          <Text style={styles.common.label}>รายชื่อนักศึกษา</Text>
+          <Text style={styles.input.label}>รายชื่อนักศึกษา</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}
-          onPress={() => this.TeacherType(this)}>
+          onPress={() => this.TeacherList(this)}>
           <Icon
             name='chalkboard-teacher'
             size={icoSize}
-            color='white'
+            style={styles.icon.input}
           />
-          <Text style={styles.common.label}>รายชื่ออาจารย์</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.home.menu}
-          onPress={() => this.Logout()}>
-          <Icon
-            name='sign-out-alt'
-            size={icoSize}
-            color='white'
-          />
-          <Text style={styles.common.label}>ออกจากระบบ</Text>
+          <Text style={styles.input.label}>รายชื่ออาจารย์</Text>
         </TouchableOpacity>
       </View>
     );
