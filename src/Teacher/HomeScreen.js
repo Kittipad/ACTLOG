@@ -38,18 +38,18 @@ class HomeScreen extends Component {
   }
 
   render() {
-    let icoSize = 100
+    var icoSize = 100
     return (
-      <View style={styles.home.container}>
+      <View style={styles.view.home}>
         <TouchableOpacity
           style={styles.home.menu}
           onPress={() => this.Visit(this)}>
           <Icon
             name='book'
             size={icoSize}
-            color='white'
+            style={styles.icon.input}
           />
-          <Text style={styles.common.label}>บันทึกนิเทศ</Text>
+          <Text style={styles.input.label}>บันทึกนิเทศ</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.home.menu}
@@ -57,29 +57,9 @@ class HomeScreen extends Component {
           <Icon
             name='user-plus'
             size={icoSize}
-            color='white'
+            style={styles.icon.input}
           />
-          <Text style={styles.common.label}>เพิ่มนักศึกษา</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.home.menu}
-          onPress={() => this.Detail(this)}>
-          <Icon
-            name='info-circle'
-            size={icoSize}
-            color='white'
-          />
-          <Text style={styles.common.label}>ข้อมูลส่วนตัว</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.home.menu}
-          onPress={() => this.Logout()}>
-          <Icon
-            name='sign-out-alt'
-            size={icoSize}
-            color='white'
-          />
-          <Text style={styles.common.label}>ออกจากระบบ</Text>
+          <Text style={styles.input.label}>เพิ่มนักศึกษา</Text>
         </TouchableOpacity>
       </View>
     );

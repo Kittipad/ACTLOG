@@ -54,29 +54,29 @@ class RegisterScreen extends Component {
     if (loading) {
       return (
         <TouchableOpacity
-          style={styles.common.button}>
-          <ActivityIndicator size='large' color='#5499C7' />
+          style={styles.button.main}>
+          <ActivityIndicator size='large' color='white' />
         </TouchableOpacity>
       )
     }
     return (
       <TouchableOpacity
-        style={styles.common.button}
+        style={styles.button.main}
         onPress={this.onRegisterPressed.bind(this)}>
-        <Text style={styles.common.buttonText}>สมัครสมาชิก</Text>
+        <Text style={styles.button.label}>สมัครสมาชิก</Text>
       </TouchableOpacity>
     )
   }
 
   render() {
-    let icoSize = 30
+    var icoSize = 30
     return (
-      <ScrollView style={styles.common.scrollView}>
+      <ScrollView style={styles.view.scrollView}>
         <Input
-          inputStyle={styles.common.inputText}
-          containerStyle={styles.common.input}
-          inputContainerStyle={styles.common.input_}
-          placeholderTextColor='white'
+          containerStyle={styles.input.container}
+          inputContainerStyle={styles.input.border}
+          inputStyle={styles.input.label}
+          placeholderTextColor='#34495E'
           onChangeText={(text) => this.setState({ email: text })}
           autoCorrect={false}
           autoCapitalize='none'
@@ -85,15 +85,15 @@ class RegisterScreen extends Component {
             <Icon
               name='user-alt'
               size={icoSize}
-              color='white'
+              style={styles.icon.input}
             />
           }
           placeholder={'อีเมลล์'} />
         <Input
-          inputStyle={styles.common.inputText}
-          containerStyle={styles.common.input}
-          inputContainerStyle={styles.common.input_}
-          placeholderTextColor='white'
+          containerStyle={styles.input.container}
+          inputContainerStyle={styles.input.border}
+          inputStyle={styles.input.label}
+          placeholderTextColor='#34495E'
           onChangeText={(text) => this.setState({ password: text })}
           autoCorrect={false}
           autoCapitalize='none'
@@ -101,9 +101,9 @@ class RegisterScreen extends Component {
           clearTextOnFocus={true}
           leftIcon={
             <Icon
-              name='lock'
+              name='key'
               size={icoSize}
-              color='white'
+              style={styles.icon.input}
             />
           }
           placeholder={'รหัสผ่าน'} />

@@ -4,13 +4,11 @@ import {
   Alert,
   Text,
   TouchableOpacity,
-  ActivityIndicator,
-  Picker,
-  Modal
+  ActivityIndicator
 } from 'react-native'
 import {
   StackActions,
-  NavigationActions,
+  NavigationActions
 } from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { Input } from 'react-native-elements'
@@ -90,34 +88,34 @@ class LoginScreen extends Component {
     if (this.state.loading) {
       return (
         <TouchableOpacity
-          style={styles.common.button}>
-          <ActivityIndicator size='large' color='#5499C7' />
+          style={styles.button.main}>
+          <ActivityIndicator size='large' color='white' />
         </TouchableOpacity>
       )
     }
     return (
       <TouchableOpacity
-        style={styles.common.button}
+        style={styles.button.main}
         onPress={this.onLoginPressed.bind(this)}>
-        <Text style={styles.common.buttonText}>เข้าสู่ระบบ</Text>
+        <Text style={styles.button.label}>เข้าสู่ระบบ</Text>
       </TouchableOpacity>
     )
   }
 
   render() {
-    let icoSize = 30
+    var icoSize = 30
     return (
-      <View style={styles.common.container}>
+      <View style={styles.view.container}>
         <Input
-          inputStyle={styles.common.inputText}
-          containerStyle={styles.common.input}
-          inputContainerStyle={styles.common.input_}
-          placeholderTextColor='white'
+          containerStyle={styles.input.container}
+          inputContainerStyle={styles.input.border}
+          inputStyle={styles.input.label}
+          placeholderTextColor='#34495E'
           leftIcon={
             <Icon
               name='user-alt'
               size={icoSize}
-              color='white'
+              style={styles.icon.input}
             />
           }
           placeholder='อีเมลล์'
@@ -126,15 +124,15 @@ class LoginScreen extends Component {
           keyboardType='email-address'
           onChangeText={(text) => this.setState({ email: text })} />
         <Input
-          inputStyle={styles.common.inputText}
-          containerStyle={styles.common.input}
-          inputContainerStyle={styles.common.input_}
-          placeholderTextColor='white'
+          containerStyle={styles.input.container}
+          inputContainerStyle={styles.input.border}
+          inputStyle={styles.input.label}
+          placeholderTextColor='#34495E'
           leftIcon={
             <Icon
-              name='lock'
+              name='key'
               size={icoSize}
-              color='white'
+              style={styles.icon.input}
             />
           }
           placeholder='รหัสผ่าน'
@@ -145,10 +143,10 @@ class LoginScreen extends Component {
           onChangeText={(text) => this.setState({ password: text })} />
         {this.buttonLoader()}
         <TouchableOpacity
-          style={styles.common.button}
+          style={styles.button.main}
           onPress={this.onRegisterPressed.bind(this)}>
           <Text
-            style={styles.common.buttonText}>
+            style={styles.button.label}>
             สมัครสมาชิก
           </Text>
         </TouchableOpacity>

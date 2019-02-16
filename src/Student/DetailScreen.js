@@ -61,11 +61,11 @@ class DetailScreen extends Component {
   render() {
     const { fname, lname, email, telNum, uuid } = this.state
     return (
-      <ScrollView style={styles.common.scrollView}>
-        <View style={styles.common.container}>
+      <ScrollView style={styles.home.scrollView}>
+        <View style={styles.view.container}>
           <Card containerStyle={styles.common.card}>
             <View style={styles.timeTable.container}>
-              <Text style={styles.detail.labelCenter}>{fname + '  ' + lname}</Text>
+              <Text style={styles.detail.name}>{fname + '  ' + lname}</Text>
               <View style={styles.detail.detailContainer}>
                 <Icon
                   style={styles.detail.icon}
@@ -86,9 +86,9 @@ class DetailScreen extends Component {
             <Text style={{ fontSize: 15, marginTop: 15, color: 'white' }}>{uuid}</Text>
           </View>
           <TouchableOpacity
-            style={styles.common.button}
+            style={styles.button.main}
             onPress={this.editDetail.bind(this)}>
-            <Text style={styles.common.buttonText}>แก้ไขข้อมูล</Text>
+            <Text style={styles.button.label}>แก้ไขข้อมูล</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

@@ -1,13 +1,15 @@
 import {
   createAppContainer,
-  createStackNavigator
+  createStackNavigator,
+  createBottomTabNavigator,
 } from 'react-navigation'
+import firebase from 'react-native-firebase'
 
 import LoginScreen from './LoginScreen'
 import RegisterScreen from './RegisterScreen'
 
 //student side
-import StdHome from './Student/HomeScreen'
+import StdHome from './Student/index'
 import StdTimeTable from './Student/TimeTable/TimeTableScreen'
 import StdActivity from './Student/Activity/ActivityScreen'
 import StdAddActivity from './Student/Activity/AddActivityScreen'
@@ -24,7 +26,7 @@ import AdminListStd from './Admin/Student/GetListStd'
 import AdminListTeacher from './Admin/Teacher/GetListTeacher'
 
 //teacher side
-import TeachHome from './Teacher/HomeScreen'
+import TeachHome from './Teacher/index'
 import TeachVisit from './Teacher/Visit/VisitScreen'
 import TeachSaveVisit from './Teacher/Visit/SaveVisitScreen'
 import TeachActivity from './Teacher/Activity/ActivityScreen'
@@ -32,6 +34,7 @@ import TeachViewActivity from './Teacher/Activity/ViewActivityScreen'
 import TeachDetail from './Teacher/DetailScreen'
 import TeachEditDetail from './Teacher/EditDetailScreen'
 import TeachAddStudent from './Teacher/AddStudent/AddStudent'
+
 
 const RootStack = createStackNavigator({
   Login: {
@@ -51,7 +54,7 @@ const RootStack = createStackNavigator({
   Student: {
     screen: StdHome,
     navigationOptions: {
-      title: 'หน้าแรก'
+      header: null
     }
   },
   StudentTimeTable: {
