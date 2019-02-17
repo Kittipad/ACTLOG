@@ -79,6 +79,8 @@ class EditDetailScreen extends Component {
           placeholderTextColor='gray'
           defaultValue={sid}
           placeholder='รหัสนักศึกษา'
+          keyboardType='number-pad'
+          onFocus={() => Alert.alert('รหัสผ่านแก้ไขได้ครั้งเดียวเท่านั้น')}
           onChangeText={(text) => this.setState({ sid: text })}
           autoCapitalize='none'
           autoCorrect={false} />

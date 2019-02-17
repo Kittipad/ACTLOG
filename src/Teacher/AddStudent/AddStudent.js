@@ -7,6 +7,7 @@ import {
   Alert
 } from 'react-native'
 import { Card } from 'react-native-elements'
+import { NavigationEvents } from 'react-navigation'
 import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
@@ -23,17 +24,15 @@ class AddStudent extends Component {
   }
 
   getList() {
-    var items = [], users
-    tuid = firebase.auth().currentUser.uid
+    var items = [], users, teacher, visit
+    var tuid = firebase.auth().currentUser.uid
     users = firebase.database().ref('users')
     users = users.orderByChild('type').equalTo('Student')
     users.once('value').then((snapshot) => {
-      // console.log(snapshot.val())
       snapshot.forEach((child) => {
         val = child.val()
-        stat = val.visitStat
-        // console.log(stat)
-        // if (stat == false) {
+        // console.log(visit)
+        // if (visit != tuid) {
         items.push({
           fname: val.fname,
           lname: val.lname,
@@ -43,7 +42,6 @@ class AddStudent extends Component {
         this.setState({ list: items })
         // }
       })
-      // console.log(this.state.list)
     })
   }
 
@@ -57,7 +55,7 @@ class AddStudent extends Component {
       email: email
     }).then(() => {
       this.addVisit(tuid, suid)
-      this.updateStat(suid)
+      this.updateStat(tuid, suid)
     })
     // Alert.alert(tuid)
     // Alert.alert(suid)
@@ -76,32 +74,35 @@ class AddStudent extends Component {
     // console.log(suid)
   }
 
-  updateStat(suid) {
-    var users
-    users = firebase.database().ref('users/' + suid)
-    users.update({
-      visitStat: true
+  updateStat(tuid, suid) {
+    var users, email, tuid
+    // console.log(tuid)
+    email = firebase.auth().currentUser.email
+    users = firebase.database().ref('users/' + suid + '/visit/' + tuid)
+    // console.log(email)
+    users.set({
+      email: email
     })
-    this.getList()
   }
 
   render() {
     const { list } = this.state
+    // console.log(list)
     return (
-      <ScrollView style={styles.common.scrollView}>
-        <View style={styles.common.container}>
+      <ScrollView style={styles.view.scrollView}>
+        <View style={styles.view.container}>
           {
             list.map((user, i) => {
               return (
-                <Card key={i} containerStyle={styles.common.card}>
+                <Card key={i} containerStyle={styles.view.cards}>
                   <View style={styles.timeTable.container}>
-                    <Text style={styles.timeTable.label}>{user.fname}  {user.lname}</Text>
+                    <Text style={styles.timeTable.headerLabel}>{user.fname}  {user.lname}</Text>
                     <Text style={{ color: 'gray', marginBottom: 20, alignSelf: 'center' }}>{user.email}</Text>
                     {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
                     <TouchableOpacity
                       onPress={() => this.addStudent(user.uid, user.email)}
-                      style={styles.common._button}>
-                      <Text style={styles.common.label}>เพิ่ม</Text>
+                      style={styles.button.main}>
+                      <Text style={styles.button.label}>เพิ่ม</Text>
                     </TouchableOpacity>
                   </View>
                 </Card>

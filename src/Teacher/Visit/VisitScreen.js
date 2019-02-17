@@ -28,7 +28,7 @@ class VisitScreen extends Component {
     tuid = firebase.auth().currentUser.uid
     users = firebase.database().ref('users/' + tuid + '/std')
     users.once('value').then((snapshot) => {
-      console.log(snapshot.val())
+      // console.log(snapshot.val())
       snapshot.forEach((child) => {
         var suid
         val = child.val()
@@ -60,17 +60,17 @@ class VisitScreen extends Component {
     const { list } = this.state
     // console.log(list)
     return (
-      <ScrollView style={styles.common.scrollView}>
-        <View style={styles.common.container}>
+      <ScrollView style={styles.view.scrollView}>
+        <View style={styles.view.container}>
           {
             list.map((user, i) => {
               return (
-                <Card key={i} containerStyle={styles.common.card}>
+                <Card key={i} containerStyle={styles.view.cards}>
                   <View style={styles.visit.container}>
                     <Text style={styles.visit.label}>{user.fname}  {user.lname}</Text>
-                    <Text style={styles.visit.label}>{user.email}</Text>
+                    <Text style={styles.visit.labelSub}>{user.email}</Text>
                     <TouchableOpacity
-                      style={styles.common._button}
+                      style={styles.button.main}
                       onPress={() =>
                         this.props.navigation.navigate('TeachSaveVisit', {
                           suid: user.suid,
@@ -81,7 +81,7 @@ class VisitScreen extends Component {
                       <Text style={styles.common._buttonText}>บันทึกนิเทศ</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                      style={styles.common._button}
+                      style={styles.button.main}
                       onPress={() =>
                         this.props.navigation.navigate('TeachActivity', {
                           suid: user.suid,

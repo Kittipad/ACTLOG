@@ -11,6 +11,7 @@ import {
   Avatar,
   Card
 } from 'react-native-elements'
+import { NavigationEvents } from 'react-navigation'
 import firebase from 'react-native-firebase'
 import styles from '../styles'
 
@@ -60,37 +61,38 @@ class DetailScreen extends Component {
   render() {
     const { fname, lname, email, telNum, uuid } = this.state
     return (
-      <ScrollView style={styles.common.scrollView}>
-        <View style={styles.common.container}>
-          <Card containerStyle={styles.common.card}>
-            <View style={styles.timeTable.container}>
-              <Text style={styles.detail.labelCenter}>{fname + '  ' + lname}</Text>
-              <View style={styles.detail.detailContainer}>
-                <Icon
-                  style={styles.detail.icon}
-                  name='phone'
-                  size={22} />
-                <Text style={styles.detail.label}>{telNum}</Text>
+      <View style={{ flex: 1 }}>
+        <ScrollView style={styles.view.scrollView}>
+          <NavigationEvents onDidFocus={() => this.componentDidMount()} />
+          <View style={styles.view.container}>
+            <Card containerStyle={styles.view.card}>
+              <View style={styles.timeTable.container}>
+                <Text style={styles.detail.name}>{fname + '  ' + lname}</Text>
+                <View style={styles.view.containerWithBorder}>
+                  <Icon
+                    style={styles.detail.icon}
+                    name='phone'
+                    size={22} />
+                  <Text style={styles.detail.label}>{telNum}</Text>
+                </View>
+                <View style={styles.view.containerWithBorder}>
+                  <Icon
+                    style={styles.detail.icon}
+                    name='envelope'
+                    size={22} />
+                  <Text style={styles.detail.label}>{email}</Text>
+                </View>
               </View>
-              <View style={styles.detail.detailContainer}>
-                <Icon
-                  style={styles.detail.icon}
-                  name='envelope'
-                  size={22} />
-                <Text style={styles.detail.label}>{email}</Text>
-              </View>
-            </View>
-          </Card >
-          <View style={styles.detail.detailContainer}>
-            <Text style={{ fontSize: 15, marginTop: 15, color: 'white' }}>{uuid}</Text>
+            </Card >
           </View>
-          <TouchableOpacity
-            style={styles.common.button}
-            onPress={this.editDetail.bind(this)}>
-            <Text style={styles.common.buttonText}>แก้ไขข้อมูล</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+        </ScrollView>
+        <TouchableOpacity
+          style={styles.button.main}
+          onPress={this.editDetail.bind(this)}>
+          <Text style={styles.button.label}>แก้ไขข้อมูล</Text>
+        </TouchableOpacity>
+        {/* <Text style={{ alignSelf: 'center' }}>{uuid}</Text> */}
+      </View>
     )
   }
 }

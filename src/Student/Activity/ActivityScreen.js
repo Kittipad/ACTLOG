@@ -15,6 +15,20 @@ import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
 class ActivityScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    return {
+      headerTitle: 'กิจกรรม',
+      headerRight: (
+        <TouchableOpacity
+          onPress={() => params.edit()}
+          style={{ marginRight: 15 }}>
+          <Text style={{ fontSize: 20 }}>แก้ไข</Text>
+        </TouchableOpacity>
+      )
+    }
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -26,7 +40,16 @@ class ActivityScreen extends Component {
   }
 
   componentDidMount() {
+    const { date, morning, afternoon, key } = this.state
     this.getList()
+    this.props.navigation.setParams({
+      edit: () => this.props.navigation.navigate('StudentAddActivity', {
+        key: key,
+        date: date,
+        morning: morning,
+        afternoon: afternoon
+      })
+    })
   }
 
   getList() {
@@ -51,27 +74,18 @@ class ActivityScreen extends Component {
   render() {
     const { date, morning, afternoon, key } = this.state
     return (
-      <ScrollView style={styles.common.scrollView}>
-        <View style={styles.common.container}>
-          <Card containerStyle={styles.common.card}>
+      <ScrollView style={styles.view.scrollView}>
+        <View style={styles.view.container}>
+          <Card containerStyle={styles.view.cards}>
             <View style={styles.activity.container}>
-              <Text style={styles.activity.date}>{date}</Text>
-              <Text style={styles.activity.detail}>ช่วงเช้า : {morning}</Text>
-              <Text style={styles.activity.detail}>ช่วงบ่าย : {afternoon}</Text>
+              <Text style={styles.timeTable.headerLabel}>{date}</Text>
+              <Text style={styles.activity.label}>ช่วงเช้า</Text>
+              <Text style={styles.activity.detail}>{morning}</Text>
+              <Text style={styles.activity.label}>ช่วงบ่าย</Text>
+              <Text style={styles.activity.detail}>{afternoon}</Text>
             </View>
           </Card>
         </View>
-        <TouchableOpacity
-          style={styles.common.button}
-          onPress={() =>
-            this.props.navigation.navigate('StudentAddActivity', {
-              key: key,
-              date: date,
-              morning: morning,
-              afternoon: afternoon
-            })}>
-          <Text style={styles.common.buttonText}>แก้ไข</Text>
-        </TouchableOpacity>
         <NavigationEvents onDidFocus={() => this.componentDidMount()} />
       </ScrollView>
     )

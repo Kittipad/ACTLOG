@@ -15,7 +15,6 @@ const view = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: 'lightgray'
   },
-
   scrollView: {
     backgroundColor: 'white',
     width: '100%',
@@ -31,6 +30,16 @@ const view = StyleSheet.create({
   cards: {
     alignSelf: 'center',
     width: '100%',
+  },
+  labelHeader: {
+    fontSize: 25,
+    color: '#34495E',
+    alignSelf: 'center'
+  },
+  labelSub: {
+    fontSize: 25,
+    color: 'gray',
+    alignSelf: 'center'
   }
 })
 
@@ -64,7 +73,8 @@ const input = StyleSheet.create({
   },
   label: {
     fontSize: 20,
-    color: '#34495E'
+    color: '#34495E',
+    height: '85%'
   },
   borderWithFont: {
     borderTopWidth: 1,
@@ -105,9 +115,7 @@ const detail = StyleSheet.create({
     marginLeft: 15,
     width: 300,
     alignSelf: 'center',
-    color: '#34495E',
-    borderBottomWidth: 1,
-    borderBottomColor: 'black'
+    color: '#34495E'
   },
   name: {
     fontSize: 30,
@@ -240,33 +248,56 @@ const timeTable = StyleSheet.create({
   container: {
     alignItems: 'flex-start'
   },
-  label: {
-    fontSize: 20,
-    marginTop: 5,
+  headerLabel: {
+    fontSize: 25,
     marginBottom: 5,
-    marginLeft: 15,
-    alignSelf: 'center'
+    marginLeft: 5,
+    alignSelf: 'center',
+    color: '#34495E'
   },
+  timeLabel: {
+    alignSelf: 'center',
+    fontSize: 20,
+    color: 'white',
+    margin: 5
+  },
+  timeButtonLeft: {
+    backgroundColor: '#34495E',
+    width: 120, height: 50,
+    justifyContent: 'center',
+    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: 10,
+    marginLeft: 10,
+    marginRight: 1
+  },
+  timeButtonRight: {
+    backgroundColor: '#34495E',
+    width: 120, height: 50,
+    justifyContent: 'center',
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
+    marginRight: 10,
+    marginLeft: 1
+  }
 })
 
 const activity = StyleSheet.create({
   container: {
     alignItems: 'center'
   },
-  date: {
+  label: {
     marginBottom: 10,
-    fontSize: 20
+    fontSize: 20,
+    backgroundColor: '#34495E',
+    color: 'white',
+    paddingRight: 50,
+    paddingLeft: 50,
+    paddingTop: 5,
+    paddingBottom: 5
   },
   detail: {
     marginBottom: 20,
-    fontSize: 15
-  },
-  label: {
-    fontSize: 20,
-    marginTop: 5,
-    marginBottom: 5,
-    marginLeft: 15,
-    alignSelf: 'center'
+    fontSize: 20
   },
   input: {
     width: '90%', height: 250,
@@ -277,6 +308,8 @@ const activity = StyleSheet.create({
     backgroundColor: 'white',
     fontSize: 20,
     padding: 10,
+    borderWidth: 1,
+    borderColor: 'gray'
   }
 })
 
@@ -285,11 +318,16 @@ const visit = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
-    fontSize: 27,
-    marginBottom: 5
+    marginBottom: 10,
+    fontSize: 30,
+    color: '#34495E',
+    paddingRight: 50,
+    paddingLeft: 50,
+    paddingTop: 5,
+    paddingBottom: 5
   },
   labelSub: {
-    fontSize: 18,
+    fontSize: 20,
     color: 'gray'
   }
 })

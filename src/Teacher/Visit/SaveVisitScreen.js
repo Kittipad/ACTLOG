@@ -60,6 +60,9 @@ class SaveVisitScreen extends Component {
     var visit = firebase.database().ref('visit/' + vid)
     visit.update({
       comment: comment
+    }).then(() => {
+      Alert.alert('บันทึกสำเร็จ')
+      this.props.navigation.goBack()
     })
   }
 
@@ -67,10 +70,11 @@ class SaveVisitScreen extends Component {
     const { comment, vid } = this.state
     // console.log(list)
     return (
-      <ScrollView style={styles.common.scrollView}>
-        <Text>{vid}</Text>
+      <ScrollView style={styles.view.scrollView}>
+        {/* <Text>{vid}</Text> */}
         <TextInput
           style={styles.activity.input}
+          multiline={true}
           placeholderTextColor='gray'
           defaultValue={comment}
           placeholder='แสดงความคิดดเห็น'
@@ -79,9 +83,9 @@ class SaveVisitScreen extends Component {
           autoCorrect={false}>
         </TextInput>
         <TouchableOpacity
-          style={styles.common.button}
+          style={styles.button.main}
           onPress={this.saveVisit.bind(this)}>
-          <Text style={styles.common.buttonText}>บันทึก</Text>
+          <Text style={styles.button.label}>บันทึก</Text>
         </TouchableOpacity>
       </ScrollView>
     )

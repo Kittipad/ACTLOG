@@ -62,7 +62,7 @@ class AddActivity extends Component {
   render() {
     const { morning, afternoon } = this.state
     return (
-      <ScrollView style={styles.common.scrollView}>
+      <ScrollView style={styles.view.scrollView}>
         <TextInput
           style={styles.activity.input}
           placeholderTextColor='black'
@@ -80,9 +80,9 @@ class AddActivity extends Component {
           autoCapitalize='none'
           autoCorrect={false} />
         <TouchableOpacity
-          style={styles.common.button}
+          style={styles.button.main}
           onPress={this.saveActivity.bind(this)}>
-          <Text style={styles.common.buttonText}>บันทึก</Text>
+          <Text style={styles.button.label}>บันทึก</Text>
         </TouchableOpacity>
       </ScrollView>
     );

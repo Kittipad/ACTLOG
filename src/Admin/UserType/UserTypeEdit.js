@@ -39,23 +39,23 @@ class EditScreen extends Component {
     newType = firebaseDB.ref('users/' + uid)
     newType.update({
       type: type,
-      visitStat: false
+      visit: ''
     }).then(() => {
       Alert.alert('แก้ไขประเภทเรียบร้อย', '', [
-        { text: 'OK', onPress: () => this.props.navigation.navigate('Admin') }
+        { text: 'OK', onPress: () => this.props.navigation.goBack() }
       ])
     })
   }
 
   render() {
     return (
-      <ScrollView style={styles.common.scrollView}>
+      <ScrollView style={styles.view.scrollView}>
         <TouchableOpacity
-          style={styles.common.button}
+          style={styles.button.main}
           onPress={this.saveDetail.bind(this)}>
-          <Text style={styles.common.buttonText}>บันทึก</Text>
+          <Text style={styles.button.label}>บันทึก</Text>
         </TouchableOpacity>
-        <View style={styles.common.container}>
+        <View style={styles.view.container}>
           <Picker
             selectedValue={this.state.type}
             mode='dropdown'

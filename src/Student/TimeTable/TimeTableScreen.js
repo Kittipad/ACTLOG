@@ -10,7 +10,7 @@ import {
 import {
   Card,
 } from 'react-native-elements'
-import Icon from 'react-native-vector-icons'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
@@ -43,7 +43,7 @@ class TimeTableScreen extends Component {
 
   componentDidMount() {
     this.getList()
-    this.props.navigation.setParams({ add: this.addNewList.bind(this) });
+    this.props.navigation.setParams({ add: this.addNewList.bind(this) })
   }
 
   getList() {
@@ -155,14 +155,17 @@ class TimeTableScreen extends Component {
               return (
                 <Card key={i} containerStyle={styles.view.cards} >
                   <View style={styles.timeTable.container}>
-                    <Text style={styles.timeTable.label}>{d.date}</Text>
+                    <Text style={styles.timeTable.headerLabel}>{d.date}</Text>
                     <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-                      <TouchableOpacity onPress={this.timeStampCome.bind(this)}>
-                        <Text style={styles.timeTable.label}>{d.timeCome}</Text>
+                      <TouchableOpacity
+                        style={styles.timeTable.timeButtonLeft}
+                        onPress={this.timeStampCome.bind(this)}>
+                        <Text style={styles.timeTable.timeLabel}>{d.timeCome}</Text>
                       </TouchableOpacity>
-                      <Text style={styles.timeTable.label}> | </Text>
-                      <TouchableOpacity onPress={this.timeStampBack.bind(this)}>
-                        <Text style={styles.timeTable.label}>{d.timeBack}</Text>
+                      <TouchableOpacity
+                        style={styles.timeTable.timeButtonRight}
+                        onPress={this.timeStampBack.bind(this)}>
+                        <Text style={styles.timeTable.timeLabel}>{d.timeBack}</Text>
                       </TouchableOpacity>
                     </View>
                     <TouchableOpacity
@@ -173,7 +176,10 @@ class TimeTableScreen extends Component {
                         })
                       }
                       style={styles.button.main}>
-                      <Text style={styles.button.label}>ดูเพิ่ม</Text>
+                      <Icon
+                        name='search'
+                        size={30}
+                        color='white' />
                     </TouchableOpacity>
                   </View>
                 </Card >

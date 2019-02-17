@@ -74,8 +74,8 @@ class DetailScreen extends Component {
     const { sid, fname, lname, group, subject, telNum, email, date, sidStat, uuid } = this.state
     return (
       <View style={{ flex: 1 }}>
+        <NavigationEvents onDidFocus={() => this.componentDidMount()} />
         <ScrollView style={styles.home.scrollView}>
-          <NavigationEvents onDidFocus={() => this.componentDidMount()} />
           <View style={styles.view.container}>
             <Card containerStyle={styles.view.card}>
               <View style={styles.timeTable.container}>

@@ -52,30 +52,37 @@ class ActivityScreen extends Component {
   render() {
     const { list } = this.state
     return (
-      <ScrollView style={styles.common.scrollView}>
-        <View style={styles.common.container}>
+      <ScrollView style={styles.view.scrollView}>
+        <View style={styles.view.container}>
           {
             list.slice(0).reverse().map((user, i) => {
               return (
-                <Card key={i} containerStyle={styles.common.card}>
+                <Card key={i} containerStyle={styles.view.cards}>
                   <View style={styles.activity.container}>
-                    <Text style={styles.activity.label}>{user.date}</Text>
-                    <Text style={styles.activity.label}>{user.timeCome} : {user.timeBack}</Text>
+                    <Text style={styles.visit.label}>{user.date}</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                      <TouchableOpacity style={styles.timeTable.timeButtonLeft}>
+                        <Text style={styles.timeTable.timeLabel}>{user.timeCome}</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.timeTable.timeButtonRight}>
+                        <Text style={styles.timeTable.timeLabel}>{user.timeBack}</Text>
+                      </TouchableOpacity>
+                    </View>
                     <TouchableOpacity
                       onPress={() => this.props.navigation.navigate('TeachViewActivity', {
                         ACT: user.morning,
                         date: user.date
                       })}
-                      style={styles.common.card}>
-                      <Text>ดูกิจกรรมเช้า</Text>
+                      style={styles.button.main}>
+                      <Text style={styles.button.label}>ดูกิจกรรมเช้า</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() => this.props.navigation.navigate('TeachViewActivity', {
                         ACT: user.afternoon,
                         date: user.date
                       })}
-                      style={styles.common.card}>
-                      <Text>ดูกิจกรรมบ่าย</Text>
+                      style={styles.button.main}>
+                      <Text style={styles.button.label}>ดูกิจกรรมบ่าย</Text>
                     </TouchableOpacity>
                   </View>
                 </Card>

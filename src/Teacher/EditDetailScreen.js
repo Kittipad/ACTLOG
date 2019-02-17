@@ -55,9 +55,9 @@ class EditDetailScreen extends Component {
   render() {
     const { fname, lname, telNum, email } = this.state
     return (
-      <ScrollView style={styles.common.scrollView}>
+      <ScrollView style={styles.view.scrollView}>
         <TextInput
-          style={styles.detail.input}
+          style={styles.input.borderWithFont}
           placeholderTextColor='gray'
           defaultValue={fname}
           placeholder='ชื่อจริง'
@@ -65,7 +65,7 @@ class EditDetailScreen extends Component {
           autoCapitalize='none'
           autoCorrect={false} />
         <TextInput
-          style={styles.detail.input}
+          style={styles.input.borderWithFont}
           placeholderTextColor='gray'
           defaultValue={lname}
           placeholder='นามสกุล'
@@ -73,14 +73,17 @@ class EditDetailScreen extends Component {
           autoCapitalize='none'
           autoCorrect={false} />
         <TextInput
-          style={styles.detail.input}
+          style={styles.input.borderWithFont}
           placeholderTextColor='gray'
           defaultValue={telNum}
           placeholder='เบอร์โทร'
           onChangeText={(text) => this.setState({ telNum: text })}
           keyboardType='phone-pad'
           autoCorrect={false} />
-        <Text style={styles.detail.input}>{email}</Text>
+        <TextInput
+          editable={false}
+          style={styles.input.borderWithFont}
+          defaultValue={email} />
         <TouchableOpacity
           style={styles.common.button}
           onPress={this.saveDetail.bind(this)}>

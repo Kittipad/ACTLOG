@@ -31,7 +31,7 @@ class UserTypeScreen extends Component {
         val = child.val()
         type = child.val().type
         // console.log(child.val().type)
-        if (type == 'none') {
+        if (type == 'none' || type == '') {
           items.push({
             fname: val.fname,
             lname: val.lname,
@@ -52,7 +52,7 @@ class UserTypeScreen extends Component {
     newType = firebaseDB.ref('users/' + uid)
     newType.update({
       type: type,
-      visitStat: false
+      visit: ''
     }).then(() => {
       var student
       if (type == 'Student') {
@@ -66,34 +66,33 @@ class UserTypeScreen extends Component {
         })
       }
       Alert.alert('แก้ไขประเภทเรียบร้อย')
+      this.componentDidMount()
     })
   }
 
   render() {
     const { list } = this.state
     return (
-      <ScrollView style={styles.common.scrollView}>
-        <View style={styles.common.container}>
+      <ScrollView style={styles.view.scrollView}>
+        <View style={styles.view.container}>
           {
             list.map((user, i) => {
               return (
-                <Card key={i} containerStyle={styles.common.card}>
-                  <View style={styles.timeTable.container}>
-                    <Text style={styles.timeTable.label}>ประเภท : {user.type}</Text>
-                    <Text style={styles.timeTable.label}>{user.fname}  {user.lname}</Text>
-                    <Text style={{ color: 'gray', marginBottom: 20, alignSelf: 'center' }}>{user.email}</Text>
-                    {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
-                    <TouchableOpacity
-                      onPress={() => this.saveDetail(user.uid, 'Student')}
-                      style={styles.common._button}>
-                      <Text style={styles.common.label}>นศ.</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={() => this.saveDetail(user.uid, 'Teacher')}
-                      style={styles.common._button}>
-                      <Text style={styles.common.label}>อาจารย์</Text>
-                    </TouchableOpacity>
-                  </View>
+                <Card key={i} containerStyle={styles.view.cards}>
+                  <Text style={styles.view.labelHeader}>ประเภท : {user.type}</Text>
+                  <Text style={styles.view.labelSub}>{user.fname}  {user.lname}</Text>
+                  <Text style={styles.view.labelSub}>{user.email}</Text>
+                  {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
+                  <TouchableOpacity
+                    onPress={() => this.saveDetail(user.uid, 'Student')}
+                    style={styles.button.main}>
+                    <Text style={styles.common.label}>นศ.</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => this.saveDetail(user.uid, 'Teacher')}
+                    style={styles.button.main}>
+                    <Text style={styles.common.label}>อาจารย์</Text>
+                  </TouchableOpacity>
                 </Card>
               )
             })
