@@ -15,8 +15,8 @@
   - Intel x86 Atom_64 System Image
   - รัน Emulator ไว้เลย
 * ตั้งค่า Environment Variables
-  - ANDROID_HOME = ที่อยู่ของ Android SDK
-  - ที่อยู่เดิม :```c:\Users\YOUR_USERNAME\AppData\Local\Android\Sdk```
+  - ```ANDROID_HOME = ที่อยู่ของ Android SDK```
+  - ที่อยู่เดิม ```c:\Users\YOUR_USERNAME\AppData\Local\Android\Sdk```
 * โหลดไฟล์โปรเจคแล้วแตกไฟล์ไว้ซักที่
 * เปิดหน้า CMD ในโปรเจค
   - ```npm start```
