@@ -4,8 +4,7 @@
 
 ### ขั้นตอนติดตั้ง (Android)
 * ติดตั้ง [Node.js](https://nodejs.org) โหลดตัว LTS
-* เปิด CMD สั่งรัน 
-  ```npm install -g react-native-cli```
+* เปิด CMD สั่งรัน ```npm install -g react-native-cli```
 * ติดตั้ง [Android Studio](https://developer.android.com/studio/)
   - Android SDK
   - Android SDK Platform
@@ -17,10 +16,11 @@
   - รัน Emulator ไว้เลย
 * ตั้งค่า Environment Variables
   - ANDROID_HOME = ที่อยู่ของ Android SDK
+  - ที่อยู่เดิม :```c:\Users\YOUR_USERNAME\AppData\Local\Android\Sdk```
 * โหลดไฟล์โปรเจคแล้วแตกไฟล์ไว้ซักที่
 * เปิดหน้า CMD ในโปรเจค
-  - npm start
-  - เปิด CMD อีกอันแล้วพิมพ์ react-native run-android
+  - ```npm start```
+  - เปิด CMD อีกอันแล้วพิมพ์ ```react-native run-android```
 * เสร็จ
 
-**อาจจะไม่ละเอียดมากนัก ต้องตั้งค่า firebase API นิดหน่อย
+>อาจจะไม่ละเอียดมากนัก ต้องตั้งค่า firebase API นิดหน่อย
