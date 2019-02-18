@@ -5,7 +5,7 @@
 ### ขั้นตอนติดตั้ง (Android)
 * ติดตั้ง [Node.js](https://nodejs.org) โหลดตัว LTS
 * เปิด CMD สั่งรัน 
-  - `npm install -g react-native-cli`
+  ```npm install -g react-native-cli```
 * ติดตั้ง [Android Studio](https://developer.android.com/studio/)
   - Android SDK
   - Android SDK Platform
