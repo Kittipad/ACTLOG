@@ -23,24 +23,24 @@ class HomeScreen extends Component {
     return (
       <View style={styles.view.home}>
         <TouchableOpacity
-          style={styles.icon.menu}
+          style={styles.icon.homeMenuContainer}
           onPress={() => this.TimeTable()}>
           <Icon
             name='table'
             size={icoSize}
-            style={styles.icon.input}
+            style={styles.icon.homeMenuIcon}
           />
-          <Text style={styles.input.label}>ตารางลงเวลา</Text>
+          <Text style={styles.label.homeMenu}>ตารางลงเวลา</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.icon.menu}
+          style={styles.icon.homeMenuContainer}
           onPress={() => this.Visit(this)}>
           <Icon
             name='suitcase-rolling'
             size={icoSize}
-            style={styles.icon.input}
+            style={styles.icon.homeMenuIcon}
           />
-          <Text style={styles.input.label}>ดูผลการนิเทศ</Text>
+          <Text style={styles.label.homeMenu}>ดูผลการนิเทศ</Text>
         </TouchableOpacity>
       </View>
     )

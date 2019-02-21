@@ -93,9 +93,6 @@ const RootStack = createStackNavigator({
   // แอดมิน
   Admin: {
     screen: AdminHome,
-    navigationOptions: {
-      title: 'หน้าแรก'
-    }
   },
   AdminUserType: {
     screen: AdminUserType,

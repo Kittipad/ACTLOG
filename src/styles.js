@@ -1,11 +1,10 @@
 import { StyleSheet } from 'react-native'
 
 const view = StyleSheet.create({
-  container: {
+  loginContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white'
   },
   containerWithScrollView: {
     height: '90%'
@@ -21,7 +20,7 @@ const view = StyleSheet.create({
   },
   home: {
     flex: 1, flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   },
   card: {
     alignItems: 'center',
@@ -46,6 +45,19 @@ const view = StyleSheet.create({
 const button = StyleSheet.create({
   main: {
     width: 200, height: 50,
+    backgroundColor: '#34495E',
+    marginTop: 15,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center'
+  },
+  mainLabel: {
+    color: 'white',
+    fontSize: 20
+  },
+  sub: {
+    width: 200, height: 50,
     backgroundColor: 'orange',
     marginTop: 15,
     borderRadius: 25,
@@ -53,23 +65,25 @@ const button = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center'
   },
-  label: {
-    color: 'white',
+  subLabel: {
+    color: 'black',
     fontSize: 20
   }
 })
 
 const input = StyleSheet.create({
   container: {
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 10,
     alignSelf: 'center'
   },
-  border: {
+  inputContainer: {
     borderWidth: 1,
     borderColor: '#34495E',
     borderRadius: 35,
     height: 70
+  },
+  iconColor: {
+    color: '#34495E',
   },
   label: {
     fontSize: 20,
@@ -87,16 +101,22 @@ const input = StyleSheet.create({
 })
 
 const icon = StyleSheet.create({
-  input: {
+  homeMenuIcon: {
     color: '#34495E'
   },
-  menu: {
+  homeMenuContainer: {
     width: 150, height: 150,
-    marginTop: 30,
-    marginLeft: 15,
-    marginRight: 15,
+    margin: 15,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  }
+})
+
+const label = StyleSheet.create({
+  homeMenu: {
+    fontSize: 20,
+    color: '#34495E',
+    marginTop: 10,
   }
 })
 
@@ -332,29 +352,26 @@ const visit = StyleSheet.create({
   }
 })
 
-const comment = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    marginBottom: 20
-  },
-  label: {
+const error = StyleSheet.create({
+  password: {
     fontSize: 20,
-    marginBottom: 5
-  },
-  labelSub: {
-    fontSize: 18,
-    marginBottom: 20
-  },
-  input: {
-    width: '90%', height: 250,
-    marginBottom: 10,
     marginTop: 15,
-    borderRadius: 5,
-    alignSelf: 'center',
-    backgroundColor: 'lightgray',
-    fontSize: 20,
-    padding: 10,
+    color: 'red',
+    alignSelf: 'center'
   }
 })
 
-export default { button, view, input, icon, common, home, detail, timeTable, activity, visit, comment }
+export default {
+  button,
+  view,
+  input,
+  icon,
+  label,
+  common,
+  home,
+  detail,
+  timeTable,
+  activity,
+  visit,
+  error
+}

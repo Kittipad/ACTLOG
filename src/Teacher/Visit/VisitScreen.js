@@ -78,7 +78,7 @@ class VisitScreen extends Component {
                           fname: user.fname,
                           lname: user.lname
                         })}>
-                      <Text style={styles.common._buttonText}>บันทึกนิเทศ</Text>
+                      <Text style={styles.button.mainLabel}>บันทึกนิเทศ</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={styles.button.main}
@@ -86,7 +86,7 @@ class VisitScreen extends Component {
                         this.props.navigation.navigate('TeachActivity', {
                           suid: user.suid,
                         })}>
-                      <Text style={styles.common._buttonText}>ดูบันทึกกิจกรรม</Text>
+                      <Text style={styles.button.mainLabel}>ดูบันทึกกิจกรรม</Text>
                     </TouchableOpacity>
                   </View>
                 </Card>

@@ -28,7 +28,7 @@ class LoginScreen extends Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
+      if (user && this.state.type != 'none') {
         this.getUserType()
       }
     })
@@ -37,10 +37,7 @@ class LoginScreen extends Component {
   onLoginPressed() {
     const { email, password } = this.state;
     this.setState({ loading: true })
-    if (!email && !password) {
-      this.setState({ loading: false })
-      Alert.alert('กรุณาป้อนข้อมูล')
-    } else {
+    if (email && password && (email != '' || password != '')) {
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
           this.getUserType()
@@ -49,6 +46,9 @@ class LoginScreen extends Component {
           this.setState({ loading: false })
           Alert.alert(msgError.message)
         })
+    } else {
+      this.setState({ loading: false })
+      Alert.alert('กรุณาป้อนข้อมูล')
     }
   }
 
@@ -56,12 +56,17 @@ class LoginScreen extends Component {
     var data, user, uid
     uid = firebase.auth().currentUser.uid
     user = firebase.database().ref('users/' + uid + '/type')
+    this.setState({ type: '' })
     user.once('value').then(snapshot => {
       data = snapshot.val()
       this.setState({ type: data })
       console.log(data)
       if (this.state.type == data && this.state.type != 'none') {
         this.goHomeScreen()
+      }
+      if (this.state.type == 'none') {
+        this.setState({ type: '' })
+        Alert.alert('กรุณาติดต่อแอดมินเพื่อเพิ่มประเภทผู้ใช้ให้กับท่าน')
       }
       this.setState({ loading: false })
     })
@@ -88,6 +93,7 @@ class LoginScreen extends Component {
     if (this.state.loading) {
       return (
         <TouchableOpacity
+          disabled={true}
           style={styles.button.main}>
           <ActivityIndicator size='large' color='white' />
         </TouchableOpacity>
@@ -97,7 +103,7 @@ class LoginScreen extends Component {
       <TouchableOpacity
         style={styles.button.main}
         onPress={this.onLoginPressed.bind(this)}>
-        <Text style={styles.button.label}>เข้าสู่ระบบ</Text>
+        <Text style={styles.button.mainLabel}>เข้าสู่ระบบ</Text>
       </TouchableOpacity>
     )
   }
@@ -105,17 +111,17 @@ class LoginScreen extends Component {
   render() {
     var icoSize = 30
     return (
-      <View style={styles.view.container}>
+      <View style={styles.view.loginContainer}>
         <Input
           containerStyle={styles.input.container}
-          inputContainerStyle={styles.input.border}
+          inputContainerStyle={styles.input.inputContainer}
           inputStyle={styles.input.label}
           placeholderTextColor='#34495E'
           leftIcon={
             <Icon
               name='user-alt'
               size={icoSize}
-              style={styles.icon.input}
+              style={styles.input.iconColor}
             />
           }
           placeholder='อีเมลล์'
@@ -125,28 +131,27 @@ class LoginScreen extends Component {
           onChangeText={(text) => this.setState({ email: text })} />
         <Input
           containerStyle={styles.input.container}
-          inputContainerStyle={styles.input.border}
+          inputContainerStyle={styles.input.inputContainer}
           inputStyle={styles.input.label}
           placeholderTextColor='#34495E'
           leftIcon={
             <Icon
               name='key'
               size={icoSize}
-              style={styles.icon.input}
+              style={styles.input.iconColor}
             />
           }
           placeholder='รหัสผ่าน'
           autoCapitalize='none'
           autoCorrect={false}
-          clearTextOnFocus={true}
           secureTextEntry={true}
           onChangeText={(text) => this.setState({ password: text })} />
         {this.buttonLoader()}
         <TouchableOpacity
-          style={styles.button.main}
+          style={styles.button.sub}
           onPress={this.onRegisterPressed.bind(this)}>
           <Text
-            style={styles.button.label}>
+            style={styles.button.subLabel}>
             สมัครสมาชิก
           </Text>
         </TouchableOpacity>

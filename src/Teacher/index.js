@@ -30,11 +30,12 @@ class Logout extends Component {
   }
 }
 
-var iconSize = 40
+var iconSize = 25
 const TabStack = createBottomTabNavigator({
   TeachDetail: {
     screen: TeachDetail,
     navigationOptions: {
+      title: 'ข้อมูลส่วนตัว',
       tabBarIcon: ({ tintColor }) => (
         <Icon
           name="info"
@@ -46,6 +47,7 @@ const TabStack = createBottomTabNavigator({
   TeachHome: {
     screen: TeachHome,
     navigationOptions: {
+      title: 'หน้าแรก',
       tabBarIcon: ({ tintColor }) => (
         <Icon
           name="home"
@@ -57,6 +59,7 @@ const TabStack = createBottomTabNavigator({
   StudentLogout: {
     screen: Logout,
     navigationOptions: {
+      title: 'ออกจากระบบ',
       tabBarIcon: ({ tintColor }) => (
         <Icon
           name="sign-out-alt"
@@ -66,11 +69,7 @@ const TabStack = createBottomTabNavigator({
     }
   }
 }, {
-    initialRouteName: 'TeachHome',
-    tabBarOptions: {
-      showLabel: false,
-      activeTintColor: '#34495E'
-    }
+    initialRouteName: 'TeachHome'
   })
 
 export default createAppContainer(TabStack)

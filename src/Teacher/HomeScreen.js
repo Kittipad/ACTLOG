@@ -42,24 +42,24 @@ class HomeScreen extends Component {
     return (
       <View style={styles.view.home}>
         <TouchableOpacity
-          style={styles.home.menu}
+          style={styles.icon.homeMenuContainer}
           onPress={() => this.Visit(this)}>
           <Icon
             name='book'
             size={icoSize}
-            style={styles.icon.input}
+            style={styles.icon.homeMenuIcon}
           />
-          <Text style={styles.input.label}>บันทึกนิเทศ</Text>
+          <Text style={styles.label.homeMenu}>บันทึกนิเทศ</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.home.menu}
+          style={styles.icon.homeMenuContainer}
           onPress={() => this.AddStudent(this)}>
           <Icon
             name='user-plus'
             size={icoSize}
-            style={styles.icon.input}
+            style={styles.icon.homeMenuIcon}
           />
-          <Text style={styles.input.label}>เพิ่มนักศึกษา</Text>
+          <Text style={styles.label.homeMenu}>เพิ่มนักศึกษา</Text>
         </TouchableOpacity>
       </View>
     );

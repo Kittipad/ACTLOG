@@ -101,8 +101,8 @@ class AddStudent extends Component {
                     {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
                     <TouchableOpacity
                       onPress={() => this.addStudent(user.uid, user.email)}
-                      style={styles.button.main}>
-                      <Text style={styles.button.label}>เพิ่ม</Text>
+                      style={styles.button.sub}>
+                      <Text style={styles.button.subLabel}>เพิ่ม</Text>
                     </TouchableOpacity>
                   </View>
                 </Card>

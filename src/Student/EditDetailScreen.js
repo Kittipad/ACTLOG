@@ -148,9 +148,9 @@ class EditDetailScreen extends Component {
           style={styles.input.borderWithFont}
           defaultValue={email} />
         <TouchableOpacity
-          style={styles.button.main}
+          style={styles.button.sub}
           onPress={this.saveDetail.bind(this)}>
-          <Text style={styles.button.label}>บันทึก</Text>
+          <Text style={styles.button.subLabel}>บันทึก</Text>
         </TouchableOpacity>
       </ScrollView>
     )

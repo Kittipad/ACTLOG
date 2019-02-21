@@ -73,16 +73,16 @@ class ActivityScreen extends Component {
                         ACT: user.morning,
                         date: user.date
                       })}
-                      style={styles.button.main}>
-                      <Text style={styles.button.label}>ดูกิจกรรมเช้า</Text>
+                      style={styles.button.sub}>
+                      <Text style={styles.button.subLabel}>ดูกิจกรรมเช้า</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() => this.props.navigation.navigate('TeachViewActivity', {
                         ACT: user.afternoon,
                         date: user.date
                       })}
-                      style={styles.button.main}>
-                      <Text style={styles.button.label}>ดูกิจกรรมบ่าย</Text>
+                      style={styles.button.sub}>
+                      <Text style={styles.button.subLabel}>ดูกิจกรรมบ่าย</Text>
                     </TouchableOpacity>
                   </View>
                 </Card>

@@ -29,11 +29,12 @@ class Logout extends Component {
   }
 }
 
-var iconSize = 40
+var iconSize = 25
 const TabStack = createBottomTabNavigator({
   AdminHome: {
     screen: AdminHome,
     navigationOptions: {
+      title: 'หน้าแรก',
       tabBarIcon: ({ tintColor }) => (
         <Icon
           name="home"
@@ -45,6 +46,7 @@ const TabStack = createBottomTabNavigator({
   AdminLogout: {
     screen: Logout,
     navigationOptions: {
+      title: 'ออกจากระบบ',
       tabBarIcon: ({ tintColor }) => (
         <Icon
           name="sign-out-alt"
@@ -54,11 +56,7 @@ const TabStack = createBottomTabNavigator({
     }
   }
 }, {
-    initialRouteName: 'AdminHome',
-    tabBarOptions: {
-      showLabel: false,
-      activeTintColor: '#34495E'
-    }
+    initialRouteName: 'AdminHome'
   })
 
 export default createAppContainer(TabStack)

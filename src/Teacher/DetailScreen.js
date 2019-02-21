@@ -87,9 +87,9 @@ class DetailScreen extends Component {
           </View>
         </ScrollView>
         <TouchableOpacity
-          style={styles.button.main}
+          style={styles.button.sub}
           onPress={this.editDetail.bind(this)}>
-          <Text style={styles.button.label}>แก้ไขข้อมูล</Text>
+          <Text style={styles.button.subLabel}>แก้ไขข้อมูล</Text>
         </TouchableOpacity>
         {/* <Text style={{ alignSelf: 'center' }}>{uuid}</Text> */}
       </View>
