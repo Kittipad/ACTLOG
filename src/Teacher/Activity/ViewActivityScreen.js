@@ -20,10 +20,10 @@ class CheckActivityScreen extends Component {
     var ACT = this.props.navigation.getParam('ACT')
     return (
       <ScrollView style={styles.view.scrollView}>
-        <View style={styles.view.container}>
+        <View style={styles.view.headerContainer}>
           <Card containerStyle={styles.view.cards}>
-            <View style={styles.activity.container}>
-              <Text style={{ fontSize: 20 }}>{ACT}</Text>
+            <View style={styles.label.header}>
+              <Text style={styles.label.sub}>{ACT}</Text>
             </View>
           </Card>
         </View>

@@ -95,7 +95,7 @@ class RegisterScreen extends Component {
             <Icon
               name='user-alt'
               size={icoSize}
-              style={styles.icon.input}
+              style={styles.icon.color}
             />
           }
           placeholder='อีเมลล์' />
@@ -113,7 +113,7 @@ class RegisterScreen extends Component {
             <Icon
               name='key'
               size={icoSize}
-              style={styles.icon.input}
+              style={styles.icon.color}
             />
           }
           placeholder='รหัสผ่าน' />
@@ -131,7 +131,7 @@ class RegisterScreen extends Component {
             <Icon
               name='key'
               size={icoSize}
-              style={styles.icon.input}
+              style={styles.icon.color}
             />
           }
           placeholder='รหัสผ่านอีกครั้ง' />

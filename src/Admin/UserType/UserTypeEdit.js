@@ -12,6 +12,14 @@ import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
 class EditScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    var fname = navigation.getParam('fname')
+    var lname = navigation.getParam('lname')
+    return {
+      title: fname + ' ' + lname
+    }
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -38,8 +46,7 @@ class EditScreen extends Component {
     firebaseDB = firebase.database()
     newType = firebaseDB.ref('users/' + uid)
     newType.update({
-      type: type,
-      visit: ''
+      type: type
     }).then(() => {
       Alert.alert('แก้ไขประเภทเรียบร้อย', '', [
         { text: 'OK', onPress: () => this.props.navigation.goBack() }
@@ -51,9 +58,9 @@ class EditScreen extends Component {
     return (
       <ScrollView style={styles.view.scrollView}>
         <TouchableOpacity
-          style={styles.button.main}
+          style={styles.button.sub}
           onPress={this.saveDetail.bind(this)}>
-          <Text style={styles.button.label}>บันทึก</Text>
+          <Text style={styles.button.subLabel}>บันทึก</Text>
         </TouchableOpacity>
         <View style={styles.view.container}>
           <Picker

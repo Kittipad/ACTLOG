@@ -66,9 +66,9 @@ class VisitScreen extends Component {
             list.map((user, i) => {
               return (
                 <Card key={i} containerStyle={styles.view.cards}>
-                  <View style={styles.visit.container}>
-                    <Text style={styles.visit.label}>{user.fname}  {user.lname}</Text>
-                    <Text style={styles.visit.labelSub}>{user.email}</Text>
+                  <View style={styles.view.headerContainer}>
+                    <Text style={styles.label.header}>{user.fname}  {user.lname}</Text>
+                    <Text style={styles.label.sub}>{user.email}</Text>
                     <TouchableOpacity
                       style={styles.button.main}
                       onPress={() =>

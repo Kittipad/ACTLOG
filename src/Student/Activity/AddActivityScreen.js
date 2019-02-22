@@ -80,9 +80,9 @@ class AddActivity extends Component {
           autoCapitalize='none'
           autoCorrect={false} />
         <TouchableOpacity
-          style={styles.button.main}
+          style={styles.button.sub}
           onPress={this.saveActivity.bind(this)}>
-          <Text style={styles.button.label}>บันทึก</Text>
+          <Text style={styles.button.subLabel}>บันทึก</Text>
         </TouchableOpacity>
       </ScrollView>
     );

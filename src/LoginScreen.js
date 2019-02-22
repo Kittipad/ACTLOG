@@ -64,10 +64,6 @@ class LoginScreen extends Component {
       if (this.state.type == data && this.state.type != 'none') {
         this.goHomeScreen()
       }
-      if (this.state.type == 'none') {
-        this.setState({ type: '' })
-        Alert.alert('กรุณาติดต่อแอดมินเพื่อเพิ่มประเภทผู้ใช้ให้กับท่าน')
-      }
       this.setState({ loading: false })
     })
   }
@@ -121,7 +117,7 @@ class LoginScreen extends Component {
             <Icon
               name='user-alt'
               size={icoSize}
-              style={styles.input.iconColor}
+              style={styles.icon.color}
             />
           }
           placeholder='อีเมลล์'
@@ -138,7 +134,7 @@ class LoginScreen extends Component {
             <Icon
               name='key'
               size={icoSize}
-              style={styles.input.iconColor}
+              style={styles.icon.color}
             />
           }
           placeholder='รหัสผ่าน'

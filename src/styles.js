@@ -6,6 +6,14 @@ const view = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  detailContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerContainer: {
+    alignItems: 'center'
+  },
   containerWithScrollView: {
     height: '90%'
   },
@@ -20,7 +28,8 @@ const view = StyleSheet.create({
   },
   home: {
     flex: 1, flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly'
   },
   card: {
     alignItems: 'center',
@@ -101,7 +110,7 @@ const input = StyleSheet.create({
 })
 
 const icon = StyleSheet.create({
-  homeMenuIcon: {
+  color: {
     color: '#34495E'
   },
   homeMenuContainer: {
@@ -109,6 +118,11 @@ const icon = StyleSheet.create({
     margin: 15,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  detail: {
+    marginLeft: 20,
+    alignSelf: 'center',
+    color: '#34495E'
   }
 })
 
@@ -117,6 +131,29 @@ const label = StyleSheet.create({
     fontSize: 20,
     color: '#34495E',
     marginTop: 10,
+  },
+  header: {
+    color: '#34495E',
+    fontSize: 30,
+    margin: 10
+  },
+  sub: {
+    fontSize: 20,
+    color: '#34495E'
+  },
+  detail: {
+    fontSize: 20,
+    marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 15,
+    width: 300,
+    alignSelf: 'center',
+    color: '#34495E'
+  },
+  visitComment: {
+    fontSize: 20,
+    marginTop: 10,
+    color: '#34495E'
   }
 })
 
@@ -144,9 +181,7 @@ const detail = StyleSheet.create({
     alignSelf: 'center'
   },
   icon: {
-    marginLeft: 20,
-    alignSelf: 'center',
-    color: '#34495E'
+
   },
   input: {
     width: '90%', height: 50,

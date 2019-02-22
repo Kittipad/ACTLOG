@@ -57,10 +57,7 @@ const RootStack = createStackNavigator({
     screen: StdTimeTable
   },
   StudentActivity: {
-    screen: StdActivity,
-    navigationOptions: {
-      title: 'กิจกรรม'
-    }
+    screen: StdActivity
   },
   StudentAddActivity: {
     screen: StdAddActivity
@@ -68,7 +65,7 @@ const RootStack = createStackNavigator({
   StudentVisit: {
     screen: StdVisit,
     navigationOptions: {
-      title: 'ผลการนิเทศ'
+      title: 'ดูผลการนิเทศ'
     }
   },
   StudentComment: {
@@ -97,14 +94,11 @@ const RootStack = createStackNavigator({
   AdminUserType: {
     screen: AdminUserType,
     navigationOptions: {
-      title: 'ประเภทผู้ใช้'
+      title: 'เพิ่มประเภทผู้ใช้'
     }
   },
   AdminTypeEdit: {
-    screen: AdminTypeEdit,
-    navigationOptions: {
-      title: 'แก้ไขประเภท'
-    }
+    screen: AdminTypeEdit
   },
   AdminListStd: {
     screen: AdminListStd,
@@ -121,10 +115,7 @@ const RootStack = createStackNavigator({
 
   // อาาจารย์
   Teacher: {
-    screen: TeachHome,
-    navigationOptions: {
-      title: 'หน้าแรก'
-    }
+    screen: TeachHome
   },
   TeachVisit: {
     screen: TeachVisit,

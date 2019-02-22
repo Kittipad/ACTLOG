@@ -25,34 +25,34 @@ class HomeScreen extends Component {
     return (
       <View style={styles.view.home}>
         <TouchableOpacity
-          style={styles.icon.menu}
+          style={styles.icon.homeMenuContainer}
           onPress={() => this.UserType(this)}>
           <Icon
             name='user-plus'
             size={icoSize}
-            style={styles.icon.input}
+            style={styles.icon.color}
           />
-          <Text style={styles.input.label}>เพิ่มประเภทผู้ใช้</Text>
+          <Text style={styles.label.homeMenu}>เพิ่มประเภทผู้ใช้</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.home.menu}
+          style={styles.icon.homeMenuContainer}
           onPress={() => this.StudentList(this)}>
           <Icon
             name='user-graduate'
             size={icoSize}
-            style={styles.icon.input}
+            style={styles.icon.color}
           />
-          <Text style={styles.input.label}>รายชื่อนักศึกษา</Text>
+          <Text style={styles.label.homeMenu}>รายชื่อนักศึกษา</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.home.menu}
+          style={styles.icon.homeMenuContainer}
           onPress={() => this.TeacherList(this)}>
           <Icon
             name='chalkboard-teacher'
             size={icoSize}
-            style={styles.icon.input}
+            style={styles.icon.color}
           />
-          <Text style={styles.input.label}>รายชื่ออาจารย์</Text>
+          <Text style={styles.label.homeMenu}>รายชื่ออาจารย์</Text>
         </TouchableOpacity>
       </View>
     );

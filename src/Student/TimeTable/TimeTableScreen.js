@@ -23,7 +23,7 @@ class TimeTableScreen extends Component {
         <TouchableOpacity
           onPress={() => params.add()}
           style={{ marginRight: 15 }}>
-          <Text style={{ fontSize: 20 }}>เพิ่ม</Text>
+          {<Icon name='plus' size={20} />}
         </TouchableOpacity>
       )
     }
@@ -175,7 +175,7 @@ class TimeTableScreen extends Component {
                           key: d.key
                         })
                       }
-                      style={styles.button.main}>
+                      style={styles.button.sub}>
                       <Icon
                         name='search'
                         size={30}

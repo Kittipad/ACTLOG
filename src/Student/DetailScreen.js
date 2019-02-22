@@ -75,58 +75,58 @@ class DetailScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <NavigationEvents onDidFocus={() => this.componentDidMount()} />
-        <ScrollView style={styles.home.scrollView}>
-          <View style={styles.view.container}>
+        <ScrollView style={styles.view.scrollView}>
+          <View style={styles.view.detailContainer}>
             <Card containerStyle={styles.view.card}>
-              <View style={styles.timeTable.container}>
-                <Text style={styles.detail.name}>{fname + '  ' + lname}</Text>
+              <View style={styles.view.headerContainer}>
+                <Text style={styles.label.header}>{fname + '  ' + lname}</Text>
 
                 <View style={styles.view.containerWithBorder}>
                   <Icon
-                    style={styles.detail.icon}
+                    style={styles.icon.detail}
                     name='id-card'
                     size={22} />
-                  <Text style={styles.detail.label}>{sid}</Text>
+                  <Text style={styles.label.detail}>{sid}</Text>
                 </View>
 
                 <View style={styles.view.containerWithBorder}>
                   <Icon
-                    style={styles.detail.icon}
+                    style={styles.icon.detail}
                     name='shapes'
                     size={22} />
-                  <Text style={styles.detail.label}>{group}</Text>
+                  <Text style={styles.label.detail}>{group}</Text>
                 </View>
 
                 <View style={styles.view.containerWithBorder}>
                   <Icon
-                    style={styles.detail.icon}
+                    style={styles.icon.detail}
                     name='graduation-cap'
                     size={22} />
-                  <Text style={styles.detail.label}>{subject}</Text>
+                  <Text style={styles.label.detail}>{subject}</Text>
                 </View>
 
                 <View style={styles.view.containerWithBorder}>
                   <Icon
-                    style={styles.detail.icon}
+                    style={styles.icon.detail}
                     name='phone'
                     size={22} />
-                  <Text style={styles.detail.label}>{telNum}</Text>
+                  <Text style={styles.label.detail}>{telNum}</Text>
                 </View>
 
                 <View style={styles.view.containerWithBorder}>
                   <Icon
-                    style={styles.detail.icon}
+                    style={styles.icon.detail}
                     name='envelope'
                     size={22} />
-                  <Text style={styles.detail.label}>{email}</Text>
+                  <Text style={styles.label.detail}>{email}</Text>
                 </View>
 
                 <View style={styles.view.containerWithBorder}>
                   <Icon
-                    style={styles.detail.icon}
+                    style={styles.icon.detail}
                     name='clock'
                     size={22} />
-                  <Text style={styles.detail.label}>{date}</Text>
+                  <Text style={styles.label.detail}>{date}</Text>
                 </View>
 
               </View>

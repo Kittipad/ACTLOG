@@ -7,9 +7,8 @@ import {
   Image,
   Alert
 } from 'react-native'
-import {
-  Card,
-} from 'react-native-elements'
+import { Card } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import { NavigationEvents } from 'react-navigation'
 import firebase from 'react-native-firebase'
 import styles from '../../styles'
@@ -18,12 +17,12 @@ class ActivityScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     return {
-      headerTitle: 'กิจกรรม',
+      headerTitle: 'บันทึกกิจกรรม',
       headerRight: (
         <TouchableOpacity
           onPress={() => params.edit()}
           style={{ marginRight: 15 }}>
-          <Text style={{ fontSize: 20 }}>แก้ไข</Text>
+          {<Icon name='edit' size={20} />}
         </TouchableOpacity>
       )
     }
@@ -75,6 +74,7 @@ class ActivityScreen extends Component {
     const { date, morning, afternoon, key } = this.state
     return (
       <ScrollView style={styles.view.scrollView}>
+        <NavigationEvents onDidFocus={() => this.componentDidMount()} />
         <View style={styles.view.container}>
           <Card containerStyle={styles.view.cards}>
             <View style={styles.activity.container}>
@@ -86,7 +86,6 @@ class ActivityScreen extends Component {
             </View>
           </Card>
         </View>
-        <NavigationEvents onDidFocus={() => this.componentDidMount()} />
       </ScrollView>
     )
   }

@@ -7,6 +7,7 @@ import {
   Alert,
 } from 'react-native'
 import { Card } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
@@ -14,7 +15,8 @@ class UserTypeScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      list: []
+      list: [],
+      loading: false
     }
   }
 
@@ -52,7 +54,6 @@ class UserTypeScreen extends Component {
     newType = firebaseDB.ref('users/' + uid)
     newType.update({
       type: type,
-      visit: ''
     }).then(() => {
       var student
       if (type == 'Student') {
@@ -62,12 +63,50 @@ class UserTypeScreen extends Component {
           group: 'กลุ่ม',
           subject: 'เทคโนโลยีสารสนเทศ',
           date: 'ระยะเวลาฝึกงาน',
-          sidStat: true
+          sidStat: true,
+          visit: ''
         })
       }
-      Alert.alert('แก้ไขประเภทเรียบร้อย')
       this.componentDidMount()
     })
+  }
+
+  buttonStdLoader(user) {
+    if (this.state.loading) {
+      return (
+        <TouchableOpacity
+          disabled={true}
+          style={styles.button.main}>
+          <ActivityIndicator size='large' color='white' />
+        </TouchableOpacity>
+      )
+    }
+    return (
+      <TouchableOpacity
+        onPress={() => this.saveDetail(user, 'Student')}
+        style={styles.button.main}>
+        <Text style={styles.common.label}>นักศึกษา</Text>
+      </TouchableOpacity>
+    )
+  }
+
+  buttonTeacherLoader(user) {
+    if (this.state.loading) {
+      return (
+        <TouchableOpacity
+          disabled={true}
+          style={styles.button.main}>
+          <ActivityIndicator size='large' color='white' />
+        </TouchableOpacity>
+      )
+    }
+    return (
+      <TouchableOpacity
+        onPress={() => this.saveDetail(user, 'Teacher')}
+        style={styles.button.main}>
+        <Text style={styles.common.label}>อาจารย์</Text>
+      </TouchableOpacity>
+    )
   }
 
   render() {
@@ -83,16 +122,8 @@ class UserTypeScreen extends Component {
                   <Text style={styles.view.labelSub}>{user.fname}  {user.lname}</Text>
                   <Text style={styles.view.labelSub}>{user.email}</Text>
                   {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
-                  <TouchableOpacity
-                    onPress={() => this.saveDetail(user.uid, 'Student')}
-                    style={styles.button.main}>
-                    <Text style={styles.common.label}>นศ.</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.saveDetail(user.uid, 'Teacher')}
-                    style={styles.button.main}>
-                    <Text style={styles.common.label}>อาจารย์</Text>
-                  </TouchableOpacity>
+                  {this.buttonStdLoader(user.uid)}
+                  {this.buttonTeacherLoader(user.uid)}
                 </Card>
               )
             })

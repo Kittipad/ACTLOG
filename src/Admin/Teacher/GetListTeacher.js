@@ -57,18 +57,20 @@ class GetListTeacher extends Component {
             list.map((user, i) => {
               return (
                 <Card key={i} containerStyle={styles.view.cards}>
-                  <View style={styles.view.container}>
-                    <Text style={styles.view.labelHeader}>ประเภท : {user.type}</Text>
-                    <Text style={styles.view.labelSub}>{user.fname}  {user.lname}</Text>
-                    <Text style={styles.view.labelSub}>{user.email}</Text>
+                  <View style={styles.view.headerContainer}>
+                    <Text style={styles.label.header}>ประเภท : {user.type}</Text>
+                    <Text style={styles.label.sub}>{user.fname}  {user.lname}</Text>
+                    <Text style={styles.label.sub}>{user.email}</Text>
                     {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
                     <TouchableOpacity
                       onPress={() =>
                         this.props.navigation.navigate('AdminTypeEdit', {
-                          uid: user.uid
+                          uid: user.uid,
+                          fname: user.fname,
+                          lname: user.lname
                         })}
-                      style={styles.button.main}>
-                      <Text style={styles.common.label}>แก้ไขประเภทผู้ใช้</Text>
+                      style={styles.button.sub}>
+                      <Text style={styles.button.subLabel}>แก้ไขประเภทผู้ใช้</Text>
                     </TouchableOpacity>
                   </View>
                 </Card>

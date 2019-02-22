@@ -47,7 +47,7 @@ class HomeScreen extends Component {
           <Icon
             name='book'
             size={icoSize}
-            style={styles.icon.homeMenuIcon}
+            style={styles.icon.color}
           />
           <Text style={styles.label.homeMenu}>บันทึกนิเทศ</Text>
         </TouchableOpacity>
@@ -57,7 +57,7 @@ class HomeScreen extends Component {
           <Icon
             name='user-plus'
             size={icoSize}
-            style={styles.icon.homeMenuIcon}
+            style={styles.icon.color}
           />
           <Text style={styles.label.homeMenu}>เพิ่มนักศึกษา</Text>
         </TouchableOpacity>

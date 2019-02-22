@@ -95,9 +95,9 @@ class AddStudent extends Component {
             list.map((user, i) => {
               return (
                 <Card key={i} containerStyle={styles.view.cards}>
-                  <View style={styles.timeTable.container}>
-                    <Text style={styles.timeTable.headerLabel}>{user.fname}  {user.lname}</Text>
-                    <Text style={{ color: 'gray', marginBottom: 20, alignSelf: 'center' }}>{user.email}</Text>
+                  <View style={styles.view.headerContainer}>
+                    <Text style={styles.label.header}>{user.fname}  {user.lname}</Text>
+                    <Text style={styles.label.sub}>{user.email}</Text>
                     {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
                     <TouchableOpacity
                       onPress={() => this.addStudent(user.uid, user.email)}

@@ -64,11 +64,11 @@ class VisitScreen extends Component {
             return (
               <View style={styles.view.container}>
                 <Card containerStyle={styles.view.cards}>
-                  <View style={styles.activity.container}>
-                    <Text style={styles.visit.label}>{user.fname}  {user.lname}</Text>
-                    <Text style={styles.visit.label}>{user.email}</Text>
-                    <Text style={styles.visit.label}>{user.comment}</Text>
-                    <Rating
+                  <View style={styles.view.headerContainer}>
+                    <Text style={styles.label.header}>{user.fname}  {user.lname}</Text>
+                    <Text style={styles.label.sub}>{user.email}</Text>
+                    <Text style={styles.label.visitComment}>{user.comment}</Text>
+                    {/* <Rating
                       type="star"
                       fractions={0}
                       startingValue={2.5}
@@ -76,7 +76,7 @@ class VisitScreen extends Component {
                       readonly
                       onFinishRating={this.ratingCompleted}
                       onStartRating={this.ratingStarted}
-                    />
+                    /> */}
                   </View>
                 </Card>
               </View>

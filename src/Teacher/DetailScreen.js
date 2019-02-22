@@ -62,26 +62,29 @@ class DetailScreen extends Component {
     const { fname, lname, email, telNum, uuid } = this.state
     return (
       <View style={{ flex: 1 }}>
+        <NavigationEvents onDidFocus={() => this.componentDidMount()} />
         <ScrollView style={styles.view.scrollView}>
-          <NavigationEvents onDidFocus={() => this.componentDidMount()} />
-          <View style={styles.view.container}>
+          <View style={styles.view.detailContainer}>
             <Card containerStyle={styles.view.card}>
-              <View style={styles.timeTable.container}>
-                <Text style={styles.detail.name}>{fname + '  ' + lname}</Text>
+              <View style={styles.view.headerContainer}>
+                <Text style={styles.label.header}>{fname + '  ' + lname}</Text>
+
                 <View style={styles.view.containerWithBorder}>
                   <Icon
-                    style={styles.detail.icon}
+                    style={styles.icon.detail}
                     name='phone'
                     size={22} />
-                  <Text style={styles.detail.label}>{telNum}</Text>
+                  <Text style={styles.label.detail}>{telNum}</Text>
                 </View>
+
                 <View style={styles.view.containerWithBorder}>
                   <Icon
-                    style={styles.detail.icon}
+                    style={styles.icon.detail}
                     name='envelope'
                     size={22} />
-                  <Text style={styles.detail.label}>{email}</Text>
+                  <Text style={styles.label.detail}>{email}</Text>
                 </View>
+
               </View>
             </Card >
           </View>

@@ -3,8 +3,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Alert,
-  Button
+  Alert
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import styles from '../styles'
@@ -28,7 +27,7 @@ class HomeScreen extends Component {
           <Icon
             name='table'
             size={icoSize}
-            style={styles.icon.homeMenuIcon}
+            style={styles.icon.color}
           />
           <Text style={styles.label.homeMenu}>ตารางลงเวลา</Text>
         </TouchableOpacity>
@@ -38,7 +37,7 @@ class HomeScreen extends Component {
           <Icon
             name='suitcase-rolling'
             size={icoSize}
-            style={styles.icon.homeMenuIcon}
+            style={styles.icon.color}
           />
           <Text style={styles.label.homeMenu}>ดูผลการนิเทศ</Text>
         </TouchableOpacity>
