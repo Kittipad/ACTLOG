@@ -77,12 +77,12 @@ class ActivityScreen extends Component {
         <NavigationEvents onDidFocus={() => this.componentDidMount()} />
         <View style={styles.view.container}>
           <Card containerStyle={styles.view.cards}>
-            <View style={styles.activity.container}>
-              <Text style={styles.timeTable.headerLabel}>{date}</Text>
-              <Text style={styles.activity.label}>ช่วงเช้า</Text>
-              <Text style={styles.activity.detail}>{morning}</Text>
-              <Text style={styles.activity.label}>ช่วงบ่าย</Text>
-              <Text style={styles.activity.detail}>{afternoon}</Text>
+            <View style={styles.view.headerContainer}>
+              <Text style={styles.label.headerTimeTable}>{date}</Text>
+              <Text style={styles.label.actLabel}>ช่วงเช้า</Text>
+              <Text style={styles.label.subAct}>{morning}</Text>
+              <Text style={styles.label.actLabel}>ช่วงบ่าย</Text>
+              <Text style={styles.label.subAct}>{afternoon}</Text>
             </View>
           </Card>
         </View>

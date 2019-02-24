@@ -64,7 +64,7 @@ class AddActivity extends Component {
     return (
       <ScrollView style={styles.view.scrollView}>
         <TextInput
-          style={styles.activity.input}
+          style={styles.input.actField}
           placeholderTextColor='black'
           defaultValue={morning}
           onChangeText={(text) => this.setState({ morning: text })}
@@ -72,7 +72,7 @@ class AddActivity extends Component {
           autoCapitalize='none'
           autoCorrect={false} />
         <TextInput
-          style={styles.activity.input}
+          style={styles.input.actField}
           placeholderTextColor='black'
           defaultValue={afternoon}
           onChangeText={(text) => this.setState({ afternoon: text })}

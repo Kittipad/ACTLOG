@@ -58,14 +58,14 @@ class ActivityScreen extends Component {
             list.slice(0).reverse().map((user, i) => {
               return (
                 <Card key={i} containerStyle={styles.view.cards}>
-                  <View style={styles.activity.container}>
-                    <Text style={styles.visit.label}>{user.date}</Text>
+                  <View style={styles.view.headerContainer}>
+                    <Text style={styles.label.header}>{user.date}</Text>
                     <View style={{ flexDirection: 'row' }}>
-                      <TouchableOpacity style={styles.timeTable.timeButtonLeft}>
-                        <Text style={styles.timeTable.timeLabel}>{user.timeCome}</Text>
+                      <TouchableOpacity style={styles.button.timeButtonLeft}>
+                        <Text style={styles.label._sub}>{user.timeCome}</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity style={styles.timeTable.timeButtonRight}>
-                        <Text style={styles.timeTable.timeLabel}>{user.timeBack}</Text>
+                      <TouchableOpacity style={styles.button.timeButtonRight}>
+                        <Text style={styles.label._sub}>{user.timeBack}</Text>
                       </TouchableOpacity>
                     </View>
                     <TouchableOpacity

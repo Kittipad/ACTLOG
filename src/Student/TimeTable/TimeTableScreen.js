@@ -149,23 +149,23 @@ class TimeTableScreen extends Component {
     const { list } = this.state
     return (
       <View style={{ flex: 1, marginBottom: 20 }}>
-        <ScrollView style={styles.home.scrollView}>
+        <ScrollView style={styles.view.scrollView}>
           {
             list.slice(0).reverse().map((d, i) => {
               return (
                 <Card key={i} containerStyle={styles.view.cards} >
-                  <View style={styles.timeTable.container}>
-                    <Text style={styles.timeTable.headerLabel}>{d.date}</Text>
+                  <View style={styles.view.timeTableContainer}>
+                    <Text style={styles.label.headerTimeTable}>{d.date}</Text>
                     <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
                       <TouchableOpacity
-                        style={styles.timeTable.timeButtonLeft}
+                        style={styles.button.timeButtonLeft}
                         onPress={this.timeStampCome.bind(this)}>
-                        <Text style={styles.timeTable.timeLabel}>{d.timeCome}</Text>
+                        <Text style={styles.label._sub}>{d.timeCome}</Text>
                       </TouchableOpacity>
                       <TouchableOpacity
-                        style={styles.timeTable.timeButtonRight}
+                        style={styles.button.timeButtonRight}
                         onPress={this.timeStampBack.bind(this)}>
-                        <Text style={styles.timeTable.timeLabel}>{d.timeBack}</Text>
+                        <Text style={styles.label._sub}>{d.timeBack}</Text>
                       </TouchableOpacity>
                     </View>
                     <TouchableOpacity
@@ -177,7 +177,7 @@ class TimeTableScreen extends Component {
                       }
                       style={styles.button.sub}>
                       <Icon
-                        name='search'
+                        name='edit'
                         size={30}
                         color='white' />
                     </TouchableOpacity>

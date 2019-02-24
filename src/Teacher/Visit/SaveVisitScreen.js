@@ -73,7 +73,7 @@ class SaveVisitScreen extends Component {
       <ScrollView style={styles.view.scrollView}>
         {/* <Text>{vid}</Text> */}
         <TextInput
-          style={styles.activity.input}
+          style={styles.input.actField}
           multiline={true}
           placeholderTextColor='gray'
           defaultValue={comment}
