@@ -4,7 +4,8 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
+  Button
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { Input } from 'react-native-elements'
@@ -42,7 +43,7 @@ class RegisterScreen extends Component {
               type: 'none'
             }).then(() => {
               this.setState({ loading: false })
-              Alert.alert('สมัครสมาชิกสำเร็จ', '', [
+              Alert.alert('สมัครสมาชิกสำเร็จ.\nติดต่อแอดมินเพื่อยืนยันการเข้าใช้งาน', '', [
                 { text: 'OK', onPress: () => this.props.navigation.goBack() }
               ])
             })
