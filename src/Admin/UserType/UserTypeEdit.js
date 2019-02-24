@@ -48,6 +48,17 @@ class EditScreen extends Component {
     newType.update({
       type: type
     }).then(() => {
+      var student
+      if (type == 'Student') {
+        student = firebase.database().ref('users/' + uid)
+        student.update({
+          sid: 'รหัสนักศึกษา',
+          group: 'กลุ่ม',
+          subject: 'เทคโนโลยีสารสนเทศ',
+          date: 'ระยะเวลาฝึกงาน',
+          sidStat: true
+        })
+      }
       Alert.alert('แก้ไขประเภทเรียบร้อย', '', [
         { text: 'OK', onPress: () => this.props.navigation.goBack() }
       ])

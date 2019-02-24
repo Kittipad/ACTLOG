@@ -63,8 +63,7 @@ class UserTypeScreen extends Component {
           group: 'กลุ่ม',
           subject: 'เทคโนโลยีสารสนเทศ',
           date: 'ระยะเวลาฝึกงาน',
-          sidStat: true,
-          visit: ''
+          sidStat: true
         })
       }
       this.componentDidMount()
