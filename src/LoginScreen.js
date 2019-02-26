@@ -4,7 +4,8 @@ import {
   Alert,
   Text,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  Image
 } from 'react-native'
 import {
   StackActions,
@@ -108,6 +109,9 @@ class LoginScreen extends Component {
     var icoSize = 30
     return (
       <View style={styles.view.loginContainer}>
+        <Image
+          source={require('../assets/logo.png')}
+          style={{ width: 300, height: 100 }} />
         <Input
           containerStyle={styles.input.container}
           inputContainerStyle={styles.input.inputContainer}
