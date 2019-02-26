@@ -81,10 +81,7 @@ const RootStack = createStackNavigator({
     }
   },
   StudentEditDetail: {
-    screen: StdEditDetail,
-    navigationOptions: {
-      title: 'แก้ไขข้อมูลส่วนตัว'
-    }
+    screen: StdEditDetail
   },
 
   // แอดมิน
@@ -153,6 +150,17 @@ const RootStack = createStackNavigator({
       title: 'เลือกนักศึกษา'
     }
   },
-}, { initialRouteName: 'Login' })
+}, {
+    initialRouteName: 'Login',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#34495E'
+      },
+      headerTitleStyle: {
+        color: 'white'
+      },
+      headerTintColor: 'white'
+    }
+  })
 
 export default createAppContainer(RootStack)

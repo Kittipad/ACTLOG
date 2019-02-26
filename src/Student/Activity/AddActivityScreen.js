@@ -6,13 +6,22 @@ import {
   TextInput,
   Alert
 } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
 class AddActivity extends Component {
   static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state
     return {
-      title: navigation.getParam('date')
+      title: navigation.getParam('date'),
+      headerRight: (
+        <TouchableOpacity
+          onPress={() => params.save()}
+          style={{ marginRight: 15 }}>
+          {<Icon name='save' size={20} color='white' />}
+        </TouchableOpacity>
+      )
     }
   }
 
@@ -26,6 +35,7 @@ class AddActivity extends Component {
 
   componentDidMount() {
     this.getActivity()
+    this.props.navigation.setParams({ save: this.saveActivity.bind(this) })
   }
 
   saveActivity() {
@@ -79,11 +89,6 @@ class AddActivity extends Component {
           multiline={true}
           autoCapitalize='none'
           autoCorrect={false} />
-        <TouchableOpacity
-          style={styles.button.sub}
-          onPress={this.saveActivity.bind(this)}>
-          <Text style={styles.button.subLabel}>บันทึก</Text>
-        </TouchableOpacity>
       </ScrollView>
     );
   }

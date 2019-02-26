@@ -7,16 +7,24 @@ import {
   Alert,
   View
 } from 'react-native'
-import { Card, Rating, Input } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import firebase from 'react-native-firebase'
 import styles from '../../styles';
 
 class SaveVisitScreen extends Component {
   static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state
     var fname = navigation.getParam('fname')
     var lname = navigation.getParam('lname')
     return {
-      title: fname + '  ' + lname
+      title: fname + '  ' + lname,
+      headerRight: (
+        <TouchableOpacity
+          onPress={() => params.save()}
+          style={{ marginRight: 15 }}>
+          <Icon name='save' size={20} color='white' />
+        </TouchableOpacity>
+      )
     }
   }
 
@@ -30,6 +38,7 @@ class SaveVisitScreen extends Component {
 
   componentDidMount() {
     this.getList()
+    this.props.navigation.setParams({ save: this.saveVisit.bind(this) })
   }
 
   getList() {
@@ -82,11 +91,6 @@ class SaveVisitScreen extends Component {
           autoCapitalize='none'
           autoCorrect={false}>
         </TextInput>
-        <TouchableOpacity
-          style={styles.button.sub}
-          onPress={this.saveVisit.bind(this)}>
-          <Text style={styles.button.subLabel}>บันทึก</Text>
-        </TouchableOpacity>
       </ScrollView>
     )
   }

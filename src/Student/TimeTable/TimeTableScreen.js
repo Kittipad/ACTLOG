@@ -16,14 +16,14 @@ import styles from '../../styles'
 
 class TimeTableScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
+    const { params = {} } = navigation.state
     return {
       headerTitle: 'ตารางลงเวลา',
       headerRight: (
         <TouchableOpacity
           onPress={() => params.add()}
           style={{ marginRight: 15 }}>
-          {<Icon name='plus' size={20} />}
+          {<Icon name='plus' size={20} color='white' />}
         </TouchableOpacity>
       )
     }

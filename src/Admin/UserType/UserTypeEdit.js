@@ -8,15 +8,24 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import firebase from 'react-native-firebase'
 import styles from '../../styles'
 
 class EditScreen extends Component {
   static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state
     var fname = navigation.getParam('fname')
     var lname = navigation.getParam('lname')
     return {
-      title: fname + ' ' + lname
+      title: fname + ' ' + lname,
+      headerRight: (
+        <TouchableOpacity
+          onPress={() => params.save()}
+          style={{ marginRight: 15 }}>
+          <Icon name='save' size={20} color='white' />
+        </TouchableOpacity>
+      )
     }
   }
 
@@ -30,6 +39,7 @@ class EditScreen extends Component {
 
   componentDidMount() {
     this.getDetail()
+    this.props.navigation.setParams({ save: this.saveDetail.bind(this) })
   }
 
   getDetail() {
@@ -68,11 +78,6 @@ class EditScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.view.scrollView}>
-        <TouchableOpacity
-          style={styles.button.sub}
-          onPress={this.saveDetail.bind(this)}>
-          <Text style={styles.button.subLabel}>บันทึก</Text>
-        </TouchableOpacity>
         <View style={styles.view.container}>
           <Picker
             selectedValue={this.state.type}

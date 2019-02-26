@@ -15,14 +15,14 @@ import styles from '../../styles'
 
 class ActivityScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
+    const { params = {} } = navigation.state
     return {
       headerTitle: 'บันทึกกิจกรรม',
       headerRight: (
         <TouchableOpacity
           onPress={() => params.edit()}
           style={{ marginRight: 15 }}>
-          {<Icon name='edit' size={20} />}
+          {<Icon name='edit' size={20} color='white' />}
         </TouchableOpacity>
       )
     }
