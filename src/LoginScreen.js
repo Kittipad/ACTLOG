@@ -49,7 +49,14 @@ class LoginScreen extends Component {
         })
     } else {
       this.setState({ loading: false })
-      Alert.alert('กรุณาป้อนข้อมูล')
+      Alert.alert(
+        'แจ้งเตือน',
+        'กรุณาป้อนข้อมูล!',
+        [
+          { text: 'ตกลง' },
+        ],
+        { cancelable: false },
+      )
     }
   }
 
