@@ -40,12 +40,18 @@ class RegisterScreen extends Component {
               fname: 'ชื่อจริง',
               lname: 'นามสกุล',
               telNum: 'เบอร์โทร',
-              type: 'none'
+              type: 'none',
+              avatar: ''
             }).then(() => {
               this.setState({ loading: false })
-              Alert.alert('สมัครสมาชิกสำเร็จ.\nติดต่อแอดมินเพื่อยืนยันการเข้าใช้งาน', '', [
-                { text: 'OK', onPress: () => this.props.navigation.goBack() }
-              ])
+              Alert.alert(
+                'แจ้งเตือน',
+                'สมัครสมาชิกสำเร็จ.\nติดต่อแอดมินเพื่อยืนยันการเข้าใช้งาน',
+                [
+                  { text: 'ตกลง', onPress: () => this.props.navigation.goBack() },
+                ],
+                { cancelable: false },
+              )
             })
           }).catch((error) => {
             this.setState({ loading: false })
@@ -55,7 +61,14 @@ class RegisterScreen extends Component {
         this.setState({ error: 'รหัสผ่านไม่ตรงกัน' })
       }
     } else {
-      Alert.alert('กรุณากรอกข้อมูลให้ครบ')
+      Alert.alert(
+        'แจ้งเตือน',
+        'กรุณากรอกข้อมูลให้ครบ!',
+        [
+          { text: 'ตกลง' },
+        ],
+        { cancelable: false },
+      )
     }
   }
 

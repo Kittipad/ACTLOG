@@ -21,9 +21,20 @@ class EditScreen extends Component {
       title: fname + ' ' + lname,
       headerRight: (
         <TouchableOpacity
-          onPress={() => params.save()}
-          style={{ marginRight: 15 }}>
-          <Icon name='save' size={20} color='white' />
+          onPress={() => Alert.alert(
+            'แจ้งเตือน',
+            'แน่ใจที่จะบันทึกข้อมูล ?',
+            [
+              {
+                text: 'ยกเลิก',
+                style: 'cancel',
+              },
+              { text: 'ตกลง', onPress: () => params.save() },
+            ],
+            { cancelable: false },
+          )}
+          style={styles.button.headerRight}>
+          <Icon name='save' size={30} color='white' />
         </TouchableOpacity>
       )
     }
@@ -66,10 +77,11 @@ class EditScreen extends Component {
           group: 'กลุ่ม',
           subject: 'เทคโนโลยีสารสนเทศ',
           date: 'ระยะเวลาฝึกงาน',
-          sidStat: true
+          sidStat: true,
+          vStat: true
         })
       }
-      Alert.alert('แก้ไขประเภทเรียบร้อย', '', [
+      Alert.alert('แจ้งเตือ', 'แก้ไขข้อมูลแล้ว.', [
         { text: 'OK', onPress: () => this.props.navigation.goBack() }
       ])
     })
