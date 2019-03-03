@@ -3,7 +3,8 @@ import {
   View,
   Text,
   ScrollView,
-  Alert
+  Alert,
+  TouchableOpacity
 } from 'react-native'
 import {
   Card,
@@ -35,7 +36,7 @@ class VisitScreen extends Component {
         var val
         val = child.val()
         tuid = val.tuid
-        // console.log(val.comment)
+        var key = child.key
         tname = firebase.database().ref('users/' + tuid)
         tname.once('value').then((snapshot) => {
           // console.log(snapshot.val())
@@ -44,7 +45,8 @@ class VisitScreen extends Component {
             fname: tval.fname,
             lname: tval.lname,
             email: tval.email,
-            comment: val.comment
+            comment: val.comment,
+            key: key
           })
           this.setState({
             list: items,
@@ -68,15 +70,13 @@ class VisitScreen extends Component {
                     <Text style={styles.label.header}>{user.fname}  {user.lname}</Text>
                     <Text style={styles.label.sub}>{user.email}</Text>
                     <Text style={styles.label.visitComment}>{user.comment}</Text>
-                    {/* <Rating
-                      type="star"
-                      fractions={0}
-                      startingValue={2.5}
-                      imageSize={40}
-                      readonly
-                      onFinishRating={this.ratingCompleted}
-                      onStartRating={this.ratingStarted}
-                    /> */}
+                    <TouchableOpacity
+                      onPress={() => this.props.navigation.navigate('StudentViewVisit', {
+                        key: user.key
+                      })}
+                      style={styles.button.sub}>
+                      <Text style={styles.button.subLabel}>ดูเพิ่มเติม</Text>
+                    </TouchableOpacity>
                   </View>
                 </Card>
               </View>
