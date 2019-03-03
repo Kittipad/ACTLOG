@@ -44,7 +44,7 @@ class UserTypeScreen extends Component {
         }
         this.setState({ list: items })
       })
-      console.log(this.state.list)
+      // console.log(this.state.list)
     })
   }
 
@@ -63,14 +63,15 @@ class UserTypeScreen extends Component {
           group: 'กลุ่ม',
           subject: 'เทคโนโลยีสารสนเทศ',
           date: 'ระยะเวลาฝึกงาน',
-          sidStat: true
+          sidStat: true,
+          vStat: true
         })
       }
       this.componentDidMount()
     })
   }
 
-  buttonStdLoader(user) {
+  buttonLoader(user, type, label) {
     if (this.state.loading) {
       return (
         <TouchableOpacity
@@ -82,28 +83,20 @@ class UserTypeScreen extends Component {
     }
     return (
       <TouchableOpacity
-        onPress={() => this.saveDetail(user, 'Student')}
+        onPress={() => Alert.alert(
+          'แจ้งเตือน',
+          'แน่ใจที่จะเปลี่ยนแปลงข้อมูล ?',
+          [
+            {
+              text: 'ยกเลิก',
+              style: 'cancel',
+            },
+            { text: 'ตกลง', onPress: () => this.saveDetail(user, type) },
+          ],
+          { cancelable: false },
+        )}
         style={styles.button.main}>
-        <Text style={styles.common.label}>นักศึกษา</Text>
-      </TouchableOpacity>
-    )
-  }
-
-  buttonTeacherLoader(user) {
-    if (this.state.loading) {
-      return (
-        <TouchableOpacity
-          disabled={true}
-          style={styles.button.main}>
-          <ActivityIndicator size='large' color='white' />
-        </TouchableOpacity>
-      )
-    }
-    return (
-      <TouchableOpacity
-        onPress={() => this.saveDetail(user, 'Teacher')}
-        style={styles.button.main}>
-        <Text style={styles.common.label}>อาจารย์</Text>
+        <Text style={styles.button.mainLabel}>{label}</Text>
       </TouchableOpacity>
     )
   }
@@ -121,8 +114,8 @@ class UserTypeScreen extends Component {
                   <Text style={styles.view.labelSub}>{user.fname}  {user.lname}</Text>
                   <Text style={styles.view.labelSub}>{user.email}</Text>
                   {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
-                  {this.buttonStdLoader(user.uid)}
-                  {this.buttonTeacherLoader(user.uid)}
+                  {this.buttonLoader(user.uid, 'Student', 'นักศึกษา')}
+                  {this.buttonLoader(user.uid, 'Teacher', 'อาจารย​์')}
                 </Card>
               )
             })

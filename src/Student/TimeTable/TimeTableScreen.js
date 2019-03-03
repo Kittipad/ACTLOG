@@ -21,9 +21,20 @@ class TimeTableScreen extends Component {
       headerTitle: 'ตารางลงเวลา',
       headerRight: (
         <TouchableOpacity
-          onPress={() => params.add()}
-          style={{ marginRight: 15 }}>
-          {<Icon name='plus' size={20} color='white' />}
+          onPress={() => Alert.alert(
+            'แจ้งเตือน',
+            'แน่ใจที่จะเพิ่มตางราง ?',
+            [
+              {
+                text: 'ยกเลิก',
+                style: 'cancel',
+              },
+              { text: 'ตกลง', onPress: () => params.add() },
+            ],
+            { cancelable: false },
+          )}
+          style={styles.button.headerRight}>
+          {<Icon name='plus' size={30} color='white' />}
         </TouchableOpacity>
       )
     }
@@ -33,11 +44,10 @@ class TimeTableScreen extends Component {
     super(props)
     this.state = {
       list: [],
-      key: '',
       currentDate: '',
       timeCome: '',
       timeBack: '',
-      loading: false,
+      loading: false
     }
   }
 
@@ -53,6 +63,7 @@ class TimeTableScreen extends Component {
     table.once('value').then(snapshot => {
       snapshot.forEach((childSnapshot) => {
         key = childSnapshot.key
+        console.log(key)
         child = childSnapshot.val()
         currentDate = child.date
         items.push({
@@ -62,7 +73,6 @@ class TimeTableScreen extends Component {
           timeBack: child.timeBack,
         })
         this.setState({
-          key: key,
           currentDate: currentDate,
           timeCome: child.timeCome,
           timeBack: child.timeBack
@@ -71,14 +81,40 @@ class TimeTableScreen extends Component {
       this.setState({
         list: items,
       })
-      console.log(this.state.list)
+      // console.log(this.state.list)
     })
   }
 
   addNewList() {
-    var uid, timeTable, date, year, month, day
+    var uid, timeTable, date, year, month, day, vStat, tnum, visitStat
     uid = firebase.auth().currentUser.uid
     timeTable = firebase.database().ref('timeTable/' + uid)
+    vStat = firebase.database().ref('users/' + uid)
+    vStat.once('value').then((snapshot) => {
+      visitStat = snapshot.val().vStat
+      console.log('Firebase: ' + visitStat)
+      if (visitStat == true) {
+        tnum = firebase.database().ref('users')
+        tnum = tnum.orderByChild('type').equalTo('Teacher')
+        tnum.once('value').then((snapshot) => {
+          snapshot.forEach((child) => {
+            console.log(child.key)
+            visit = firebase.database().ref('visit')
+            visit.push({
+              tuid: child.key,
+              suid: uid,
+              comment: '',
+              stat: true
+            })
+          })
+        }).then(() => {
+          firebase.database().ref('users/' + uid)
+            .update({
+              vStat: false
+            })
+        })
+      }
+    })
 
     date = new Date()
     year = date.getFullYear()
@@ -87,6 +123,7 @@ class TimeTableScreen extends Component {
     date = year + '-' + month + '-' + day
 
     if (this.state.currentDate != date) {
+
       this.setState({ loading: true })
       timeTable.push({
         date: date,
@@ -99,12 +136,18 @@ class TimeTableScreen extends Component {
         this.componentDidMount()
       })
     } else {
-      Alert.alert('วันที่ซ้ำ')
+      Alert.alert(
+        'แจ้งเตือน',
+        'วันนี้ลงตารางเวลาแล้ว !',
+        [
+          { text: 'ตกลง' },
+        ],
+        { cancelable: false },
+      )
     }
   }
 
-  timeStampCome() {
-    const { key, timeCome } = this.state
+  timeStampCome = (timeCome, key) => {
     var uid, time, hour, minute, timeStamp
     uid = firebase.auth().currentUser.uid
     time = firebase.database().ref('timeTable/' + uid + '/' + key)
@@ -124,8 +167,7 @@ class TimeTableScreen extends Component {
     }
   }
 
-  timeStampBack() {
-    const { key, timeBack } = this.state
+  timeStampBack = (timeBack, key) => {
     var uid, time, hour, minute, timeStamp
     uid = firebase.auth().currentUser.uid
     time = firebase.database().ref('timeTable/' + uid + '/' + key)
@@ -147,32 +189,33 @@ class TimeTableScreen extends Component {
 
   render() {
     const { list } = this.state
+    console.log(list)
     return (
       <View style={{ flex: 1, marginBottom: 20 }}>
         <ScrollView style={styles.view.scrollView}>
           {
-            list.slice(0).reverse().map((d, i) => {
+            list.slice(0).reverse().map((user, i) => {
               return (
                 <Card key={i} containerStyle={styles.view.cards} >
                   <View style={styles.view.timeTableContainer}>
-                    <Text style={styles.label.headerTimeTable}>{d.date}</Text>
+                    <Text style={styles.label.headerTimeTable}>{user.date}</Text>
                     <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
                       <TouchableOpacity
                         style={styles.button.timeButtonLeft}
-                        onPress={this.timeStampCome.bind(this)}>
-                        <Text style={styles.label._sub}>{d.timeCome}</Text>
+                        onPress={() => this.timeStampCome(user.timeCome, user.key)}>
+                        <Text style={styles.label._sub}>{user.timeCome}</Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={styles.button.timeButtonRight}
-                        onPress={this.timeStampBack.bind(this)}>
-                        <Text style={styles.label._sub}>{d.timeBack}</Text>
+                        onPress={() => this.timeStampBack(user.timeBack, user.key)}>
+                        <Text style={styles.label._sub}>{user.timeBack}</Text>
                       </TouchableOpacity>
                     </View>
                     <TouchableOpacity
                       onPress={() =>
                         this.props.navigation.navigate('StudentActivity', {
-                          date: d.date,
-                          key: d.key
+                          date: user.date,
+                          key: user.key
                         })
                       }
                       style={styles.button.sub}>

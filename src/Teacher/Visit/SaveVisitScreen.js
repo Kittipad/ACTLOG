@@ -20,9 +20,20 @@ class SaveVisitScreen extends Component {
       title: fname + '  ' + lname,
       headerRight: (
         <TouchableOpacity
-          onPress={() => params.save()}
-          style={{ marginRight: 15 }}>
-          <Icon name='save' size={20} color='white' />
+          onPress={() => Alert.alert(
+            'แจ้งเตือน',
+            'แน่ใจที่จะบันทึกข้อมูล ?',
+            [
+              {
+                text: 'ยกเลิก',
+                style: 'cancel',
+              },
+              { text: 'ตกลง', onPress: () => params.save() },
+            ],
+            { cancelable: false },
+          )}
+          style={styles.button.headerRight}>
+          <Icon name='save' size={30} color='white' />
         </TouchableOpacity>
       )
     }
@@ -44,33 +55,39 @@ class SaveVisitScreen extends Component {
   getList() {
     var suid = this.props.navigation.getParam('suid')
     var tuid = this.props.navigation.getParam('tuid')
-    // console.log(suid)
-    var users
-    users = firebase.database().ref('visit')
-    users = users.orderByChild('tuid').equalTo(tuid)
-    users.once('value').then((snapshot) => {
-      snapshot.forEach((child) => {
-        val = child.val()
-        var key = child.key
-        console.log(key)
-        if (suid == val.suid) {
-          this.setState({
-            comment: val.comment,
-            vid: key
-          })
-        }
+    // console.log(`${suid} ${tuid}`)
+    var visit = firebase.database().ref('visit')
+
+    visit.orderByChild('tuid').equalTo(tuid)
+      .once('value').then((snapshot) => {
+        snapshot.forEach((child) => {
+          if (suid == child.val().suid) {
+            firebase.database().ref(`visit/${child.key}`)
+              .once('value').then((snapshot) => {
+                this.setState({
+                  comment: snapshot.val().comment,
+                  vid: child.key
+                })
+              })
+          }
+        })
       })
-    })
-    // console.log(tuid)
   }
 
   saveVisit() {
     const { comment, vid } = this.state
-    var visit = firebase.database().ref('visit/' + vid)
+    var visit = firebase.database().ref(`visit/${vid}`)
     visit.update({
       comment: comment
     }).then(() => {
-      Alert.alert('บันทึกสำเร็จ')
+      Alert.alert(
+        'แจ้งเตือน',
+        'บันทึกข้อมูลสำเร็จ.',
+        [
+          { text: 'ตกลง' },
+        ],
+        { cancelable: false },
+      )
       this.props.navigation.goBack()
     })
   }

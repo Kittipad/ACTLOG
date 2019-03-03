@@ -21,8 +21,8 @@ class ActivityScreen extends Component {
       headerRight: (
         <TouchableOpacity
           onPress={() => params.edit()}
-          style={{ marginRight: 15 }}>
-          {<Icon name='edit' size={20} color='white' />}
+          style={styles.button.headerRight}>
+          {<Icon name='edit' size={30} color='white' />}
         </TouchableOpacity>
       )
     }
@@ -35,6 +35,7 @@ class ActivityScreen extends Component {
       date: '',
       morning: '',
       afternoon: '',
+      list: []
     }
   }
 
@@ -52,9 +53,10 @@ class ActivityScreen extends Component {
   }
 
   getList() {
-    var uid, table
+    var uid, table, items = []
     var date = this.props.navigation.getParam('date')
     var key = this.props.navigation.getParam('key')
+    var photos = firebase.database()
     console.log(date)
     console.log(key)
     uid = firebase.auth().currentUser.uid
@@ -68,10 +70,20 @@ class ActivityScreen extends Component {
         afternoon: child.afternoon
       })
     })
+    photos.ref(`timeTable/${uid}/${key}/photos`)
+      .once('value').then((snapshot) => {
+        snapshot.forEach((child) => {
+          items.push({
+            photo: child.val().photo
+          })
+        })
+        this.setState({ list: items })
+      })
   }
 
   render() {
-    const { date, morning, afternoon, key } = this.state
+    const { date, morning, afternoon, list } = this.state
+    console.log(list)
     return (
       <ScrollView style={styles.view.scrollView}>
         <NavigationEvents onDidFocus={() => this.componentDidMount()} />
@@ -86,6 +98,17 @@ class ActivityScreen extends Component {
             </View>
           </Card>
         </View>
+        {
+          list.map((p, i) => {
+            return (
+              <Card key={i}>
+                <Image
+                  style={{ width: '100%', height: 300 }}
+                  source={{ uri: p.photo }} />
+              </Card>
+            )
+          })
+        }
       </ScrollView>
     )
   }

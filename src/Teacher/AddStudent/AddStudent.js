@@ -24,65 +24,61 @@ class AddStudent extends Component {
   }
 
   getList() {
-    var items = [], users, teacher, visit
+    var items = [], visit
     var tuid = firebase.auth().currentUser.uid
-    users = firebase.database().ref('users')
-    users = users.orderByChild('type').equalTo('Student')
-    users.once('value').then((snapshot) => {
-      snapshot.forEach((child) => {
-        val = child.val()
-        // console.log(visit)
-        // if (visit != tuid) {
-        items.push({
-          fname: val.fname,
-          lname: val.lname,
-          uid: val.uid,
-          email: val.email,
+    var std = firebase.database().ref('users')
+    var visit = firebase.database().ref('visit')
+
+    visit.orderByChild('tuid').equalTo(tuid)
+      .once('value').then((snapshot) => {
+        snapshot.forEach((child) => {
+          var suid = child.val().suid
+          var tuid = child.val().tuid
+          var stat = child.val().stat
+          console.log(`${suid} ${tuid} ${stat}`)
+          if (stat == true) {
+            std.child(suid).once('value').then((snapshot) => {
+              var val = snapshot.val()
+              items.push({
+                fname: val.fname,
+                lname: val.lname,
+                email: val.email,
+                sid: val.sid,
+                uid: val.uid
+              })
+              this.setState({ list: items })
+            })
+          }
         })
-        this.setState({ list: items })
-        // }
       })
-    })
   }
 
-  addStudent(suid, email) {
-    var users, tuid, firebaseAuth, firebaseDB
-    firebaseAuth = firebase.auth()
-    firebaseDB = firebase.database()
-    tuid = firebaseAuth.currentUser.uid
-    users = firebaseDB.ref('users/' + tuid + '/std/' + suid)
-    users.update({
-      email: email
-    }).then(() => {
-      this.addVisit(tuid, suid)
-      this.updateStat(tuid, suid)
-    })
-    // Alert.alert(tuid)
-    // Alert.alert(suid)
-  }
+  addStudent(suid) {
+    var visit, tuid
+    tuid = firebase.auth().currentUser.uid
+    visit = firebase.database().ref('visit')
 
-  addVisit(tuid, suid) {
-    var users, firebaseDB
-    firebaseDB = firebase.database()
-    users = firebaseDB.ref('visit/')
-    users.push({
-      tuid: tuid,
-      suid: suid,
-      comment: 'comment'
-    })
-    // console.log(tuid)
-    // console.log(suid)
-  }
-
-  updateStat(tuid, suid) {
-    var users, email, tuid
-    // console.log(tuid)
-    email = firebase.auth().currentUser.email
-    users = firebase.database().ref('users/' + suid + '/visit/' + tuid)
-    // console.log(email)
-    users.set({
-      email: email
-    })
+    visit.orderByChild('suid').equalTo(suid)
+      .once('value').then((snapshot) => {
+        snapshot.forEach((child) => {
+          if (tuid == child.val().tuid) {
+            var key = child.key
+            firebase.database().ref(`visit/${key}`)
+              .update({
+                stat: false
+              })
+          }
+        })
+      }).then(() => {
+        Alert.alert(
+          'แจ้งเตือน',
+          'เพิ่มนักศึกษาแล้ว !',
+          [
+            { text: 'ตกลง' },
+          ],
+          { cancelable: false },
+        )
+      })
   }
 
   render() {
@@ -98,9 +94,11 @@ class AddStudent extends Component {
                   <View style={styles.view.headerContainer}>
                     <Text style={styles.label.header}>{user.fname}  {user.lname}</Text>
                     <Text style={styles.label.sub}>{user.email}</Text>
+                    <Text style={styles.label.sub}>{user.sid}</Text>
+                    <Text style={styles.label.sub}>{user.uid}</Text>
                     {/* <Text style={{ color: 'gray', marginBottom: 20 }}>{user.uid}</Text> */}
                     <TouchableOpacity
-                      onPress={() => this.addStudent(user.uid, user.email)}
+                      onPress={() => this.addStudent(user.uid)}
                       style={styles.button.sub}>
                       <Text style={styles.button.subLabel}>เพิ่ม</Text>
                     </TouchableOpacity>

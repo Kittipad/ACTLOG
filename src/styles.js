@@ -83,7 +83,7 @@ const button = StyleSheet.create({
   },
   timeButtonLeft: {
     backgroundColor: '#34495E',
-    width: 120, height: 50,
+    width: 110, height: 35,
     justifyContent: 'center',
     borderBottomLeftRadius: 10,
     borderTopLeftRadius: 10,
@@ -92,13 +92,20 @@ const button = StyleSheet.create({
   },
   timeButtonRight: {
     backgroundColor: '#34495E',
-    width: 120, height: 50,
+    width: 110, height: 35,
     justifyContent: 'center',
     borderBottomRightRadius: 10,
     borderTopRightRadius: 10,
     marginLeft: 1,
     marginRight: 10
   },
+  headerRight: {
+    marginRight: 20,
+    width: 40, height: 40,
+    // backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 })
 
 const input = StyleSheet.create({

@@ -18,9 +18,20 @@ class EditDetailScreen extends Component {
       title: 'แก้ไขข้อมูลส่วนตัว',
       headerRight: (
         <TouchableOpacity
-          onPress={() => params.save()}
-          style={{ marginRight: 15 }}>
-          <Icon name='save' size={20} color='white' />
+          onPress={() => Alert.alert(
+            'แจ้งเตือน',
+            'แน่ใจที่จะบันทึกข้อมูล ?',
+            [
+              {
+                text: 'ยกเลิก',
+                style: 'cancel',
+              },
+              { text: 'ตกลง', onPress: () => params.save() },
+            ],
+            { cancelable: false },
+          )}
+          style={styles.button.headerRight}>
+          <Icon name='save' size={30} color='white' />
         </TouchableOpacity>
       )
     }
@@ -63,7 +74,14 @@ class EditDetailScreen extends Component {
       lname: lname,
       telNum: telNum
     }).then(() => {
-      Alert.alert('แก้ไขแล้ว')
+      Alert.alert(
+        'แจ้งเตือน',
+        'บันทึกข้อมูลแล้ว.',
+        [
+          { text: 'ตกลง' },
+        ],
+        { cancelable: false },
+      )
       this.props.navigation.goBack()
     })
   }

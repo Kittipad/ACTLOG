@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 import {
   Avatar,
   Card,
-} from 'react-native-elements';
+} from 'react-native-elements'
 import { NavigationEvents } from 'react-navigation'
 import firebase from 'react-native-firebase'
 import styles from '../styles'
@@ -25,6 +25,7 @@ class DetailScreen extends Component {
       email: '',
       telNum: '',
       uuid: '',
+      avatar: ''
     }
   }
 
@@ -48,14 +49,15 @@ class DetailScreen extends Component {
         telNum: data.telNum,
         email: data.email,
         date: data.date,
-        sidStat: data.sidStat
+        sidStat: data.sidStat,
+        avatar: data.avatar
       })
       console.log(data)
     })
   }
 
   editDetail() {
-    const { sid, fname, lname, group, subject, telNum, email, date, sidStat, uuid } = this.state
+    const { sid, fname, lname, group, subject, telNum, email, date, sidStat, uuid, avatar } = this.state
     this.props.navigation.navigate('StudentEditDetail', {
       sid: sid,
       fname: fname,
@@ -66,12 +68,13 @@ class DetailScreen extends Component {
       telNum: telNum,
       date: date,
       sidStat: sidStat,
-      uuid: uuid
+      uuid: uuid,
+      avatar: avatar
     })
   }
 
   render() {
-    const { sid, fname, lname, group, subject, telNum, email, date, sidStat, uuid } = this.state
+    const { sid, fname, lname, group, subject, telNum, email, date, avatar, uuid } = this.state
     return (
       <View style={{ flex: 1 }}>
         <NavigationEvents onDidFocus={() => this.componentDidMount()} />
@@ -79,6 +82,13 @@ class DetailScreen extends Component {
           <View style={styles.view.detailContainer}>
             <Card containerStyle={styles.view.card}>
               <View style={styles.view.headerContainer}>
+                <Avatar
+                  source={{ uri: avatar }}
+                  size='xlarge'
+                  rounded
+                  containerStyle={{ alignSelf: 'center', margin: 20 }}
+                />
+
                 <Text style={styles.label.header}>{fname + '  ' + lname}</Text>
 
                 <View style={styles.view.containerWithBorder}>
