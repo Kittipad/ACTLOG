@@ -179,7 +179,7 @@ class EditDetailScreen extends Component {
     firebase.database().ref(`users/${uid}`)
       .update({ avatar: url })
       .then(() => {
-        Alert.alert('upload avatar success!')
+        Alert.alert('อัพโหลดรูปโปรไฟล์เสร็จแล้ว!')
       })
   }
 
