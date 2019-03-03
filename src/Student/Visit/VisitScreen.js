@@ -26,34 +26,36 @@ class VisitScreen extends Component {
   }
 
   getList() {
-    var items = [], teacher, uid, tname, tuid
-    uid = firebase.auth().currentUser.uid
-    teacher = firebase.database().ref('visit')
-    teacher = teacher.orderByChild('suid').equalTo(uid)
-    teacher.once('value').then((snapshot) => {
-      // console.log(snapshot.val())
-      snapshot.forEach((child) => {
-        var val
-        val = child.val()
-        tuid = val.tuid
-        var key = child.key
-        tname = firebase.database().ref('users/' + tuid)
-        tname.once('value').then((snapshot) => {
-          // console.log(snapshot.val())
-          tval = snapshot.val()
-          items.push({
-            fname: tval.fname,
-            lname: tval.lname,
-            email: tval.email,
-            comment: val.comment,
-            key: key
-          })
-          this.setState({
-            list: items,
-          })
+    var items = [], visit
+    var suid = firebase.auth().currentUser.uid
+    var std = firebase.database().ref('users')
+    var visit = firebase.database().ref('visit')
+
+    visit.orderByChild('suid').equalTo(suid)
+      .once('value').then((snapshot) => {
+        snapshot.forEach((child) => {
+          var suid = child.val().suid
+          var tuid = child.val().tuid
+          var stat = child.val().stat
+          var key = child.key
+          console.log(`${suid} ${tuid} ${stat}`)
+          if (stat == false) {
+            std.child(tuid).once('value').then((snapshot) => {
+              var val = snapshot.val()
+              items.push({
+                fname: val.fname,
+                lname: val.lname,
+                email: val.email,
+                sid: val.sid,
+                uid: val.uid,
+                comment: child.val().comment,
+                key: key
+              })
+              this.setState({ list: items })
+            })
+          }
         })
       })
-    })
   }
 
   render() {
@@ -65,7 +67,7 @@ class VisitScreen extends Component {
           list.map((user, i) => {
             return (
               <View style={styles.view.container}>
-                <Card containerStyle={styles.view.cards}>
+                <Card key={i} containerStyle={styles.view.cards}>
                   <View style={styles.view.headerContainer}>
                     <Text style={styles.label.header}>{user.fname}  {user.lname}</Text>
                     <Text style={styles.label.sub}>{user.email}</Text>
