@@ -56,6 +56,7 @@
 		CC539A18642141A7970849EF /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E875725AA2548538095CD7D /* Feather.ttf */; };
 		D9744F4A474A40F6A5F35BD6 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C955348BBE740EBA30AC222 /* libRNVectorIcons.a */; };
 		F6E3D5D4F12149FFAC5F6A97 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E00F5C4250A4826B1C628AA /* Foundation.ttf */; };
+		EBD3FFF8F44F48909419A68E /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48BADD17BE214756B86822CE /* AntDesign.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -408,6 +409,7 @@
 		F355BCC6C98C46CE96DABE4C /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		F89025EE190C4661AA0FF9D2 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		FFB79BC71CD64572A543228C /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
+		48BADD17BE214756B86822CE /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -623,6 +625,7 @@
 				22F7B172B1AE4248BD4D5E12 /* Octicons.ttf */,
 				A2D7C77519A14F00BD4FD912 /* SimpleLineIcons.ttf */,
 				F355BCC6C98C46CE96DABE4C /* Zocial.ttf */,
+				48BADD17BE214756B86822CE /* AntDesign.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1242,6 +1245,7 @@
 				87659B51CEE240B0B388AB67 /* Octicons.ttf in Resources */,
 				46631C7FEF114800BC528FA6 /* SimpleLineIcons.ttf in Resources */,
 				449FEF5F1A5E441D87A5B1E4 /* Zocial.ttf in Resources */,
+				EBD3FFF8F44F48909419A68E /* AntDesign.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

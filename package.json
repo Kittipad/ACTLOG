@@ -1,6 +1,6 @@
 {
   "name": "ACTLOG",
-  "version": "1.0.1",
+  "version": "1.2.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -9,11 +9,14 @@
   "dependencies": {
     "react": "^16.6.3",
     "react-native": "^0.57.8",
-    "react-native-elements": "^1.0.0-beta7",
+    "react-native-elements": "^1.1.0",
     "react-native-firebase": "^5.2.2",
     "react-native-gesture-handler": "^1.0.10",
-    "react-native-vector-icons": "^5.0.0",
-    "react-navigation": "^3.3.0"
+    "react-native-image-crop-picker": "^0.23.0",
+    "react-native-image-picker": "^0.28.0",
+    "react-native-vector-icons": "^6.0.0",
+    "react-navigation": "^3.3.0",
+    "rn-fetch-blob": "^0.10.15"
   },
   "devDependencies": {
     "babel-jest": "^24.1.0",

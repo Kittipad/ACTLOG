@@ -9,6 +9,12 @@ target 'ACTLOG' do
   pod 'Firebase/Database'
   # Pods for ACTLOG
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+
+  pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
+
   target 'ACTLOGTests' do
     inherit! :search_paths
     # Pods for testing

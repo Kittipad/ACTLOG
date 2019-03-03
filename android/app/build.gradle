@@ -148,6 +148,9 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-image-crop-picker')
+    implementation project(':rn-fetch-blob')
+    implementation project(':react-native-image-picker')
     implementation project(':react-native-firebase')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
@@ -159,6 +162,7 @@ dependencies {
     implementation "com.google.firebase:firebase-core:16.0.4"
     implementation "com.google.firebase:firebase-auth:16.0.4"
     implementation "com.google.firebase:firebase-database:16.0.6"
+    implementation "com.google.firebase:firebase-storage:16.0.4"
     
 }
 
