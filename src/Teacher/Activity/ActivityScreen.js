@@ -16,7 +16,8 @@ class ActivityScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      list: []
+      list: [],
+      photo: []
     }
   }
 
@@ -25,22 +26,23 @@ class ActivityScreen extends Component {
   }
 
   getList() {
-    var suid, table, items = []
+    var suid, table, items = [], photo = []
     suid = this.props.navigation.getParam('suid')
     table = firebase.database().ref('timeTable/' + suid)
     table.once('value').then((snapshot) => {
       // console.log(snapshot.val())
       snapshot.forEach((child) => {
-        // console.log(child.key)
         val = child.val()
         key = child.key
+        console.log(key)
         items.push({
           date: val.date,
           timeCome: val.timeCome,
           timeBack: val.timeBack,
           morning: val.morning,
           afternoon: val.afternoon,
-          key: key
+          key: key,
+          suid: suid
         })
         this.setState({
           list: items
@@ -71,7 +73,9 @@ class ActivityScreen extends Component {
                     <TouchableOpacity
                       onPress={() => this.props.navigation.navigate('TeachViewActivity', {
                         ACT: user.morning,
-                        date: user.date
+                        date: user.date,
+                        key: user.key,
+                        suid: user.suid
                       })}
                       style={styles.button.sub}>
                       <Text style={styles.button.subLabel}>ดูกิจกรรมเช้า</Text>
@@ -79,7 +83,9 @@ class ActivityScreen extends Component {
                     <TouchableOpacity
                       onPress={() => this.props.navigation.navigate('TeachViewActivity', {
                         ACT: user.afternoon,
-                        date: user.date
+                        date: user.date,
+                        key: user.key,
+                        suid: user.suid
                       })}
                       style={styles.button.sub}>
                       <Text style={styles.button.subLabel}>ดูกิจกรรมบ่าย</Text>

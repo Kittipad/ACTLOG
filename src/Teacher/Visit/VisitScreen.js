@@ -35,7 +35,7 @@ class VisitScreen extends Component {
           var suid = child.val().suid
           var tuid = child.val().tuid
           var stat = child.val().stat
-          console.log(`${suid} ${tuid} ${stat}`)
+          var key = child.key
           if (stat == false) {
             std.child(suid).once('value').then((snapshot) => {
               var val = snapshot.val()
@@ -45,7 +45,8 @@ class VisitScreen extends Component {
                 email: val.email,
                 sid: val.sid,
                 suid: val.uid,
-                tuid: tuid
+                tuid: tuid,
+                key: key
               })
               this.setState({ list: items })
             })
@@ -74,7 +75,8 @@ class VisitScreen extends Component {
                           suid: user.suid,
                           tuid: user.tuid,
                           fname: user.fname,
-                          lname: user.lname
+                          lname: user.lname,
+                          key: user.key
                         })}>
                       <Text style={styles.button.subLabel}>บันทึกนิเทศ</Text>
                     </TouchableOpacity>

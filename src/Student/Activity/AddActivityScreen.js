@@ -113,7 +113,7 @@ class AddActivity extends Component {
       const uid = firebase.auth().currentUser.uid
       const imageRef = firebase
         .storage()
-        .ref(`${uid}/${key}`)
+        .ref(`users/${uid}/${key}`)
         .child(time)
       let mime = 'image/jpg'
 

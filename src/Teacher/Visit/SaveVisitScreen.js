@@ -5,8 +5,11 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
-  View
+  View,
+  Image
 } from 'react-native'
+import { Card } from 'react-native-elements'
+import ImagePicker from 'react-native-image-crop-picker'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import firebase from 'react-native-firebase'
 import styles from '../../styles';
@@ -43,7 +46,8 @@ class SaveVisitScreen extends Component {
     super(props)
     this.state = {
       comment: '',
-      vid: ''
+      vid: '',
+      list: []
     }
   }
 
@@ -53,10 +57,12 @@ class SaveVisitScreen extends Component {
   }
 
   getList() {
+    var items = []
     var suid = this.props.navigation.getParam('suid')
     var tuid = this.props.navigation.getParam('tuid')
-    // console.log(`${suid} ${tuid}`)
+    var key = this.props.navigation.getParam('key')
     var visit = firebase.database().ref('visit')
+    console.log(`${suid} ${tuid} ${key}`)
 
     visit.orderByChild('tuid').equalTo(tuid)
       .once('value').then((snapshot) => {
@@ -71,6 +77,14 @@ class SaveVisitScreen extends Component {
               })
           }
         })
+      })
+    firebase.database().ref(`visit/${key}/photos`)
+      .once('value').then((snapshot) => {
+        snapshot.forEach((child) => {
+          console.log(child.val().photo)
+          items.push({ photo: child.val().photo })
+        })
+        this.setState({ list: items })
       })
   }
 
@@ -92,8 +106,56 @@ class SaveVisitScreen extends Component {
     })
   }
 
+  _pickImage() {
+    ImagePicker.openPicker({
+      width: 1280,
+      height: 720,
+      multiple: true,
+      mediaType: 'photo'
+    }).then((img) => {
+      console.log(img)
+      img.forEach((e) => {
+        console.log(e.path)
+        this.uploadImage(e.path, new Date().getTime())
+      })
+    })
+  }
+
+  uploadImage(uri, time, mime = 'application/octet-stream') {
+    return new Promise((resolve, reject) => {
+      var { navigation } = this.props
+      var key = navigation.getParam('key')
+      const imagePath = uri
+      const imageRef = firebase
+        .storage()
+        .ref(`visit/${key}`)
+        .child(time)
+      let mime = 'image/jpg'
+
+      imageRef
+        .put(imagePath, { contentType: mime })
+        .then(async () => {
+          return imageRef.getDownloadURL()
+            .then((url) => {
+              console.log(url)
+              this.saveUrl(url, key)
+            })
+        })
+        .then(resolve)
+        .catch(reject)
+    })
+  }
+
+  saveUrl(url, key) {
+    firebase.database().ref(`visit/${key}/photos`)
+      .push({ photo: url })
+      .then(() => {
+        Alert.alert('อัพโหลดเสร็จแล้ว.')
+      })
+  }
+
   render() {
-    const { comment, vid } = this.state
+    const { comment, vid, list } = this.state
     // console.log(list)
     return (
       <ScrollView style={styles.view.scrollView}>
@@ -108,6 +170,22 @@ class SaveVisitScreen extends Component {
           autoCapitalize='none'
           autoCorrect={false}>
         </TextInput>
+        <TouchableOpacity
+          onPress={() => this._pickImage()}
+          style={styles.button.sub}>
+          <Text style={styles.button.subLabel}>อัพโหลดรูป</Text>
+        </TouchableOpacity>
+        {
+          list.map((user, i) => {
+            return (
+              <Card key={i}>
+                <Image
+                  style={{ width: '100%', height: 300 }}
+                  source={{ uri: user.photo }} />
+              </Card>
+            )
+          })
+        }
       </ScrollView>
     )
   }
