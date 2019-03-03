@@ -24,6 +24,7 @@ class DetailScreen extends Component {
       email: '',
       telNum: '',
       uuid: '',
+      avatar: ''
     }
   }
 
@@ -43,23 +44,25 @@ class DetailScreen extends Component {
         email: data.email,
         telNum: data.telNum,
         uuid: uid,
+        avatar: data.avatar
       })
       console.log(data)
     })
   }
 
   editDetail() {
-    const { fname, lname, email, telNum } = this.state
+    const { fname, lname, email, telNum, avatar } = this.state
     this.props.navigation.navigate('TeachEditDetail', {
       fname: fname,
       lname: lname,
       email: email,
       telNum: telNum,
+      avatar: avatar
     })
   }
 
   render() {
-    const { fname, lname, email, telNum, uuid } = this.state
+    const { fname, lname, email, telNum, uuid, avatar } = this.state
     return (
       <View style={{ flex: 1 }}>
         <NavigationEvents onDidFocus={() => this.componentDidMount()} />
@@ -67,6 +70,12 @@ class DetailScreen extends Component {
           <View style={styles.view.detailContainer}>
             <Card containerStyle={styles.view.card}>
               <View style={styles.view.headerContainer}>
+                <Avatar
+                  source={{ uri: avatar }}
+                  size='xlarge'
+                  rounded
+                  containerStyle={{ alignSelf: 'center', margin: 20 }}
+                />
                 <Text style={styles.label.header}>{fname + '  ' + lname}</Text>
 
                 <View style={styles.view.containerWithBorder}>
