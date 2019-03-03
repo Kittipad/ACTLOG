@@ -14,6 +14,7 @@ import StdTimeTable from './Student/TimeTable/TimeTableScreen'
 import StdActivity from './Student/Activity/ActivityScreen'
 import StdAddActivity from './Student/Activity/AddActivityScreen'
 import StdVisit from './Student/Visit/VisitScreen'
+import StdViewVisit from './Student/Visit/ViewVisit'
 import StdComment from './Student/Comment/CommentScreen'
 import StdDetail from './Student/DetailScreen'
 import StdEditDetail from './Student/EditDetailScreen'
@@ -66,6 +67,12 @@ const RootStack = createStackNavigator({
     screen: StdVisit,
     navigationOptions: {
       title: 'ดูผลการนิเทศ'
+    }
+  },
+  StudentViewVisit: {
+    screen: StdViewVisit,
+    navigationOptions: {
+      title: 'ดูรูปภาพการนิเทศ'
     }
   },
   StudentComment: {
