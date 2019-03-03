@@ -165,7 +165,7 @@ class SaveVisitScreen extends Component {
           multiline={true}
           placeholderTextColor='gray'
           defaultValue={comment}
-          placeholder='แสดงความคิดดเห็น'
+          placeholder='แสดงความคิดเห็น'
           onChangeText={(text) => this.setState({ comment: text })}
           autoCapitalize='none'
           autoCorrect={false}>
